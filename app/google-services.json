@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "769064153472",
+    "firebase_url": "https://billdivider-4007e.firebaseio.com",
+    "project_id": "billdivider-4007e",
+    "storage_bucket": "billdivider-4007e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769064153472:android:e95f45c1bbaee19e",
+        "android_client_info": {
+          "package_name": "com.billdivider.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769064153472-qe3gk6sckbiv3inibv2gdcooeqvrtep1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.billdivider.android",
+            "certificate_hash": "2780d56f350058ebdfcd2bf203979f9ae4743498"
+          }
+        },
+        {
+          "client_id": "769064153472-24uiq8cmh978875qulipu5940rtgpri1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjYt6jZcLWuuqw70i6Sm7MUzzN907MjWI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769064153472-24uiq8cmh978875qulipu5940rtgpri1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
