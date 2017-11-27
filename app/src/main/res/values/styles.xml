@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="RootTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabTextAppearance">@style/RootTabItemText</item>
+        <item name="tabIndicatorColor">@color/white</item>
+    </style>
+
+    <style name="RootTabItemText" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
 </resources>

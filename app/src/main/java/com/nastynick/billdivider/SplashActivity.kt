@@ -11,7 +11,7 @@ import com.firebase.ui.auth.IdpResponse
 import android.content.Intent
 
 class SplashActivity : AppCompatActivity() {
-   private val RC_SIGN_IN = 123
+    private val RC_SIGN_IN = 123
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,13 +40,17 @@ class SplashActivity : AppCompatActivity() {
             if (resultCode == ResultCodes.OK) {
                 // Successfully signed in
                 val user = FirebaseAuth.getInstance().currentUser
-
+                startRootActivity()
                 // ...
             } else {
                 // Sign in failed, check response for error code
                 // ...
             }
         }
+    }
+
+    private fun startRootActivity() {
+        RootActivity.getIntent(this).let(this::startActivity)
     }
 
 }
