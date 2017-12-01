@@ -17,9 +17,6 @@ class RootActivity : AppCompatActivity(), RootView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
-
-        Log.i("DTEST", databaseManager.toString())
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_root)
 

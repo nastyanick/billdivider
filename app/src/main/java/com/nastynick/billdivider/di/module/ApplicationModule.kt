@@ -3,12 +3,11 @@ package com.nastynick.billdivider.di.module
 import android.app.Application
 import android.content.Context
 import com.nastynick.billdivider.DatabaseManager
-import com.nastynick.billdivider.di.component.RootActivityComponent
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module(subcomponents = arrayOf(RootActivityComponent::class))
+@Module
 class ApplicationModule {
 
     @Provides
