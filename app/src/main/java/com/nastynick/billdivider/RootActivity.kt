@@ -12,9 +12,6 @@ import javax.inject.Inject
 
 class RootActivity : AppCompatActivity(), RootView {
 
-    @Inject
-    lateinit var databaseManager: DatabaseManager
-
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
