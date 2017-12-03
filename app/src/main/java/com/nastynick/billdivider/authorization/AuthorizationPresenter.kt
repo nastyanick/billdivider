@@ -1,6 +1,6 @@
 package com.nastynick.billdivider.authorization
 
-import com.nastynick.billdivider.domain.usecase.AuthUseCase
+import com.nastynick.billdivider.domain.usecase.auth.AuthUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

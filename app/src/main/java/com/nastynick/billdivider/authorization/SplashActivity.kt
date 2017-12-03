@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.nastynick.billdivider.R
-import com.nastynick.billdivider.domain.model.AuthData
+import com.nastynick.billdivider.domain.model.auth.AuthData
 import com.nastynick.billdivider.root.view.RootActivity
 import dagger.android.AndroidInjection
 import javax.inject.Inject

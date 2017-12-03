@@ -1,10 +1,10 @@
-package com.nastynick.billdivider.domain.usecase
+package com.nastynick.billdivider.domain.usecase.auth
 
 import android.content.Intent
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
-import com.nastynick.billdivider.domain.model.AuthData
+import com.nastynick.billdivider.domain.model.auth.AuthData
 import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.domain.model
+package com.nastynick.billdivider.domain.model.auth
 
 import android.content.Intent
 
