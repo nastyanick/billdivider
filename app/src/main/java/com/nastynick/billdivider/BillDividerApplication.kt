@@ -17,10 +17,10 @@ class BillDividerApplication : Application(), HasActivityInjector {
     override fun onCreate() {
         super.onCreate()
 
-        initComponents()
+        initDaggerComponent()
     }
 
-    private fun initComponents() {
+    private fun initDaggerComponent() {
         DaggerApplicationComponent
                 .builder()
                 .application(this)
