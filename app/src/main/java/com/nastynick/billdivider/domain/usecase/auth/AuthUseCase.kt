@@ -20,15 +20,12 @@ class AuthUseCase @Inject constructor() {
     )
 
     fun getAuthDataIfNotAuthorized(): Observable<AuthData> {
-        val user = FirebaseAuth.getInstance().currentUser
-        return if (user != null) {
+        return if (isUserAuthorized()) {
             Observable.empty()
         } else {
             getAuthData()
         }
     }
-
-    private fun getAuthData() = Observable.just(AuthData(getAuthIntent(), REQUEST_CODE_SIGN_IN))
 
     fun checkIsAuthRequest(resultIsSuccess: Boolean, requestCode: Int): Completable {
         return if (resultIsSuccess && requestCode == REQUEST_CODE_SIGN_IN) {
@@ -37,6 +34,12 @@ class AuthUseCase @Inject constructor() {
             Completable.error(FirebaseException("Firebase Auth Failed"))
         }
     }
+    private fun isUserAuthorized(): Boolean {
+        val user = FirebaseAuth.getInstance().currentUser
+        return user != null
+    }
+
+    private fun getAuthData() = Observable.just(AuthData(getAuthIntent(), REQUEST_CODE_SIGN_IN))
 
     private fun getAuthIntent(): Intent? {
         return AuthUI.getInstance()
