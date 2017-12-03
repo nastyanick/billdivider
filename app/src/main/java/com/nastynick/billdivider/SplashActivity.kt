@@ -1,14 +1,13 @@
 package com.nastynick.billdivider
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
-import java.util.Arrays.asList
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.firebase.ui.auth.ResultCodes
 import com.firebase.ui.auth.IdpResponse
-import android.content.Intent
+import com.firebase.ui.auth.ResultCodes
+import com.google.firebase.auth.FirebaseAuth
+import com.nastynick.billdivider.root.view.RootActivity
 
 class SplashActivity : AppCompatActivity() {
     private val RC_SIGN_IN = 123

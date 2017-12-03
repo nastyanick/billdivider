@@ -1,6 +1,6 @@
 package com.nastynick.billdivider.di.module
 
-import com.nastynick.billdivider.RootActivity
+import com.nastynick.billdivider.root.view.RootActivity
 import dagger.Module
 
 @Module

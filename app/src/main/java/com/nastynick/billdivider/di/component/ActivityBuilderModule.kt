@@ -1,7 +1,7 @@
 package com.nastynick.billdivider.di.component
 
-import com.nastynick.billdivider.RootActivity
 import com.nastynick.billdivider.di.module.RootActivityModule
+import com.nastynick.billdivider.root.view.RootActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
