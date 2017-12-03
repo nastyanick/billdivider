@@ -22,8 +22,4 @@ interface ApplicationComponent {
 
     fun inject(application: BillDividerApplication)
 
-//    @ApplicationContext
-//    fun getContext(): Context
-//
-//    fun getApplication(): Application
 }
