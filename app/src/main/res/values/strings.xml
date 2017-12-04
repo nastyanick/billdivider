@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">billdivider</string>
 
+    <string name="tabs_title">Дели счет</string>
     <string name="tab_bills">Счета</string>
     <string name="tab_friends">Друзья</string>
 
