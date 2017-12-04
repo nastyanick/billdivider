@@ -10,6 +10,12 @@ import kotlinx.android.synthetic.main.activity_root.*
 
 class RootActivity : AppCompatActivity(), RootView {
 
+    companion object {
+        fun getIntent(context: Context): Intent {
+            return Intent(context, RootActivity::class.java)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
@@ -29,10 +35,4 @@ class RootActivity : AppCompatActivity(), RootView {
 
     }
 
-
-    companion object {
-        fun getIntent(context: Context): Intent {
-            return Intent(context, RootActivity::class.java)
-        }
-    }
 }

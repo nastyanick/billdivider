@@ -34,6 +34,7 @@ class AuthUseCase @Inject constructor() {
             Completable.error(FirebaseException("Firebase Auth Failed"))
         }
     }
+
     private fun isUserAuthorized(): Boolean {
         val user = FirebaseAuth.getInstance().currentUser
         return user != null
