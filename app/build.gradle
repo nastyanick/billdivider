@@ -55,6 +55,7 @@ dependencies {
     implementation "com.google.dagger:dagger-android:$project.daggerVersion"
     annotationProcessor "com.google.dagger:dagger-android-processor:$project.daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$project.daggerVersion"
+    implementation 'com.google.dagger:dagger-android-support:2.11'
 
     implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'

@@ -1,7 +1,5 @@
-package com.nastynick.billdivider.di.component
+package com.nastynick.billdivider.di.module
 
-import com.nastynick.billdivider.di.module.AuthorizationActivityModule
-import com.nastynick.billdivider.di.module.RootActivityModule
 import com.nastynick.billdivider.di.scope.ActivityScope
 import com.nastynick.billdivider.presentation.authorization.SplashActivity
 import com.nastynick.billdivider.presentation.root.RootActivity
