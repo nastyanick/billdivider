@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.authorization
+package com.nastynick.billdivider.presentation.authorization
 
 import android.app.Activity
 import android.content.Intent
@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.domain.model.auth.AuthData
-import com.nastynick.billdivider.root.view.RootActivity
+import com.nastynick.billdivider.presentation.root.RootActivity
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 

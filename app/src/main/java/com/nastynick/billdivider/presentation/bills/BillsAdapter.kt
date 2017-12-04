@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.bills.view
+package com.nastynick.billdivider.presentation.bills
 
 import android.support.v7.widget.RecyclerView
 import android.view.View

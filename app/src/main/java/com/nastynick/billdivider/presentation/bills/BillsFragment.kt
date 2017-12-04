@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.bills.view
+package com.nastynick.billdivider.presentation.bills
 
 import android.app.Fragment
 import android.os.Bundle

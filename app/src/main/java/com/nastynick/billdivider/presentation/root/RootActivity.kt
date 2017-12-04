@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.root.view
+package com.nastynick.billdivider.presentation.root
 
 import android.content.Context
 import android.content.Intent

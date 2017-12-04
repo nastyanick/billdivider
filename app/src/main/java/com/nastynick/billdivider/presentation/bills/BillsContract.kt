@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.bills
+package com.nastynick.billdivider.presentation.bills
 
 import com.nastynick.billdivider.domain.model.bills.Bill
 

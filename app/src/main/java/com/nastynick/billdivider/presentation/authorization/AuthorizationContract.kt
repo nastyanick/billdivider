@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.authorization
+package com.nastynick.billdivider.presentation.authorization
 
 import com.nastynick.billdivider.domain.model.auth.AuthData
 
