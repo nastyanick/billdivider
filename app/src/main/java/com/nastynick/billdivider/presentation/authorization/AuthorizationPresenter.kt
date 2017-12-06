@@ -6,20 +6,20 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class AuthorizationPresenter @Inject constructor(
-        val view: AuthorizationContract.View,
-        val authUseCase: AuthUseCase
+        private val view: AuthorizationContract.View,
+        private val authUseCase: AuthUseCase
 ) : AuthorizationContract.Presenter {
 
     override fun onStart() {
         authUseCase.getAuthDataIfNotAuthorized()
-                .doOnTerminate { view.openRootScreen() }
+                .doOnTerminate(view::openRootScreen)
                 .subscribe(view::runAuth)
     }
 
     override fun onAuthResultReceived(isResultSuccess: Boolean, requestCode: Int) {
-        authUseCase.checkIsAuthRequest(isResultSuccess, requestCode)
+        authUseCase.checkIsAuthSuccessful(isResultSuccess, requestCode)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ view.openRootScreen() }, { view.showAuthFailedMessage() })
+                .subscribe(view::openRootScreen, { view.showAuthFailedMessage() })
     }
 }

@@ -28,6 +28,7 @@ class BillsFragment: Fragment(), BillsContract.View {
     @Inject
     protected lateinit var adapter: BillsAdapter
 
+
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)

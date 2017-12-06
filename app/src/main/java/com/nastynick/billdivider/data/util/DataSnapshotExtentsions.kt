@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.data
+package com.nastynick.billdivider.data.util
 
 import com.google.firebase.database.DataSnapshot
 import com.nastynick.billdivider.domain.model.HasId

@@ -10,9 +10,24 @@ import javax.inject.Inject
 
 
 class BillsAdapter @Inject constructor() : RecyclerView.Adapter<BillsAdapter.ViewHolder>() {
-    private var bills: List<Bill>? = null
+    private var bills: List<Bill> = listOf()
 
-    class ViewHolder(val view: LinearLayout) : RecyclerView.ViewHolder(view) {
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+        bills[position].let(viewHolder::bind)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(LinearLayout(parent.context))
+    }
+
+    override fun getItemCount() = bills.size
+
+    fun setData(bills: List<Bill>) {
+        this.bills = bills
+        Log.i("BillsAdapter", "bills $bills ${bills.size}")
+    }
+
+    inner class ViewHolder(val view: LinearLayout) : RecyclerView.ViewHolder(view) {
         private val textView: TextView = TextView(view.context)
 
         init {
@@ -22,21 +37,5 @@ class BillsAdapter @Inject constructor() : RecyclerView.Adapter<BillsAdapter.Vie
         fun bind(bill: Bill) {
             textView.text = bill.id
         }
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val bill = bills?.get(position) ?: return
-        bill.let(holder::bind)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LinearLayout(parent.context))
-    }
-
-    override fun getItemCount() = bills?.size ?: 0
-
-    fun setData(bills: List<Bill>) {
-        this.bills = bills
-        Log.i("BillsAdapter", "bills $bills ${bills.size}")
     }
 }

@@ -1,7 +1,7 @@
 package com.nastynick.billdivider.domain.usecase.auth
 
 import android.content.Intent
-import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.AuthUI.*
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.nastynick.billdivider.domain.model.auth.AuthData
@@ -11,41 +11,51 @@ import javax.inject.Inject
 
 
 class AuthUseCase @Inject constructor() {
-    private val REQUEST_CODE_SIGN_IN = 1
 
-    private val authProviders = mutableListOf(
-            AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
-            AuthUI.IdpConfig.Builder(AuthUI.PHONE_VERIFICATION_PROVIDER).build(),
-            AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()
+    private val REQUEST_CODE_SIGN_IN = 1
+    private val FIREBASE_AUTH_PROVIDERS = listOf(
+            IdpConfig.Builder(EMAIL_PROVIDER).build(),
+            IdpConfig.Builder(PHONE_VERIFICATION_PROVIDER).build(),
+            IdpConfig.Builder(GOOGLE_PROVIDER).build()
     )
 
     fun getAuthDataIfNotAuthorized(): Observable<AuthData> {
-        return if (isUserAuthorized()) {
-            Observable.empty()
+        return if (isUserNotAuthorized()) {
+            getAuthDataSource()
         } else {
-            getAuthData()
+            getAuthAlreadyCompleteSource()
         }
     }
 
-    fun checkIsAuthRequest(resultIsSuccess: Boolean, requestCode: Int): Completable {
-        return if (resultIsSuccess && requestCode == REQUEST_CODE_SIGN_IN) {
-            Completable.complete()
+    fun checkIsAuthSuccessful(resultIsSuccess: Boolean, requestCode: Int): Completable {
+        return if (isAuthSuccessful(resultIsSuccess, requestCode)) {
+            getAuthCompleteSource()
         } else {
-            Completable.error(FirebaseException("Firebase Auth Failed"))
+            getAuthErrorSource()
         }
     }
 
-    private fun isUserAuthorized(): Boolean {
+    private fun isUserNotAuthorized(): Boolean {
         val user = FirebaseAuth.getInstance().currentUser
-        return user != null
+        return user == null
     }
 
-    private fun getAuthData() = Observable.just(AuthData(getAuthIntent(), REQUEST_CODE_SIGN_IN))
+    private fun getAuthAlreadyCompleteSource(): Observable<AuthData> = Observable.empty()
+    private fun getAuthDataSource() = Observable.just(AuthData(getAuthIntent(), REQUEST_CODE_SIGN_IN))
+
+
+    private fun isAuthSuccessful(resultIsSuccess: Boolean, requestCode: Int): Boolean {
+        return resultIsSuccess && requestCode == REQUEST_CODE_SIGN_IN
+    }
+
+    private fun getAuthCompleteSource() = Completable.complete()
+    private fun getAuthErrorSource() = Completable.error(FirebaseException("Firebase Auth Failed"))
+
 
     private fun getAuthIntent(): Intent? {
-        return AuthUI.getInstance()
+        return getInstance()
                 .createSignInIntentBuilder()
-                .setAvailableProviders(authProviders)
+                .setAvailableProviders(FIREBASE_AUTH_PROVIDERS)
                 .build()
     }
 }

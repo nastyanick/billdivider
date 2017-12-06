@@ -48,7 +48,8 @@ class RootActivity : AppCompatActivity(), RootView, HasSupportFragmentInjector {
         rootTabLayout.setupWithViewPager(rootPager)
     }
 
-    inner class PagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+    private inner class PagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+
         private val titledFragments: List<Pair<Int, Fragment>> = listOf(
                 R.string.tab_bills to BillsFragment.getInstance(),
                 R.string.tab_friends to BillsFragment.getInstance()

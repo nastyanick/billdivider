@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.data
+package com.nastynick.billdivider.data.util
 
 import com.google.firebase.FirebaseException
 import com.google.firebase.database.DataSnapshot

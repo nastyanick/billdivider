@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.di.scope
+package com.nastynick.billdivider.di.annotation.scope
 
 import javax.inject.Scope
 

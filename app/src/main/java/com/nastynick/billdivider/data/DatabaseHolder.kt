@@ -6,6 +6,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DatabaseManager @Inject constructor() {
+class DatabaseHolder @Inject constructor() {
     val reference: DatabaseReference by lazy { FirebaseDatabase.getInstance().reference }
 }

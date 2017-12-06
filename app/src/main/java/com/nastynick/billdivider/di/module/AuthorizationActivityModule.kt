@@ -1,6 +1,6 @@
 package com.nastynick.billdivider.di.module
 
-import com.nastynick.billdivider.di.scope.ActivityScope
+import com.nastynick.billdivider.di.annotation.scope.ActivityScope
 import com.nastynick.billdivider.presentation.authorization.AuthorizationContract
 import com.nastynick.billdivider.presentation.authorization.AuthorizationPresenter
 import com.nastynick.billdivider.presentation.authorization.SplashActivity
