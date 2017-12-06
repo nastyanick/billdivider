@@ -2,6 +2,7 @@ package com.nastynick.billdivider
 
 import android.app.Activity
 import android.app.Application
+import com.google.firebase.database.FirebaseDatabase
 import com.nastynick.billdivider.di.component.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -18,6 +19,11 @@ class BillDividerApplication : Application(), HasActivityInjector {
         super.onCreate()
 
         initDaggerComponent()
+        initDatabase()
+    }
+
+    override fun activityInjector(): AndroidInjector<Activity> {
+        return activityDispatchingAndroidInjector
     }
 
     private fun initDaggerComponent() {
@@ -28,8 +34,8 @@ class BillDividerApplication : Application(), HasActivityInjector {
                 .inject(this)
     }
 
-
-    override fun activityInjector(): AndroidInjector<Activity> {
-        return activityDispatchingAndroidInjector
+    private fun initDatabase() {
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
     }
+
 }
