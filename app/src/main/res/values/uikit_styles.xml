@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextView">
+        <item name="android:textColor">@color/colorTextRegular</item>
+    </style>
+
+    <style name="TextView.Large">
+        <item name="android:textSize">@dimen/font_size_text_view_large</item>
+    </style>
+
+    <style name="TextView.Bold">
+        <item name="android:textSize">@dimen/font_size_text_view_medium</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextView.Regular">
+        <item name="android:textSize">@dimen/font_size_text_view_regular</item>
+    </style>
+
+    <style name="TextView.Title">
+        <item name="android:textColor">@color/colorTextGray</item>
+        <item name="android:textSize">@dimen/font_size_text_view_title</item>
+    </style>
+
+    <style name="TitledTextLayout"></style>
+
+    <style name="TextViewContainer">
+        <item name="android:paddingLeft">@dimen/horizontal_padding_text_view</item>
+        <item name="android:paddingRight">@dimen/horizontal_padding_text_view</item>
+        <item name="android:paddingTop">@dimen/vertical_padding_text_view</item>
+        <item name="android:paddingBottom">@dimen/vertical_padding_text_view</item>
+    </style>
+
+    <style name="ItemView"></style>
+
+    <style name="ItemView.TopView">
+        <item name="android:paddingTop">@dimen/vertical_padding_bill_item_view</item>
+    </style>
+
+    <style name="ItemView.BottomView">
+        <item name="android:paddingBottom">@dimen/vertical_padding_bill_item_view</item>
+    </style>
+</resources>

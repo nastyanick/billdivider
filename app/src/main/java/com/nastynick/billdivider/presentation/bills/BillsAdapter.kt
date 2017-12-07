@@ -1,11 +1,12 @@
 package com.nastynick.billdivider.presentation.bills
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
+import com.nastynick.billdivider.R
 import com.nastynick.billdivider.domain.model.bills.Bill
+import kotlinx.android.synthetic.main.item_bill.view.*
 import javax.inject.Inject
 
 
@@ -17,25 +18,23 @@ class BillsAdapter @Inject constructor() : RecyclerView.Adapter<BillsAdapter.Vie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LinearLayout(parent.context))
+        return LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_bill, null)
+                .let(this::ViewHolder)
     }
 
     override fun getItemCount() = bills.size
 
     fun setData(bills: List<Bill>) {
         this.bills = bills
-        Log.i("BillsAdapter", "bills $bills ${bills.size}")
     }
 
-    inner class ViewHolder(val view: LinearLayout) : RecyclerView.ViewHolder(view) {
-        private val textView: TextView = TextView(view.context)
-
-        init {
-            view.addView(textView)
-        }
-
+    inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(bill: Bill) {
-            textView.text = bill.id
+            with(bill) {
+                view.itemBillTextViewName.setText(id)
+                view.itemBillTextViewAddress.setText(address)
+            }
         }
     }
 }
