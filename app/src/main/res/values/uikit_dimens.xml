@@ -22,4 +22,6 @@
 
     <dimen name="left_margin_horizontal_delimiter">@dimen/space_large</dimen>
     <dimen name="height_horizontal_delimiter">1px</dimen>
+
+    <dimen name="margin_floating_action_button">@dimen/space_large</dimen>
 </resources>

@@ -44,8 +44,8 @@ class RootActivity : AppCompatActivity(), RootView, HasSupportFragmentInjector {
 
 
     private fun initPager() {
-        rootPager.adapter = PagerAdapter(supportFragmentManager)
-        rootTabLayout.setupWithViewPager(rootPager)
+        activityRootPager.adapter = PagerAdapter(supportFragmentManager)
+        activityRootTabLayout.setupWithViewPager(activityRootPager)
     }
 
     private inner class PagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {

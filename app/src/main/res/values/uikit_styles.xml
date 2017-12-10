@@ -41,4 +41,12 @@
     <style name="ItemView.BottomView">
         <item name="android:paddingBottom">@dimen/vertical_padding_bill_item_view</item>
     </style>
+
+    <style name="FloatingActionButton">
+        <item name="android:layout_margin">@dimen/margin_floating_action_button</item>
+    </style>
+
+    <style name="FloatingActionButton.Add">
+        <item name="android:src">@drawable/vector_add</item>
+    </style>
 </resources>
