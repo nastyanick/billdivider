@@ -3,7 +3,9 @@ package com.nastynick.billdivider.di.module
 import android.app.Application
 import android.content.Context
 import com.nastynick.billdivider.data.BillsRepositoryImpl
+import com.nastynick.billdivider.data.ContactsRepositoryImpl
 import com.nastynick.billdivider.domain.repository.bills.BillsRepository
+import com.nastynick.billdivider.domain.repository.contacts.ContactsRepository
 import dagger.Binds
 import dagger.Module
 
@@ -15,4 +17,7 @@ abstract class ApplicationModule {
 
     @Binds
     abstract fun provideBillsRepository(billsRepositoryImpl: BillsRepositoryImpl): BillsRepository
+
+    @Binds
+    abstract fun provideContactsRepository(contactsRepositoryImpl: ContactsRepositoryImpl): ContactsRepository
 }

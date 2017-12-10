@@ -43,11 +43,12 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$supportVersion"
 
+    // Firebase
     implementation 'com.firebaseui:firebase-ui-auth:3.1.0'
     implementation "com.google.firebase:firebase-database:$project.firebaseVersion"
     implementation "com.google.firebase:firebase-core:$project.firebaseVersion"
 
-    // Dagger Android
+    // Dagger
     provided "com.google.dagger:dagger:$project.daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$project.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$project.daggerVersion"
@@ -57,8 +58,12 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$project.daggerVersion"
     implementation 'com.google.dagger:dagger-android-support:2.11'
 
+    // RxJava
     implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    // Contacts
+    implementation 'com.github.tamir7.contacts:contacts:1.1.7'
 
     provided 'org.glassfish:javax.annotation:10.0-b28'
 

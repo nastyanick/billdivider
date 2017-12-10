@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nastynick.billdivider">
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:name=".BillDividerApplication"
@@ -11,7 +12,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.nastynick.billdivider.presentation.authorization.SplashActivity"
+            android:name=".presentation.authorization.SplashActivity"
             android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +21,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.nastynick.billdivider.presentation.root.RootActivity" />
+        <activity android:name=".presentation.root.RootActivity" />
+
+        <activity android:name=".presentation.contacts.ContactsActivity" />
     </application>
 </manifest>
