@@ -38,7 +38,7 @@ class BillsFragment: Fragment(), BillsContract.View {
         return inflater.inflate(R.layout.fragment_bills, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initBillsList()

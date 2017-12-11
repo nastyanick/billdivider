@@ -8,6 +8,7 @@
     <dimen name="space_large">16dp</dimen>
     <dimen name="space_xlarge">24dp</dimen>
     <dimen name="space_xxlarge">32dp</dimen>
+    <dimen name="space_xxxlarge">56dp</dimen>
 
     <dimen name="font_size_text_view_large">32sp</dimen>
     <dimen name="font_size_text_view_regular">18sp</dimen>
@@ -24,4 +25,9 @@
     <dimen name="height_horizontal_delimiter">1px</dimen>
 
     <dimen name="margin_floating_action_button">@dimen/space_large</dimen>
+
+    <dimen name="width_circular_image_view_out_circle">@dimen/space_xxxlarge</dimen>
+    <dimen name="height_circular_image_view_out_circle">@dimen/space_xxxlarge</dimen>
+
+    <dimen name="margin_circular_image_view_inner_circle">@dimen/space_small</dimen>
 </resources>

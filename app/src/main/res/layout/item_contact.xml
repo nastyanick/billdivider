@@ -1,26 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
-    <com.nastynick.billdivider.presentation.uikit.StyledTextView
-        android:id="@+id/itemContactTextViewName"
-        style="@style/ItemView.TopView"
+    <com.nastynick.billdivider.presentation.uikit.CircularImageView
+        android:id="@+id/itemContactCircularImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true" />
+
+    <LinearLayout
+        android:id="@+id/itemContactContainerTextViews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/itemContactCircularImageView"
+        android:layout_toRightOf="@id/itemContactCircularImageView"
+        android:orientation="vertical">
+
+        <com.nastynick.billdivider.presentation.uikit.StyledTextView
+            android:id="@+id/itemContactTextViewName"
+            style="@style/ItemView.TopView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:textStyle="bold"
+            tools:text="Alex" />
+
+        <com.nastynick.billdivider.presentation.uikit.StyledTextView
+            android:id="@+id/itemContactTextViewPhone"
+            style="@style/ItemView.BottomView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="8938499302" />
+    </LinearLayout>
+
+    <include
+        layout="@layout/layout_horizontal_delimiter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textStyle="bold"
-        tools:text="Alex" />
+        android:layout_below="@id/itemContactContainerTextViews" />
 
-    <com.nastynick.billdivider.presentation.uikit.StyledTextView
-        android:id="@+id/itemContactTextViewPhone"
-        style="@style/ItemView.BottomView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="8938499302" />
-
-    <include layout="@layout/layout_horizontal_delimiter" />
-
-</LinearLayout>
+</RelativeLayout>

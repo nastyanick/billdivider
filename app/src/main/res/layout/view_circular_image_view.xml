@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circularImageView"
+        style="@style/FloatingActionButton.Add"
+        android:layout_width="@dimen/width_circular_image_view_out_circle"
+        android:layout_height="@dimen/height_circular_image_view_out_circle"
+        android:src="@drawable/ic_splash"
+        app:civ_border_color="@color/colorPrimary"
+        app:civ_border_width="@dimen/margin_circular_image_view_inner_circle" />
+</FrameLayout>

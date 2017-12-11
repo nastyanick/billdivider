@@ -49,4 +49,8 @@
     <style name="FloatingActionButton.Add">
         <item name="android:src">@drawable/vec_add</item>
     </style>
+
+    <style name="CircularImageView">
+        <item name="android:layout_margin">@dimen/space_large</item>
+    </style>
 </resources>
