@@ -20,6 +20,11 @@ class ContactsRepositoryImpl @Inject constructor() : ContactsRepository {
     }
 
     private fun map(contact: com.github.tamir7.contacts.Contact): Contact {
-        return Contact(contact.displayName, contact.photoUri)
+        return Contact(
+                name = contact.displayName,
+                phone = contact.phoneNumbers.elementAtOrNull(0)?.normalizedNumber,
+                email = contact.emails.elementAtOrNull(0)?.address,
+                photoUri = contact.photoUri
+        )
     }
 }
