@@ -1,6 +1,5 @@
-package com.nastynick.billdivider.domain.model.bills
+package com.nastynick.billdivider.data.objects
 
-import com.nastynick.billdivider.domain.model.HasId
 import java.util.*
 
 class Bill() : HasId {

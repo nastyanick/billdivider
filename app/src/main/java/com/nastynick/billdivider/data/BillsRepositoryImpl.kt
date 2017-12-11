@@ -1,15 +1,15 @@
 package com.nastynick.billdivider.data
 
 import com.google.firebase.database.DataSnapshot
+import com.nastynick.billdivider.data.objects.Bill
 import com.nastynick.billdivider.data.util.firebaseSingleEventObservable
 import com.nastynick.billdivider.data.util.mapTo
-import com.nastynick.billdivider.domain.model.bills.Bill
-import com.nastynick.billdivider.domain.repository.bills.BillsRepository
+import com.nastynick.billdivider.domain.repository.BillsRepository
 import io.reactivex.Observable
 import javax.inject.Inject
 
 
-class BillsRepositoryImpl @Inject constructor(val databaseHolder: DatabaseHolder) : BillsRepository {
+class BillsRepositoryImpl @Inject constructor(private val databaseHolder: DatabaseHolder) : BillsRepository {
 
     private val BILLS_DATABASE_REFERENCE = "bills"
 

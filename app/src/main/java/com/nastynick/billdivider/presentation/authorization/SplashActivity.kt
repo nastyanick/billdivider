@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.nastynick.billdivider.R
-import com.nastynick.billdivider.domain.model.auth.AuthData
+import com.nastynick.billdivider.data.objects.AuthData
 import com.nastynick.billdivider.presentation.root.RootActivity
 import dagger.android.AndroidInjection
 import javax.inject.Inject
@@ -27,6 +27,7 @@ class SplashActivity : AppCompatActivity(), AuthorizationContract.View {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         super.onActivityResult(requestCode, resultCode, data)
+
         presenter.onAuthResultReceived(Activity.RESULT_OK == resultCode, requestCode)
     }
 

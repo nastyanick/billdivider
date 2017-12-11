@@ -1,6 +1,6 @@
 package com.nastynick.billdivider.presentation.bills
 
-import com.nastynick.billdivider.domain.model.bills.Bill
+import com.nastynick.billdivider.data.objects.Bill
 
 interface BillsContract {
 

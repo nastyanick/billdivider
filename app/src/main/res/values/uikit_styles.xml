@@ -47,6 +47,6 @@
     </style>
 
     <style name="FloatingActionButton.Add">
-        <item name="android:src">@drawable/vector_add</item>
+        <item name="android:src">@drawable/vec_add</item>
     </style>
 </resources>

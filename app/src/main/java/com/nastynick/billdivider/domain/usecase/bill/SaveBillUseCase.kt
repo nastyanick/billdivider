@@ -1,10 +1,10 @@
 package com.nastynick.billdivider.domain.usecase.bill
 
-import com.nastynick.billdivider.domain.model.bills.Bill
-import com.nastynick.billdivider.domain.repository.bills.BillsRepository
+import com.nastynick.billdivider.data.objects.Bill
+import com.nastynick.billdivider.domain.repository.BillsRepository
 import javax.inject.Inject
 
-class BillSaveUseCase @Inject constructor() {
+class SaveBillUseCase @Inject constructor() {
 
     @Inject
     protected lateinit var billsRepository: BillsRepository

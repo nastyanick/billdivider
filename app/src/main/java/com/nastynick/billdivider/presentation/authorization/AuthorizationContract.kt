@@ -1,6 +1,6 @@
 package com.nastynick.billdivider.presentation.authorization
 
-import com.nastynick.billdivider.domain.model.auth.AuthData
+import com.nastynick.billdivider.data.objects.AuthData
 
 interface AuthorizationContract {
 

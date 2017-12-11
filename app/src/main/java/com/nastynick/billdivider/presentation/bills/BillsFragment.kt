@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nastynick.billdivider.R
-import com.nastynick.billdivider.domain.model.bills.Bill
+import com.nastynick.billdivider.data.objects.Bill
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_bills.*
 import javax.inject.Inject
@@ -51,7 +51,7 @@ class BillsFragment: Fragment(), BillsContract.View {
     }
 
     private fun initBillsList() {
-        bills_list.layoutManager = LinearLayoutManager(activity)
-        bills_list.adapter = adapter
+        fragmentBillsRecyclerView.layoutManager = LinearLayoutManager(activity)
+        fragmentBillsRecyclerView.adapter = adapter
     }
 }

@@ -20,10 +20,10 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
     }
 
     @Inject
-    lateinit var presenter: ContactsContract.Presenter
+    protected lateinit var presenter: ContactsContract.Presenter
 
     @Inject
-    lateinit var adapter: ContactsAdapter
+    protected lateinit var adapter: ContactsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -35,13 +35,15 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
         super.onCreate(savedInstanceState)
     }
 
-    private fun initViews() {
-        activityContactsRecyclerView.layoutManager = LinearLayoutManager(this)
-        activityContactsRecyclerView.adapter = adapter
-    }
 
     override fun setContacts(contacts: List<Contact>) {
         adapter.setContacts(contacts)
         adapter.notifyDataSetChanged()
     }
+
+    private fun initViews() {
+        activityContactsRecyclerView.layoutManager = LinearLayoutManager(this)
+        activityContactsRecyclerView.adapter = adapter
+    }
+
 }

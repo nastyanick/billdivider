@@ -2,7 +2,7 @@ package com.nastynick.billdivider.data
 
 import com.github.tamir7.contacts.Contacts
 import com.nastynick.billdivider.data.objects.Contact
-import com.nastynick.billdivider.domain.repository.contacts.ContactsRepository
+import com.nastynick.billdivider.domain.repository.ContactsRepository
 import io.reactivex.Observable
 import javax.inject.Inject
 

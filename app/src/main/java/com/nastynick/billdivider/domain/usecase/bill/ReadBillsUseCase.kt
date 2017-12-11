@@ -1,9 +1,9 @@
 package com.nastynick.billdivider.domain.usecase.bill
 
-import com.nastynick.billdivider.domain.repository.bills.BillsRepository
+import com.nastynick.billdivider.domain.repository.BillsRepository
 import javax.inject.Inject
 
-class BillsReadUseCase @Inject constructor() {
+class ReadBillsUseCase @Inject constructor() {
 
     @Inject
     protected lateinit var billsRepository: BillsRepository

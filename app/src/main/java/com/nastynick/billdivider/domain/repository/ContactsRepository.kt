@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.domain.repository.contacts
+package com.nastynick.billdivider.domain.repository
 
 import com.nastynick.billdivider.data.objects.Contact
 import io.reactivex.Observable

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nastynick.billdivider.R
-import com.nastynick.billdivider.domain.model.bills.Bill
+import com.nastynick.billdivider.data.objects.Bill
 import kotlinx.android.synthetic.main.item_bill.view.*
 import javax.inject.Inject
 

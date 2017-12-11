@@ -1,6 +1,6 @@
 package com.nastynick.billdivider.domain.usecase.contact
 
-import com.nastynick.billdivider.domain.repository.contacts.ContactsRepository
+import com.nastynick.billdivider.domain.repository.ContactsRepository
 import javax.inject.Inject
 
 

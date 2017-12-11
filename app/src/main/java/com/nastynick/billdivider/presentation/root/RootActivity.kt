@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.presentation.bills.BillsFragment
 import com.nastynick.billdivider.presentation.contacts.ContactsActivity
+import com.nastynick.billdivider.presentation.root.RootContract.Presenter.Page.BILLS
+import com.nastynick.billdivider.presentation.root.RootContract.Presenter.Page.FRIENDS
 import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -30,7 +32,6 @@ class RootActivity : AppCompatActivity(), RootContract.View, HasSupportFragmentI
     @Inject
     protected lateinit var presenter: RootContract.Presenter
 
-    private enum class Page { BILLS, FRIENDS }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -50,7 +51,7 @@ class RootActivity : AppCompatActivity(), RootContract.View, HasSupportFragmentI
     override fun supportFragmentInjector() = dispatchingFragmentInjector
 
     private fun initToolbar() {
-        setSupportActionBar(toolbar)
+        setSupportActionBar(activityRootToolbar)
     }
 
     private fun initPager() {
@@ -61,8 +62,8 @@ class RootActivity : AppCompatActivity(), RootContract.View, HasSupportFragmentI
     private fun initListeners() {
         activityRootButtonAdd.setOnClickListener {
             when (activityRootPager.currentItem) {
-                Page.BILLS.ordinal -> presenter.addBillClick() //TODO add contacts access request
-                Page.FRIENDS.ordinal -> presenter.addFriendClick()
+                BILLS.ordinal -> presenter.addBillClick() //TODO add contacts access request
+                FRIENDS.ordinal -> presenter.addFriendClick()
             }
         }
     }

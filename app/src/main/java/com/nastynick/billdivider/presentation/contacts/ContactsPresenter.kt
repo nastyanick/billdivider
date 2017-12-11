@@ -6,8 +6,8 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ContactsPresenter @Inject constructor(
-        val view: ContactsContract.View,
-        val getContactsUseCase: GetContactsUseCase
+        private val view: ContactsContract.View,
+        private val getContactsUseCase: GetContactsUseCase
 ) : ContactsContract.Presenter {
 
     override fun onStart() {
