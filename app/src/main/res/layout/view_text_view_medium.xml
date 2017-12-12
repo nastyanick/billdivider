@@ -7,8 +7,8 @@
 
     <TextView
         android:id="@+id/billDividerTextView"
-        style="@style/TextView.Bold"
+        style="@style/TextView.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="This is bold text view" />
+        tools:text="This is medium text view" />
 </FrameLayout>

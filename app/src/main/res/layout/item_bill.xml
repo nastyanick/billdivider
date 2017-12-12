@@ -11,7 +11,7 @@
         style="@style/ItemView.TopView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textStyle="bold"
+        app:textStyle="medium"
         tools:text="Drinks" />
 
     <com.nastynick.billdivider.presentation.uikit.StyledTextView

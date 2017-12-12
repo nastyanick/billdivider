@@ -45,7 +45,7 @@ class StyledTextView : FrameLayout {
         return when (textStyle) {
             StyledTextView.TextStyle.REGULAR -> R.layout.view_text_view_regular
             StyledTextView.TextStyle.LARGE -> R.layout.view_text_view_large
-            StyledTextView.TextStyle.BOLD -> R.layout.view_text_view_bold
+            StyledTextView.TextStyle.MEDIUM -> R.layout.view_text_view_medium
             StyledTextView.TextStyle.TITLE -> R.layout.view_text_view_title
         }
     }
@@ -53,7 +53,7 @@ class StyledTextView : FrameLayout {
     enum class TextStyle(var index: Int) {
         REGULAR(0),
         LARGE(1),
-        BOLD(2),
+        MEDIUM(2),
         TITLE(3);
 
         companion object {

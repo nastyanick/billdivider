@@ -9,9 +9,9 @@
         <item name="android:textSize">@dimen/font_size_text_view_large</item>
     </style>
 
-    <style name="TextView.Bold">
+    <style name="TextView.Medium">
         <item name="android:textSize">@dimen/font_size_text_view_medium</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/font_roboto_medium</item>
     </style>
 
     <style name="TextView.Regular">
