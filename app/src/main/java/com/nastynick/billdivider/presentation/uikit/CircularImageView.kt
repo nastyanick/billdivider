@@ -41,7 +41,7 @@ class CircularImageView : FrameLayout {
     }
 
     private fun setDefaultImage() {
-        Glide.with(this).load(ContextCompat.getDrawable(context, R.mipmap.ic_launcher)).into(circularImageView)
+        Glide.with(this).load(ContextCompat.getDrawable(context, R.drawable.ic_friend)).into(circularImageView)
     }
 
     private fun setImageFromSource(source: String) {
