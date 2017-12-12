@@ -9,6 +9,7 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.presentation.bills.BillsFragment
@@ -53,7 +54,7 @@ class RootActivity : AppCompatActivity(), RootContract.View, HasSupportFragmentI
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
             REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.isNotEmpty() && isPermissionGranted(grantResults[0])) {
                     openContacts()
                 }
             }
@@ -61,10 +62,12 @@ class RootActivity : AppCompatActivity(), RootContract.View, HasSupportFragmentI
     }
 
     override fun openContactsSelection() {
-        ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.READ_CONTACTS),
-                REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION)
+        val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
+        if (isPermissionGranted(permissionCheck)) {
+            openContacts()
+        } else {
+            requestContactsPermission()
+        }
     }
 
     override fun supportFragmentInjector() = dispatchingFragmentInjector
@@ -90,6 +93,15 @@ class RootActivity : AppCompatActivity(), RootContract.View, HasSupportFragmentI
     private fun openContacts() {
         ContactsActivity.getIntent(this).let(this::startActivity)
     }
+
+    private fun requestContactsPermission() {
+        ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_CONTACTS),
+                REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION)
+    }
+
+    private fun isPermissionGranted(permissionCheck: Int) = PackageManager.PERMISSION_GRANTED == permissionCheck
 
     private inner class PagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
 
