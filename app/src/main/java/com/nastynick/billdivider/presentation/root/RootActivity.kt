@@ -1,8 +1,11 @@
 package com.nastynick.billdivider.presentation.root
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
@@ -18,6 +21,7 @@ import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_root.*
 import javax.inject.Inject
 
+
 class RootActivity : AppCompatActivity(), RootContract.View, HasSupportFragmentInjector {
 
     companion object {
@@ -25,6 +29,8 @@ class RootActivity : AppCompatActivity(), RootContract.View, HasSupportFragmentI
             return Intent(context, RootActivity::class.java)
         }
     }
+
+    private val REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION = 1;
 
     @Inject
     protected lateinit var dispatchingFragmentInjector: DispatchingAndroidInjector<Fragment>
@@ -44,8 +50,21 @@ class RootActivity : AppCompatActivity(), RootContract.View, HasSupportFragmentI
         initListeners()
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    openContacts()
+                }
+            }
+        }
+    }
+
     override fun openContactsSelection() {
-        ContactsActivity.getIntent(this).let(this::startActivity)
+        ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_CONTACTS),
+                REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION)
     }
 
     override fun supportFragmentInjector() = dispatchingFragmentInjector
@@ -66,6 +85,10 @@ class RootActivity : AppCompatActivity(), RootContract.View, HasSupportFragmentI
                 FRIENDS.ordinal -> presenter.addFriendClick()
             }
         }
+    }
+
+    private fun openContacts() {
+        ContactsActivity.getIntent(this).let(this::startActivity)
     }
 
     private inner class PagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
