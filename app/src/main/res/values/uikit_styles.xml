@@ -50,8 +50,10 @@
         <item name="android:src">@drawable/vec_add</item>
     </style>
 
-    <style name="CircularImageView">
-        <item name="android:layout_margin">@dimen/space_large</item>
+    <style name="CircularImageViewContainer">
+        <item name="android:layout_margin">@dimen/space_regular</item>
+        <item name="android:padding">@dimen/space_small</item>
+        <item name="android:background">@drawable/circular_image_view_background_circle</item>
     </style>
 
     <style name="PrimaryToolbar">
