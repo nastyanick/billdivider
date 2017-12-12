@@ -5,5 +5,7 @@
     <string name="tab_bills">Счета</string>
     <string name="tab_friends">Друзья</string>
 
+    <string name="contacts_title">Контакты</string>
+
     <string name="auth.error">Авторизация не удалась</string>
 </resources>

@@ -53,4 +53,9 @@
     <style name="CircularImageView">
         <item name="android:layout_margin">@dimen/space_large</item>
     </style>
+
+    <style name="PrimaryToolbar">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="titleTextColor">@color/colorWhite</item>
+    </style>
 </resources>
