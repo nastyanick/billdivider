@@ -17,7 +17,7 @@
 
 
     <dimen name="vertical_padding_text_view">@dimen/space_xsmall</dimen>
-    <dimen name="horizontal_padding_text_view">@dimen/space_large</dimen>
+    <dimen name="horizontal_padding_text_view">@dimen/space_small</dimen>
 
     <dimen name="vertical_padding_bill_item_view">@dimen/space_large</dimen>
 
