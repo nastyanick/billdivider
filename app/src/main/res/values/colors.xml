@@ -8,4 +8,7 @@
 
     <color name="colorTextRegular">#000000</color>
     <color name="colorTextGray">#9B9B9B</color>
+
+    <!--black 12%-->
+    <color name="colorDelimiter">#1E000000</color>
 </resources>
