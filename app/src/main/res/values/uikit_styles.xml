@@ -34,6 +34,11 @@
 
     <style name="ItemView"></style>
 
+    <style name="ItemView.Container">
+        <item name="android:layout_marginLeft">@dimen/horizontal_margin_item_view</item>
+        <item name="android:layout_marginRight">@dimen/horizontal_margin_item_view</item>
+    </style>
+
     <style name="ItemView.TopView">
         <item name="android:paddingTop">@dimen/vertical_padding_bill_item_view</item>
     </style>

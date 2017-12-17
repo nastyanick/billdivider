@@ -16,12 +16,13 @@
     <dimen name="font_size_text_view_title">14sp</dimen>
 
 
+    <dimen name="horizontal_margin_item_view">@dimen/space_large</dimen>
+
     <dimen name="vertical_padding_text_view">@dimen/space_xsmall</dimen>
     <dimen name="horizontal_padding_text_view">@dimen/space_small</dimen>
 
     <dimen name="vertical_padding_bill_item_view">@dimen/space_large</dimen>
 
-    <dimen name="left_margin_horizontal_delimiter">@dimen/space_large</dimen>
     <dimen name="height_horizontal_delimiter">1dp</dimen>
 
     <dimen name="margin_floating_action_button">@dimen/space_large</dimen>
