@@ -30,15 +30,37 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
 
         setContentView(R.layout.activity_contacts)
         initViews()
+        initListeners()
 
         presenter.onStart()
         super.onCreate(savedInstanceState)
+    }
+
+    private fun initListeners() {
+        adapter.onContactSelected = presenter::contactSelected
+        activityContactButtonSave.setOnClickListener { presenter.saveButtonClicked() }
     }
 
 
     override fun setContacts(contacts: List<Contact>) {
         adapter.setContacts(contacts)
         adapter.notifyDataSetChanged()
+    }
+
+    override fun setContactSelected(contactId: Long) {
+        adapter.addSelectedContact(contactId)
+    }
+
+    override fun clearContactSelection(contactId: Long) {
+        adapter.removeSelectedContact(contactId)
+    }
+
+    override fun updateContact(contact: Contact) {
+        adapter.notifyContactChanged(contact)
+    }
+
+    override fun close() {
+        finish()
     }
 
     private fun initViews() {

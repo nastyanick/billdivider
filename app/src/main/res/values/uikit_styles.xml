@@ -60,4 +60,12 @@
         <item name="android:background">@color/colorPrimary</item>
         <item name="titleTextColor">@color/colorWhite</item>
     </style>
+
+    <style name="Button">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="Button.Regular">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
 </resources>

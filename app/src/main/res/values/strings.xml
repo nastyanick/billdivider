@@ -8,4 +8,6 @@
     <string name="contacts_title">Контакты</string>
 
     <string name="auth.error">Авторизация не удалась</string>
+    
+    <string name="contacts_save_button">Добавить контакты</string>
 </resources>

@@ -10,13 +10,22 @@ import kotlinx.android.synthetic.main.item_contact.view.*
 import javax.inject.Inject
 
 class ContactsAdapter @Inject constructor() : RecyclerView.Adapter<ContactsAdapter.ViewHolder>() {
-    private var contacts: List<Contact> = listOf()
+    var onContactSelected: ((Contact) -> Unit)? = null
+
+
+    private var contacts = listOf<Contact>()
+    private val selectedContactsIds = mutableListOf<Long>()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        getContact(position).let(holder::bind)
+        getContact(position).let { contact ->
+            with(holder) {
+                bind(contact)
+                isSelected(contact).let(this::setSelected)
+            }
+        }
     }
 
-    override fun getItemCount() = contacts.size
+    override fun getItemCount() = getContacts().size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return LayoutInflater.from(parent.context).inflate(R.layout.item_contact, null)
@@ -28,9 +37,35 @@ class ContactsAdapter @Inject constructor() : RecyclerView.Adapter<ContactsAdapt
         this.contacts = contacts
     }
 
-    private fun getContact(position: Int) = contacts[position]
+    fun addSelectedContact(contactId: Long) {
+        selectedContactsIds.add(contactId)
+    }
+
+    fun removeSelectedContact(contactId: Long) {
+        selectedContactsIds.remove(contactId)
+    }
+
+    private fun isSelected(contact: Contact): Boolean {
+        return selectedContactsIds.contains(contact.id)
+    }
+
+    fun notifyContactChanged(contact: Contact) {
+        getContacts().indexOf(contact).let(this::notifyItemChanged)
+    }
+
+    private fun getContacts() = contacts
+
+    private fun getContact(position: Int) = getContacts()[position]
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+
+        init {
+            view.setOnClickListener {
+                getContact(adapterPosition).let {
+                    onContactSelected?.invoke(it)
+                }
+            }
+        }
 
         fun bind(contact: Contact) {
             with(contact) {
@@ -38,6 +73,10 @@ class ContactsAdapter @Inject constructor() : RecyclerView.Adapter<ContactsAdapt
                 view.itemContactTextViewPhone.setText(phone)
                 view.itemContactCircularImageView.setImage(contact.photoUri)
             }
+        }
+
+        fun setSelected(isSelected: Boolean) {
+            view.isSelected = isSelected
         }
     }
 }
