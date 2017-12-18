@@ -73,4 +73,10 @@
     <style name="Button.Regular">
         <item name="android:background">@color/colorPrimary</item>
     </style>
+
+
+    <style name="HorizontalDelimiter">
+        <item name="android:background">@color/colorDelimiter</item>
+        <item name="android:layout_marginLeft">@dimen/space_large</item>
+    </style>
 </resources>
