@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nastynick.billdivider">
+
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
@@ -23,6 +24,8 @@
 
         <activity android:name=".presentation.root.RootActivity" />
 
-        <activity android:name=".presentation.contacts.ContactsActivity" />
+        <activity
+            android:name=".presentation.contacts.ContactsActivity"
+            android:windowSoftInputMode="adjustNothing" />
     </application>
 </manifest>

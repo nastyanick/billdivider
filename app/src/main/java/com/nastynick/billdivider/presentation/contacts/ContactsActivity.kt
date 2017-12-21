@@ -3,13 +3,19 @@ package com.nastynick.billdivider.presentation.contacts
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.SearchView
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.EditText
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Contact
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_contacts.*
 import javax.inject.Inject
+
 
 class ContactsActivity : AppCompatActivity(), ContactsContract.View {
 
@@ -27,13 +33,37 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
+        super.onCreate(savedInstanceState)
+
 
         setContentView(R.layout.activity_contacts)
+        setSupportActionBar(activityContactsToolbar)
+
         initViews()
         initListeners()
 
         presenter.onStart()
-        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_contacts_search, menu)
+        getSearchView()
+                ?.also { setTextColor(it) }
+                ?.let(presenter::searchCreated)
+
+        return true
+    }
+
+    private fun setTextColor(searchView: SearchView) {
+        val searchEditText = searchView.findViewById<EditText>(android.support.v7.appcompat.R.id.search_src_text)
+        searchEditText.setTextColor(ContextCompat.getColor(this, R.color.colorWhite))
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_item_contacts_search -> true
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun initListeners() {
@@ -57,6 +87,12 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
 
     override fun updateContact(contact: Contact) {
         adapter.notifyContactChanged(contact)
+    }
+
+
+    private fun getSearchView(): SearchView? {
+        val searchItem = activityContactsToolbar.menu.findItem(R.id.menu_item_contacts_search)
+        return searchItem.actionView as? SearchView
     }
 
     override fun close() {

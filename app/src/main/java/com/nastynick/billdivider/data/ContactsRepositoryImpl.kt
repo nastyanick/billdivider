@@ -8,13 +8,27 @@ import javax.inject.Inject
 
 
 class ContactsRepositoryImpl @Inject constructor(private val databaseHolder: DatabaseHolder) : ContactsRepository {
-    private val CONTACTS_DATABASE_REFERENCE = "contacts"
+    private val contactsDatabaseReference = "contacts"
+
+    private var contactsCache: List<Contact> = listOf<Contact>()
 
     override fun getContacts(): Observable<List<Contact>> {
         return Observable.fromIterable(getDeviceContactsContacts())
                 .map(this::map)
                 .toList()
                 .toObservable()
+                .doOnNext { contactsCache = it }
+    }
+
+    override fun searchContacts(filter: String): Observable<List<Contact>> {
+        return Observable.fromIterable(contactsCache)
+                .filter { contactContainsFilter(it, filter) }
+                .toList()
+                .toObservable()
+    }
+
+    private fun contactContainsFilter(contact: Contact, filter: String): Boolean {
+        return contact.toString().contains(filter, true)
     }
 
     override fun saveContacts(contacts: List<Contact>): Observable<Contact> {
@@ -40,5 +54,5 @@ class ContactsRepositoryImpl @Inject constructor(private val databaseHolder: Dat
         )
     }
 
-    private fun getContactsQuery() = databaseHolder.reference.child(CONTACTS_DATABASE_REFERENCE)
+    private fun getContactsQuery() = databaseHolder.reference.child(contactsDatabaseReference)
 }

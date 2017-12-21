@@ -1,8 +1,10 @@
 package com.nastynick.billdivider.presentation.contacts
 
+import android.support.v7.widget.SearchView
 import com.nastynick.billdivider.data.objects.Contact
 import com.nastynick.billdivider.domain.usecase.contact.GetContactsUseCase
 import com.nastynick.billdivider.domain.usecase.contact.SaveContactsUseCase
+import com.nastynick.billdivider.presentation.util.fromSearchView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -20,6 +22,14 @@ class ContactsPresenter @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { contacts -> view.setContacts(contacts) }
+    }
+
+    override fun searchCreated(searchView: SearchView) {
+        searchView.let(::fromSearchView)
+                .let(getContactsUseCase::searchContacts)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(view::setContacts)
     }
 
     override fun contactSelected(contact: Contact) {
