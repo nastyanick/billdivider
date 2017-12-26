@@ -12,7 +12,7 @@ class AuthorizationPresenter @Inject constructor(
 
     override fun onStart() {
         authUseCase.getAuthDataIfNotAuthorized()
-                .doOnTerminate(view::openRootScreen)
+                .doOnTerminate(view::openMainScreen)
                 .subscribe(view::runAuth)
     }
 
@@ -20,6 +20,6 @@ class AuthorizationPresenter @Inject constructor(
         authUseCase.checkIsAuthSuccessful(isResultSuccess, requestCode)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(view::openRootScreen, { view.showAuthFailedMessage() })
+                .subscribe(view::openMainScreen, { view.showAuthFailedMessage() })
     }
 }

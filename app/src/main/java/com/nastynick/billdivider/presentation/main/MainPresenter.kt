@@ -1,8 +1,8 @@
-package com.nastynick.billdivider.presentation.root
+package com.nastynick.billdivider.presentation.main
 
 import javax.inject.Inject
 
-class RootPresenter @Inject constructor(val view: RootContract.View) : RootContract.Presenter {
+class MainPresenter @Inject constructor(val view: MainContract.View) : MainContract.Presenter {
 
     override fun addFriendClick() {
         view.openContactsSelection()

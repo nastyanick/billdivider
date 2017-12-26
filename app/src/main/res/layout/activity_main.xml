@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activityRootContainer"
+    android:id="@+id/activityMainContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/activityRootToolbar"
+            android:id="@+id/activityMainToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|enterAlways"
@@ -18,21 +18,21 @@
             app:titleTextColor="@color/colorWhite" />
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/activityRootTabLayout"
-            style="@style/RootTabLayout"
+            android:id="@+id/activityMainTabLayout"
+            style="@style/MainTabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/activityRootPager"
+        android:id="@+id/activityMainPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/activityRootButtonAdd"
+        android:id="@+id/activityMainButtonAdd"
         android:layout_width="wrap_content"
         style="@style/FloatingActionButton.Add"
         android:layout_height="wrap_content"

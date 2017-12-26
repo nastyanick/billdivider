@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.presentation.root
+package com.nastynick.billdivider.presentation.main
 
 import android.Manifest
 import android.content.Context
@@ -15,20 +15,20 @@ import com.nastynick.billdivider.R
 import com.nastynick.billdivider.presentation.bills.BillsFragment
 import com.nastynick.billdivider.presentation.contacts.ContactsActivity
 import com.nastynick.billdivider.presentation.friends.FriendsFragment
-import com.nastynick.billdivider.presentation.root.RootContract.Presenter.Page.BILLS
-import com.nastynick.billdivider.presentation.root.RootContract.Presenter.Page.FRIENDS
+import com.nastynick.billdivider.presentation.main.MainContract.Presenter.Page.BILLS
+import com.nastynick.billdivider.presentation.main.MainContract.Presenter.Page.FRIENDS
 import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
-import kotlinx.android.synthetic.main.activity_root.*
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 
-class RootActivity : AppCompatActivity(), RootContract.View, HasSupportFragmentInjector {
+class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentInjector {
 
     companion object {
         fun getIntent(context: Context): Intent {
-            return Intent(context, RootActivity::class.java)
+            return Intent(context, MainActivity::class.java)
         }
     }
 
@@ -38,14 +38,14 @@ class RootActivity : AppCompatActivity(), RootContract.View, HasSupportFragmentI
     protected lateinit var dispatchingFragmentInjector: DispatchingAndroidInjector<Fragment>
 
     @Inject
-    protected lateinit var presenter: RootContract.Presenter
+    protected lateinit var presenter: MainContract.Presenter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_root)
+        setContentView(R.layout.activity_main)
 
         initToolbar()
         initPager()
@@ -74,17 +74,17 @@ class RootActivity : AppCompatActivity(), RootContract.View, HasSupportFragmentI
     override fun supportFragmentInjector() = dispatchingFragmentInjector
 
     private fun initToolbar() {
-        setSupportActionBar(activityRootToolbar)
+        setSupportActionBar(activityMainToolbar)
     }
 
     private fun initPager() {
-        activityRootPager.adapter = PagerAdapter(supportFragmentManager)
-        activityRootTabLayout.setupWithViewPager(activityRootPager)
+        activityMainPager.adapter = PagerAdapter(supportFragmentManager)
+        activityMainTabLayout.setupWithViewPager(activityMainPager)
     }
 
     private fun initListeners() {
-        activityRootButtonAdd.setOnClickListener {
-            when (activityRootPager.currentItem) {
+        activityMainButtonAdd.setOnClickListener {
+            when (activityMainPager.currentItem) {
                 BILLS.ordinal -> presenter.addBillClick() //TODO add contacts access request
                 FRIENDS.ordinal -> presenter.addFriendClick()
             }
@@ -116,7 +116,7 @@ class RootActivity : AppCompatActivity(), RootContract.View, HasSupportFragmentI
         }
 
         override fun getPageTitle(position: Int): CharSequence {
-            return titledFragments[position].first.let(this@RootActivity::getString)
+            return titledFragments[position].first.let(this@MainActivity::getString)
         }
 
         override fun getCount() = titledFragments.size

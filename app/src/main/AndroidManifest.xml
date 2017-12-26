@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.root.RootActivity" />
+        <activity android:name=".presentation.main.MainActivity" />
 
         <activity
             android:name=".presentation.contacts.ContactsActivity"

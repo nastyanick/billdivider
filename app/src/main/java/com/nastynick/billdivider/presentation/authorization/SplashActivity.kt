@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.AuthData
-import com.nastynick.billdivider.presentation.root.RootActivity
+import com.nastynick.billdivider.presentation.main.MainActivity
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -39,7 +39,7 @@ class SplashActivity : AppCompatActivity(), AuthorizationContract.View {
         Toast.makeText(this, R.string.auth_error, Toast.LENGTH_LONG).show()
     }
 
-    override fun openRootScreen() {
-        RootActivity.getIntent(this).let(this::startActivity)
+    override fun openMainScreen() {
+        MainActivity.getIntent(this).let(this::startActivity)
     }
 }

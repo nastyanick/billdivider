@@ -13,7 +13,7 @@
         <item name="android:windowBackground">@drawable/sel_splash_background</item>
     </style>
 
-    <style name="RootTabLayout" parent="Widget.Design.TabLayout">
+    <style name="MainTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabSelectedTextColor">@color/colorWhite</item>
         <item name="tabTextAppearance">@style/RootTabItemText</item>
         <item name="tabIndicatorColor">@color/colorWhite</item>

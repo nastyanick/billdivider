@@ -1,6 +1,6 @@
-package com.nastynick.billdivider.presentation.root
+package com.nastynick.billdivider.presentation.main
 
-interface RootContract {
+interface MainContract {
 
     interface Presenter {
         enum class Page { BILLS, FRIENDS }

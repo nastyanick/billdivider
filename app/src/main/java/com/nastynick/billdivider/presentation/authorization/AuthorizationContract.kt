@@ -7,7 +7,7 @@ interface AuthorizationContract {
     interface View {
         fun runAuth(authData: AuthData)
         fun showAuthFailedMessage()
-        fun openRootScreen()
+        fun openMainScreen()
     }
 
 
