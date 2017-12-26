@@ -4,8 +4,10 @@ import android.app.Application
 import android.content.Context
 import com.nastynick.billdivider.data.BillsRepositoryImpl
 import com.nastynick.billdivider.data.ContactsRepositoryImpl
+import com.nastynick.billdivider.data.FriendsRepositoryImpl
 import com.nastynick.billdivider.domain.repository.BillsRepository
 import com.nastynick.billdivider.domain.repository.ContactsRepository
+import com.nastynick.billdivider.domain.repository.FriendsRepository
 import dagger.Binds
 import dagger.Module
 
@@ -20,4 +22,7 @@ abstract class ApplicationModule {
 
     @Binds
     abstract fun provideContactsRepository(contactsRepository: ContactsRepositoryImpl): ContactsRepository
+
+    @Binds
+    abstract fun provideFriendsRepository(friendsRepository: FriendsRepositoryImpl): FriendsRepository
 }

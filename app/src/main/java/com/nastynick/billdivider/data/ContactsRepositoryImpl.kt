@@ -31,15 +31,6 @@ class ContactsRepositoryImpl @Inject constructor(private val databaseHolder: Dat
         return contact.toString().contains(filter, true)
     }
 
-    override fun saveContacts(contacts: List<Contact>): Observable<Contact> {
-        return Observable.fromIterable(contacts)
-                .doOnNext(this::saveContact)
-    }
-
-    private fun saveContact(it: Contact?) {
-        getContactsQuery().push().setValue(it)
-    }
-
     private fun getDeviceContactsContacts(): List<com.github.tamir7.contacts.Contact>? {
         return Contacts.getQuery().find()
     }

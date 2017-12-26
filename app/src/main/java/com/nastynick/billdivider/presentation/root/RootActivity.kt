@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.presentation.bills.BillsFragment
 import com.nastynick.billdivider.presentation.contacts.ContactsActivity
+import com.nastynick.billdivider.presentation.friends.FriendsFragment
 import com.nastynick.billdivider.presentation.root.RootContract.Presenter.Page.BILLS
 import com.nastynick.billdivider.presentation.root.RootContract.Presenter.Page.FRIENDS
 import dagger.android.AndroidInjection
@@ -107,7 +108,7 @@ class RootActivity : AppCompatActivity(), RootContract.View, HasSupportFragmentI
 
         private val titledFragments: List<Pair<Int, Fragment>> = listOf(
                 R.string.tab_bills to BillsFragment.getInstance(),
-                R.string.tab_friends to BillsFragment.getInstance()
+                R.string.tab_friends to FriendsFragment.getInstance()
         )
 
         override fun getItem(position: Int): Fragment? {
