@@ -49,7 +49,6 @@ class ContactsPresenter @Inject constructor(
         saveFriendsUseCase.saveFriendsFromContacts(selectedContacts.toList())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnComplete { view.close() }
-                .subscribe()
+                .subscribe { view.close() }
     }
 }

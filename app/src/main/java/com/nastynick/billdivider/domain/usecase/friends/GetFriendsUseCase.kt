@@ -6,4 +6,6 @@ import javax.inject.Inject
 class GetFriendsUseCase @Inject constructor(private val friendsRepository: FriendsRepository) {
 
     fun getFriends() = friendsRepository.getFriends()
+
+    fun getFriend(friendId: String) = friendsRepository.getFriend(friendId)
 }

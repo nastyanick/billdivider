@@ -27,5 +27,7 @@
         <activity
             android:name=".presentation.contacts.ContactsActivity"
             android:windowSoftInputMode="adjustNothing" />
+
+        <activity android:name=".presentation.friend.FriendActivity"/>
     </application>
 </manifest>

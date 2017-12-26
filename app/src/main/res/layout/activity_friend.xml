@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activityFriendToolbar"
+        style="@style/PrimaryToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/vec_navigation_back" />
+
+    <com.nastynick.billdivider.presentation.uikit.CircularImageView
+        android:id="@+id/activityFriendCircularImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/activityFriendLinearLayoutFriendContainer"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@id/activityFriendLinearLayoutFriendContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@id/activityFriendCircularImageView"
+        app:layout_constraintTop_toBottomOf="@id/activityFriendToolbar">
+
+        <com.nastynick.billdivider.presentation.uikit.StyledTextView
+            android:id="@+id/activityFriendTextViewName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:textStyle="large"
+            tools:text="Иван Петров" />
+
+        <com.nastynick.billdivider.presentation.uikit.StyledTextView
+            android:id="@+id/activityFriendTextViewPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:textStyle="medium"
+            tools:text="893232233" />
+
+        <com.nastynick.billdivider.presentation.uikit.StyledTextView
+            android:id="@+id/activityFriendTextViewEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:textStyle="medium"
+            tools:text="r@r.com" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

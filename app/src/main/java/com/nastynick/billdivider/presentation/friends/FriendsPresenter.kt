@@ -1,5 +1,6 @@
 package com.nastynick.billdivider.presentation.friends
 
+import com.nastynick.billdivider.data.objects.Friend
 import com.nastynick.billdivider.domain.usecase.friends.GetFriendsUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -14,6 +15,11 @@ class FriendsPresenter @Inject constructor(private val view: FriendsContract.Vie
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(view::setFriends)
+    }
+
+    //TODO replace with Cicerone
+    override fun onFriendClick(friend: Friend) {
+        friend.id?.let(view::openFriend)
     }
 
 }

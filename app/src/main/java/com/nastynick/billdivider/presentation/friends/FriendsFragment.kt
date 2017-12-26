@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Friend
+import com.nastynick.billdivider.presentation.friend.FriendActivity
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_friends.*
 import javax.inject.Inject
@@ -39,8 +40,17 @@ class FriendsFragment : Fragment(), FriendsContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViews()
+        initListeners()
+    }
+
+    private fun initViews() {
         fragmentFriendsRecyclerView.layoutManager = LinearLayoutManager(context)
         fragmentFriendsRecyclerView.adapter = adapter
+    }
+
+    private fun initListeners() {
+        adapter.onFriendClick = presenter::onFriendClick
     }
 
     override fun onStart() {
@@ -51,5 +61,9 @@ class FriendsFragment : Fragment(), FriendsContract.View {
     override fun setFriends(friends: List<Friend>) {
         adapter.setFriends(friends)
         adapter.notifyDataSetChanged()
+    }
+
+    override fun openFriend(friendId: String) {
+        FriendActivity.getIntent(context, friendId).let(this::startActivity)
     }
 }
