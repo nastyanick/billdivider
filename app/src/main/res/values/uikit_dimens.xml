@@ -29,6 +29,6 @@
 
     <dimen name="width_circular_image_view_out_circle">@dimen/space_xxxlarge</dimen>
     <dimen name="height_circular_image_view_out_circle">@dimen/space_xxxlarge</dimen>
-
     <dimen name="margin_circular_image_view_inner_circle">@dimen/space_small</dimen>
+    <dimen name="width_circular_image_view_border">@dimen/space_small</dimen>
 </resources>
