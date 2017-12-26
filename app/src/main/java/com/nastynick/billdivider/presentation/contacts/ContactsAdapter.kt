@@ -77,6 +77,7 @@ class ContactsAdapter @Inject constructor() : RecyclerView.Adapter<ContactsAdapt
 
         fun setSelected(isSelected: Boolean) {
             view.isSelected = isSelected
+            view.itemContactCircularImageView.isSelected = isSelected
         }
     }
 }
