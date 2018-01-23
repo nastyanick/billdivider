@@ -29,5 +29,7 @@
             android:windowSoftInputMode="adjustNothing" />
 
         <activity android:name=".presentation.friend.FriendActivity"/>
+
+        <activity android:name=".presentation.billwizard.BillWizardInfoActivity"/>
     </application>
 </manifest>

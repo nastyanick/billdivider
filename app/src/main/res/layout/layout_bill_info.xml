@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.nastynick.billdivider.presentation.uikit.StyledTextView
+        android:id="@+id/viewBillInfoTextViewName"
+        style="@style/TextViewMargins"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/space_small"
+        app:textStyle="large"
+        tools:text="Beer" />
+
+    <com.nastynick.billdivider.presentation.uikit.StyledTextView
+        android:id="@+id/viewBillInfoTextViewTime"
+        style="@style/TextViewMargins"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/viewBillInfoTextViewPlace"
+        app:layout_constraintTop_toBottomOf="@id/viewBillInfoTextViewName"
+        tools:text="5 dec
+20pm" />
+
+    <com.nastynick.billdivider.presentation.uikit.StyledTextView
+        android:id="@id/viewBillInfoTextViewPlace"
+        style="@style/TextViewMargins"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/viewBillInfoTextViewTime"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewBillInfoTextViewName"
+        tools:text="Moscow  streetstreetstreet streetstreetstreetstreetstreet
+32-2" />
+
+
+</android.support.constraint.ConstraintLayout>

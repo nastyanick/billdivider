@@ -5,10 +5,12 @@ import javax.inject.Inject
 class MainPresenter @Inject constructor(val view: MainContract.View) : MainContract.Presenter {
 
     override fun addFriendClick() {
+        //TODO refactor with Cicerone
         view.openContactsSelection()
     }
 
     override fun addBillClick() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //TODO refactor with Cicerone
+        view.openBillWizard()
     }
 }

@@ -11,6 +11,7 @@ interface MainContract {
 
     interface View {
         fun openContactsSelection()
+        fun openBillWizard()
     }
 }
 

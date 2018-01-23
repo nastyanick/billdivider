@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.presentation.bills.BillsFragment
+import com.nastynick.billdivider.presentation.billwizard.BillWizardInfoActivity
 import com.nastynick.billdivider.presentation.contacts.ContactsActivity
 import com.nastynick.billdivider.presentation.friends.FriendsFragment
 import com.nastynick.billdivider.presentation.main.MainContract.Presenter.Page.BILLS
@@ -69,6 +70,10 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         } else {
             requestContactsPermission()
         }
+    }
+
+    override fun openBillWizard() {
+        BillWizardInfoActivity.getIntent(this).let(this@MainActivity::startActivity)
     }
 
     override fun supportFragmentInjector() = dispatchingFragmentInjector

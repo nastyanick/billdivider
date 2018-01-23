@@ -66,6 +66,11 @@
         <item name="titleTextColor">@color/colorWhite</item>
     </style>
 
+    <style name="TextViewMargins">
+        <item name="android:layout_margin">@dimen/space_large</item>
+    </style>
+
+
     <style name="Button">
         <item name="android:textColor">@color/colorWhite</item>
     </style>

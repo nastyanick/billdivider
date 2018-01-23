@@ -10,4 +10,6 @@
     <string name="auth.error">Авторизация не удалась</string>
     
     <string name="contacts_save_button">Добавить контакты</string>
+
+    <string name="bill_wizard_info_title">Данные счета</string>
 </resources>
