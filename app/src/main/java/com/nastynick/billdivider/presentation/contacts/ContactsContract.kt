@@ -12,9 +12,6 @@ interface ContactsContract {
         fun clearContactSelection(contactId: Long)
 
         fun updateContact(contact: Contact)
-
-        //TODO replace with Cicerone
-        fun close()
     }
 
     interface Presenter {

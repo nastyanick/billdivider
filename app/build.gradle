@@ -73,6 +73,9 @@ dependencies {
     //CircleImageView
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
+    //Cicerone for navigation
+    implementation 'ru.terrakok.cicerone:cicerone:3.0.0'
+
 
     testImplementation 'junit:junit:4.12'
 }

@@ -2,12 +2,16 @@ package com.nastynick.billdivider.presentation.friends
 
 import com.nastynick.billdivider.data.objects.Friend
 import com.nastynick.billdivider.domain.usecase.friends.GetFriendsUseCase
+import com.nastynick.billdivider.presentation.Screens
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
-class FriendsPresenter @Inject constructor(private val view: FriendsContract.View,
-                                           private val getFriendsUseCase: GetFriendsUseCase
+class FriendsPresenter @Inject constructor(
+        private val view: FriendsContract.View,
+        private val getFriendsUseCase: GetFriendsUseCase,
+        private val router: Router
 ) : FriendsContract.Presenter {
 
     override fun onStart() {
@@ -17,9 +21,8 @@ class FriendsPresenter @Inject constructor(private val view: FriendsContract.Vie
                 .subscribe(view::setFriends)
     }
 
-    //TODO replace with Cicerone
     override fun onFriendClick(friend: Friend) {
-        friend.id?.let(view::openFriend)
+        router.navigateTo(Screens.FRIEND_DETAILS.name, friend.id)
     }
 
 }

@@ -12,8 +12,11 @@ import android.view.MenuItem
 import android.widget.EditText
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Contact
+import com.nastynick.billdivider.presentation.Navigator
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_contacts.*
+import ru.terrakok.cicerone.NavigatorHolder
+import ru.terrakok.cicerone.commands.Back
 import javax.inject.Inject
 
 
@@ -30,6 +33,11 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
 
     @Inject
     protected lateinit var adapter: ContactsAdapter
+
+    @Inject
+    protected lateinit var navigatorHolder: NavigatorHolder
+
+    private val navigator = ContactsNavigator()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -52,6 +60,16 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
                 ?.let(presenter::searchCreated)
 
         return true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        navigatorHolder.setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        navigatorHolder.removeNavigator()
     }
 
     private fun setTextColor(searchView: SearchView) {
@@ -95,13 +113,16 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
         return searchItem.actionView as? SearchView
     }
 
-    override fun close() {
-        finish()
-    }
-
     private fun initViews() {
         activityContactsRecyclerView.layoutManager = LinearLayoutManager(this)
         activityContactsRecyclerView.adapter = adapter
     }
 
+    inner class ContactsNavigator : Navigator() {
+        override fun applyCommand(command: Any) {
+            if (command is Back) {
+                finish()
+            }
+        }
+    }
 }
