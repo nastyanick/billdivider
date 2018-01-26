@@ -53,6 +53,11 @@ class FriendsFragment : Fragment(), FriendsContract.View {
         initListeners()
     }
 
+    override fun onStart() {
+        super.onStart()
+        presenter.onStart()
+    }
+
     override fun onResume() {
         super.onResume()
         navigatorHolder.setNavigator(navigator)
@@ -70,11 +75,6 @@ class FriendsFragment : Fragment(), FriendsContract.View {
 
     private fun initListeners() {
         adapter.onFriendClick = presenter::onFriendClick
-    }
-
-    override fun onStart() {
-        super.onStart()
-        presenter.onStart()
     }
 
     override fun setFriends(friends: List<Friend>) {
