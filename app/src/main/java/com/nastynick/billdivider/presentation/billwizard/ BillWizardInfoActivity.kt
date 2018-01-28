@@ -5,26 +5,40 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.nastynick.billdivider.R
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.layout_bill_info.*
+import java.util.*
+import javax.inject.Inject
 
-class BillWizardInfoActivity : AppCompatActivity() {
-
+class BillWizardInfoActivity : AppCompatActivity(), BillWizardInfoContract.View {
     companion object {
+
         fun getIntent(context: Context): Intent {
             return Intent(context, BillWizardInfoActivity::class.java)
         }
     }
 
+    @Inject
+    protected lateinit var presenter: BillWizardInfoContract.Presenter
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bill_wizard_info)
 
-        setTestData()
+        presenter.onStart()
     }
 
-    private fun setTestData() {
+    override fun setName(name: String) {
         viewBillInfoTextViewName.setText("Test name")
-        viewBillInfoTextViewTime.setText("12.09.2018 \n 5 pm ")
-        viewBillInfoTextViewPlace.setText("Some place")
+    }
+
+    override fun setTime(date: Date) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun setAddress(address: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
