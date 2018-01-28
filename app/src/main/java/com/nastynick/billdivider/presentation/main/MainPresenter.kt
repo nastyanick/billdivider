@@ -2,15 +2,13 @@ package com.nastynick.billdivider.presentation.main
 
 import javax.inject.Inject
 
-class MainPresenter @Inject constructor(val view: MainContract.View) : MainContract.Presenter {
+class MainPresenter @Inject constructor(private val router: MainRouter) : MainContract.Presenter {
 
     override fun addFriendClick() {
-        //TODO refactor with Cicerone
-        view.openContactsSelection()
+        router.openContactsList()
     }
 
     override fun addBillClick() {
-        //TODO refactor with Cicerone
-        view.openBillWizard()
+        router.openBillWizard()
     }
 }

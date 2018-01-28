@@ -13,9 +13,9 @@ import android.widget.EditText
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Contact
 import com.nastynick.billdivider.presentation.Navigator
+import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_contacts.*
-import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.commands.Back
 import javax.inject.Inject
 
@@ -35,7 +35,7 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
     protected lateinit var adapter: ContactsAdapter
 
     @Inject
-    protected lateinit var navigatorHolder: NavigatorHolder
+    protected lateinit var navigatorsHolder: NavigatorsHolder
 
     private val navigator = ContactsNavigator()
 
@@ -64,12 +64,12 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
 
     override fun onResume() {
         super.onResume()
-        navigatorHolder.setNavigator(navigator)
+        navigatorsHolder.addNavigator(ContactsRouter.NAME, navigator)
     }
 
     override fun onPause() {
         super.onPause()
-        navigatorHolder.removeNavigator()
+        navigatorsHolder.removeNavigator(ContactsRouter.NAME)
     }
 
     private fun setTextColor(searchView: SearchView) {

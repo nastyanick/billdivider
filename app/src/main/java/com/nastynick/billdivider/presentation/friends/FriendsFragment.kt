@@ -12,9 +12,9 @@ import com.nastynick.billdivider.data.objects.Friend
 import com.nastynick.billdivider.presentation.Navigator
 import com.nastynick.billdivider.presentation.Screens
 import com.nastynick.billdivider.presentation.friend.FriendActivity
+import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_friends.*
-import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
 
@@ -33,7 +33,7 @@ class FriendsFragment : Fragment(), FriendsContract.View {
     protected lateinit var adapter: FriendsAdapter
 
     @Inject
-    protected lateinit var navigatorHolder: NavigatorHolder
+    protected lateinit var navigatorsHolder: NavigatorsHolder
 
     private val navigator = FriendsNavigator();
 
@@ -60,12 +60,12 @@ class FriendsFragment : Fragment(), FriendsContract.View {
 
     override fun onResume() {
         super.onResume()
-        navigatorHolder.setNavigator(navigator)
+        navigatorsHolder.addNavigator(FriendsRouter.NAME, navigator)
     }
 
     override fun onPause() {
         super.onPause()
-        navigatorHolder.removeNavigator()
+        navigatorsHolder.removeNavigator(FriendsRouter.NAME)
     }
 
     private fun initViews() {

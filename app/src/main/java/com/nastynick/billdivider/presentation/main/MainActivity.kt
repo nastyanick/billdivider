@@ -12,16 +12,20 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.nastynick.billdivider.R
+import com.nastynick.billdivider.presentation.Navigator
+import com.nastynick.billdivider.presentation.Screens
 import com.nastynick.billdivider.presentation.bills.BillsFragment
 import com.nastynick.billdivider.presentation.billwizard.BillWizardInfoActivity
 import com.nastynick.billdivider.presentation.contacts.ContactsActivity
 import com.nastynick.billdivider.presentation.friends.FriendsFragment
 import com.nastynick.billdivider.presentation.main.MainContract.Presenter.Page.BILLS
 import com.nastynick.billdivider.presentation.main.MainContract.Presenter.Page.FRIENDS
+import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
 import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
+import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
 
 
@@ -41,6 +45,10 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
     @Inject
     protected lateinit var presenter: MainContract.Presenter
 
+    @Inject
+    protected lateinit var navigatorsHolder: NavigatorsHolder
+
+    private val navigator = MainNavigator()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -53,6 +61,16 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         initListeners()
     }
 
+    override fun onResume() {
+        super.onResume()
+        navigatorsHolder.addNavigator(MainRouter.NAME, navigator)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        navigatorsHolder.removeNavigator(MainRouter.NAME)
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
             REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION -> {
@@ -61,19 +79,6 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
                 }
             }
         }
-    }
-
-    override fun openContactsSelection() {
-        val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
-        if (isPermissionGranted(permissionCheck)) {
-            openContacts()
-        } else {
-            requestContactsPermission()
-        }
-    }
-
-    override fun openBillWizard() {
-        BillWizardInfoActivity.getIntent(this).let(this@MainActivity::startActivity)
     }
 
     override fun supportFragmentInjector() = dispatchingFragmentInjector
@@ -90,7 +95,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
     private fun initListeners() {
         activityMainButtonAdd.setOnClickListener {
             when (activityMainPager.currentItem) {
-                BILLS.ordinal -> presenter.addBillClick() //TODO add contacts access request
+                BILLS.ordinal -> presenter.addBillClick()
                 FRIENDS.ordinal -> presenter.addFriendClick()
             }
         }
@@ -125,5 +130,31 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         }
 
         override fun getCount() = titledFragments.size
+    }
+
+    inner class MainNavigator : Navigator() {
+        override fun applyCommand(command: Any) {
+            if (command is Forward) {
+                when (command.screenKey) {
+                    Screens.CONTACTS_LIST.name -> openContactsSelection()
+                    Screens.BILL_WIZARD.name -> openBillWizard()
+                }
+            }
+        }
+
+        private fun openContactsSelection() {
+            val permissionCheck = ContextCompat.checkSelfPermission(this@MainActivity, Manifest.permission.READ_CONTACTS)
+            if (isPermissionGranted(permissionCheck)) {
+                openContacts()
+            } else {
+                requestContactsPermission()
+            }
+        }
+
+        private fun openBillWizard() {
+            BillWizardInfoActivity.getIntent(this@MainActivity)
+                    .let(this@MainActivity::startActivity)
+        }
+
     }
 }
