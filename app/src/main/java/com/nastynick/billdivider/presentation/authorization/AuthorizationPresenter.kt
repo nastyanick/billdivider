@@ -7,12 +7,13 @@ import javax.inject.Inject
 
 class AuthorizationPresenter @Inject constructor(
         private val view: AuthorizationContract.View,
-        private val authUseCase: AuthUseCase
+        private val authUseCase: AuthUseCase,
+        private val router: SplashRouter
 ) : AuthorizationContract.Presenter {
 
     override fun onStart() {
         authUseCase.getAuthDataIfNotAuthorized()
-                .doOnTerminate(view::openMainScreen)
+                .doOnTerminate(router::openMainScreen)
                 .subscribe(view::runAuth)
     }
 
@@ -20,6 +21,6 @@ class AuthorizationPresenter @Inject constructor(
         authUseCase.checkIsAuthSuccessful(isResultSuccess, requestCode)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(view::openMainScreen, { view.showAuthFailedMessage() })
+                .subscribe(router::openMainScreen, { view.showAuthFailedMessage() })
     }
 }
