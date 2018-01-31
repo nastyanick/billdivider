@@ -58,7 +58,7 @@
     <style name="CircularImageViewContainer">
         <item name="android:layout_margin">@dimen/space_regular</item>
         <item name="android:padding">@dimen/space_small</item>
-        <item name="android:background">@drawable/circular_image_view_background_circle</item>
+        <item name="android:background">@drawable/background_circular_image_view_circle_green</item>
     </style>
 
     <style name="PrimaryToolbar">

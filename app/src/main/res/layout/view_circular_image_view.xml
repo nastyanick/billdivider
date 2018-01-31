@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/viewCircularImageViewFrameLayoutBorder"
     style="@style/CircularImageViewContainer"
     android:layout_width="@dimen/width_circular_image_view_out_circle"
     android:layout_height="@dimen/height_circular_image_view_out_circle">
