@@ -27,8 +27,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            tools:text="5 dec
-20pm" />
+            android:text="5 декабря 2017
+21:34" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            tools:text="Moscow
+            android:text="Самара, Московское шоссе
 32-2" />
 
         <ImageView
