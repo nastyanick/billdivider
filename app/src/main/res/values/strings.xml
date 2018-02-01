@@ -12,4 +12,7 @@
     <string name="contacts_save_button">Добавить контакты</string>
 
     <string name="bill_wizard_info_title">Данные счета</string>
+
+    <string name="create_friend">Создать друга</string>
+    <string name="add_friend_from_contacts">Добавить из контактов</string>
 </resources>

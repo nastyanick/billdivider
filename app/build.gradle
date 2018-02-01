@@ -76,6 +76,8 @@ dependencies {
     //Cicerone for navigation
     implementation 'ru.terrakok.cicerone:cicerone:3.0.0'
 
+    //FAB sheet
+    implementation 'com.gordonwong:material-sheet-fab:1.2.1'
 
     testImplementation 'junit:junit:4.12'
 }

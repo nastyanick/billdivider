@@ -31,10 +31,48 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.nastynick.billdivider.presentation.uikit.AnimatedFloatingActionButton
         android:id="@+id/activityMainButtonAdd"
-        android:layout_width="wrap_content"
         style="@style/FloatingActionButton.Add"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end" />
+
+    <com.gordonwong.materialsheetfab.DimOverlayFrameLayout
+        android:id="@+id/activityMainDimOverlatFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <io.codetail.widget.RevealFrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="250dp"
+            android:id="@+id/activityMainCardViewSheet"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_large">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.nastynick.billdivider.presentation.uikit.StyledTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/space_large"
+                    android:text="@string/create_friend"
+                    app:textStyle="medium" />
+
+                <com.nastynick.billdivider.presentation.uikit.StyledTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/space_large"
+                    android:text="@string/add_friend_from_contacts"
+                    app:textStyle="medium" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </io.codetail.widget.RevealFrameLayout>
 </android.support.design.widget.CoordinatorLayout>

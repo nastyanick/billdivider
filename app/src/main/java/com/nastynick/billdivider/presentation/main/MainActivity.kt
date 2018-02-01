@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import com.gordonwong.materialsheetfab.MaterialSheetFab
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.presentation.Navigator
 import com.nastynick.billdivider.presentation.Screens
@@ -21,6 +22,7 @@ import com.nastynick.billdivider.presentation.friends.FriendsFragment
 import com.nastynick.billdivider.presentation.main.MainContract.Presenter.Page.BILLS
 import com.nastynick.billdivider.presentation.main.MainContract.Presenter.Page.FRIENDS
 import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
+import com.nastynick.billdivider.presentation.uikit.AnimatedFloatingActionButton
 import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -50,12 +52,15 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
 
     private val navigator = MainNavigator()
 
+    private lateinit var materialSheetFab: MaterialSheetFab<AnimatedFloatingActionButton>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        initViews()
         initToolbar()
         initPager()
         initListeners()
@@ -83,6 +88,16 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
 
     override fun supportFragmentInjector() = dispatchingFragmentInjector
 
+    private fun initViews() {
+        materialSheetFab = MaterialSheetFab(
+                activityMainButtonAdd,
+                activityMainCardViewSheet,
+                activityMainDimOverlatFrameLayout,
+                ContextCompat.getColor(this, R.color.colorWhite),
+                ContextCompat.getColor(this, R.color.colorAccent)
+        )
+    }
+
     private fun initToolbar() {
         setSupportActionBar(activityMainToolbar)
     }
@@ -96,7 +111,8 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         activityMainButtonAdd.setOnClickListener {
             when (activityMainPager.currentItem) {
                 BILLS.ordinal -> presenter.addBillClick()
-                FRIENDS.ordinal -> presenter.addFriendClick()
+                FRIENDS.ordinal -> materialSheetFab.showSheet()
+//                    presenter.addFriendClick()
             }
         }
     }
