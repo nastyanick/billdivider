@@ -20,10 +20,10 @@ class AuthUseCase @Inject constructor() {
     )
 
     fun getAuthDataIfNotAuthorized(): Observable<AuthData> {
-        return if (isUserNotAuthorized()) {
-            getAuthDataSource()
-        } else {
+        return if (isUserAuthorized()) {
             getAuthAlreadyCompleteSource()
+        } else {
+            getAuthDataSource()
         }
     }
 
@@ -35,9 +35,21 @@ class AuthUseCase @Inject constructor() {
         }
     }
 
-    private fun isUserNotAuthorized(): Boolean {
+    fun authorizeAnonymously(): Completable {
+        return Completable.create { subscriber ->
+            if (isUserAuthorized()) {
+                subscriber.onComplete()
+                return@create
+            }
+            FirebaseAuth.getInstance().signInAnonymously()
+            subscriber.onComplete()
+        }
+    }
+
+
+    private fun isUserAuthorized(): Boolean {
         val user = FirebaseAuth.getInstance().currentUser
-        return user == null
+        return user != null
     }
 
     private fun getAuthAlreadyCompleteSource(): Observable<AuthData> = Observable.empty()

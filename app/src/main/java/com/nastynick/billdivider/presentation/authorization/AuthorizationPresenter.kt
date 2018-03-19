@@ -12,9 +12,13 @@ class AuthorizationPresenter @Inject constructor(
 ) : AuthorizationContract.Presenter {
 
     override fun onStart() {
-        authUseCase.getAuthDataIfNotAuthorized()
+/*        authUseCase.getAuthDataIfNotAuthorized()
                 .doOnTerminate(router::openMainScreen)
-                .subscribe(view::runAuth)
+                .subscribe(view::runAuth)*/
+
+        //TODO refactor Anonymous authorization to avoid android views in presentation part
+        authUseCase.authorizeAnonymously()
+                .subscribe(router::openMainScreen)
     }
 
     override fun onAuthResultReceived(isResultSuccess: Boolean, requestCode: Int) {
