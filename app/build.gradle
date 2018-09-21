@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 project.ext {
     firebaseVersion = '11.4.2'
@@ -49,7 +48,7 @@ dependencies {
     implementation "com.google.firebase:firebase-core:$project.firebaseVersion"
 
     // Dagger
-    provided "com.google.dagger:dagger:$project.daggerVersion"
+    compileOnly "com.google.dagger:dagger:$project.daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$project.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$project.daggerVersion"
 
@@ -57,7 +56,7 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-android-processor:$project.daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$project.daggerVersion"
     implementation 'com.google.dagger:dagger-android-support:2.11'
-    provided 'org.glassfish:javax.annotation:10.0-b28'
+    compileOnly 'org.glassfish:javax.annotation:10.0-b28'
 
     // RxJava
     implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
