@@ -1,1 +1,13 @@
-# Created by .ignore support plugin (hsz.mobi)
+.gradle/
+build/
+
+# Properties
+local.properties
+
+# Idea
+.idea/
+!.idea/codeStyles
+**/*.iml
+
+# Mac OS
+.DS_Store
