@@ -15,17 +15,13 @@
     <com.nastynick.billdivider.presentation.uikit.CircularImageView
         android:id="@+id/activityFriendCircularImageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/activityFriendLinearLayoutFriendContainer"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
-        android:id="@id/activityFriendLinearLayoutFriendContainer"
+        android:id="@+id/activityFriendLinearLayoutFriendContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toRightOf="@id/activityFriendCircularImageView"
-        app:layout_constraintTop_toBottomOf="@id/activityFriendToolbar">
+        android:orientation="vertical">
 
         <com.nastynick.billdivider.presentation.uikit.StyledTextView
             android:id="@+id/activityFriendTextViewName"
