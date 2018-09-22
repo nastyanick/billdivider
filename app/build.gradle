@@ -41,6 +41,8 @@ dependencies {
     })
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$supportVersion"
+    implementation "com.android.support:design:$supportVersion"
+
 
     // Firebase
     implementation 'com.firebaseui:firebase-ui-auth:3.1.0'
