@@ -3,7 +3,6 @@ package com.nastynick.billdivider
 import android.app.Activity
 import android.app.Application
 import com.github.tamir7.contacts.Contacts
-import com.google.firebase.database.FirebaseDatabase
 import com.nastynick.billdivider.di.component.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -20,7 +19,6 @@ class BillDividerApplication : Application(), HasActivityInjector {
         super.onCreate()
 
         initDaggerComponent()
-        initDatabase()
         initContactsProvider()
     }
 
@@ -34,10 +32,6 @@ class BillDividerApplication : Application(), HasActivityInjector {
                 .application(this)
                 .build()
                 .inject(this)
-    }
-
-    private fun initDatabase() {
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
     }
 
     private fun initContactsProvider() {

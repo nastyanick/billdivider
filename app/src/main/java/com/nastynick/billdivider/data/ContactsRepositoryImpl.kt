@@ -7,10 +7,8 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 
-class ContactsRepositoryImpl @Inject constructor(private val databaseHolder: DatabaseHolder) : ContactsRepository {
-    private val contactsDatabaseReference = "contacts"
-
-    private var contactsCache: List<Contact> = listOf<Contact>()
+class ContactsRepositoryImpl @Inject constructor() : ContactsRepository {
+    private var contactsCache: List<Contact> = listOf()
 
     override fun getContacts(): Observable<List<Contact>> {
         return Observable.fromIterable(getDeviceContactsContacts())
@@ -45,5 +43,4 @@ class ContactsRepositoryImpl @Inject constructor(private val databaseHolder: Dat
         )
     }
 
-    private fun getContactsQuery() = databaseHolder.reference.child(contactsDatabaseReference)
 }
