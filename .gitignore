@@ -1,6 +1,9 @@
 .gradle/
 build/
 
+# Properties
+local.properties
+
 # Idea
 .idea/
 !.idea/codeStyles
