@@ -45,7 +45,7 @@ class SplashActivity : AppCompatActivity(), AuthorizationContract.View {
         navigatorsHolder.removeNavigator(SplashRouter.NAME)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         presenter.onAuthResultReceived(Activity.RESULT_OK == resultCode, requestCode)
