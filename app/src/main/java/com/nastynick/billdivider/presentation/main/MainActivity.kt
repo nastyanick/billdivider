@@ -76,7 +76,11 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         navigatorsHolder.removeNavigator(MainRouter.NAME)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         when (requestCode) {
             REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION -> {
                 if (grantResults.isNotEmpty() && isPermissionGranted(grantResults[0])) {
@@ -90,11 +94,11 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
 
     private fun initViews() {
         materialSheetFab = MaterialSheetFab(
-                activityMainButtonAdd,
-                activityMainCardViewSheet,
-                activityMainDimOverlatFrameLayout,
-                ContextCompat.getColor(this, R.color.colorWhite),
-                ContextCompat.getColor(this, R.color.colorAccent)
+            activityMainButtonAdd,
+            activityMainCardViewSheet,
+            activityMainDimOverlatFrameLayout,
+            ContextCompat.getColor(this, R.color.colorWhite),
+            ContextCompat.getColor(this, R.color.colorAccent)
         )
     }
 
@@ -111,8 +115,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         activityMainButtonAdd.setOnClickListener {
             when (activityMainPager.currentItem) {
                 BILLS.ordinal -> presenter.addBillClick()
-                FRIENDS.ordinal -> materialSheetFab.showSheet()
-//                    presenter.addFriendClick()
+                FRIENDS.ordinal -> presenter.addFriendClick()
             }
         }
     }
@@ -123,18 +126,21 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
 
     private fun requestContactsPermission() {
         ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.READ_CONTACTS),
-                REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION)
+            this,
+            arrayOf(Manifest.permission.READ_CONTACTS),
+            REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION
+        )
     }
 
-    private fun isPermissionGranted(permissionCheck: Int) = PackageManager.PERMISSION_GRANTED == permissionCheck
+    private fun isPermissionGranted(permissionCheck: Int) =
+        PackageManager.PERMISSION_GRANTED == permissionCheck
 
-    private inner class PagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+    private inner class PagerAdapter(fragmentManager: FragmentManager) :
+        FragmentPagerAdapter(fragmentManager) {
 
         private val titledFragments: List<Pair<Int, Fragment>> = listOf(
-                R.string.tab_bills to BillsFragment.getInstance(),
-                R.string.tab_friends to FriendsFragment.getInstance()
+            R.string.tab_bills to BillsFragment.getInstance(),
+            R.string.tab_friends to FriendsFragment.getInstance()
         )
 
         override fun getItem(position: Int): Fragment? {
@@ -159,7 +165,10 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         }
 
         private fun openContactsSelection() {
-            val permissionCheck = ContextCompat.checkSelfPermission(this@MainActivity, Manifest.permission.READ_CONTACTS)
+            val permissionCheck = ContextCompat.checkSelfPermission(
+                this@MainActivity,
+                Manifest.permission.READ_CONTACTS
+            )
             if (isPermissionGranted(permissionCheck)) {
                 openContacts()
             } else {
@@ -169,7 +178,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
 
         private fun openBillWizard() {
             BillWizardInfoActivity.getIntent(this@MainActivity)
-                    .let(this@MainActivity::startActivity)
+                .let(this@MainActivity::startActivity)
         }
 
     }

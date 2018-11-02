@@ -86,7 +86,7 @@ class FriendsFragment : Fragment(), FriendsContract.View {
         override fun applyCommand(command: Any) {
             if (command is Forward) {
                 when (command.screenKey) {
-                    Screens.FRIEND_DETAILS.name -> FriendActivity.getIntent(context, command.transitionData as String)
+                    Screens.FRIEND_DETAILS.name -> FriendActivity.getIntent(context, command.transitionData as Long)
                             .let(this@FriendsFragment::startActivity)
                 }
             }

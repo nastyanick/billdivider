@@ -11,6 +11,7 @@ import com.nastynick.billdivider.domain.repository.FriendsRepository
 import dagger.Binds
 import dagger.Module
 
+
 @Module
 abstract class ApplicationModule {
 

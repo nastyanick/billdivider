@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class FriendPresenter @Inject constructor(
         private val view: FriendContact.View,
-        private val friendId: String,
+        private val friendId: Long,
         private val getFriendsUseCase: GetFriendsUseCase
 ) : FriendContact.Presenter {
 

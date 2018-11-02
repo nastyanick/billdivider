@@ -21,7 +21,7 @@ class FriendModule {
 
 
     @Provides
-    fun provideFriendId(view: FriendActivity): String {
+    fun provideFriendId(view: FriendActivity): Long {
         return view.getFriendId()
     }
 }

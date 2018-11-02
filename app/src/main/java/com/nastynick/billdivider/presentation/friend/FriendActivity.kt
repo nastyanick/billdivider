@@ -15,7 +15,7 @@ class FriendActivity : AppCompatActivity(), FriendContact.View {
     companion object {
         private const val ARGUMENT_FRIEND_ID = "friend_id_arg"
 
-        fun getIntent(context: Context?, friendId: String): Intent {
+        fun getIntent(context: Context?, friendId: Long): Intent {
             return Intent(context, FriendActivity::class.java).putExtra(ARGUMENT_FRIEND_ID, friendId)
         }
     }
@@ -43,6 +43,6 @@ class FriendActivity : AppCompatActivity(), FriendContact.View {
         }
     }
 
-    fun getFriendId() = intent.getStringExtra(ARGUMENT_FRIEND_ID)
+    fun getFriendId() = intent.getLongExtra(ARGUMENT_FRIEND_ID, 0)
 
 }

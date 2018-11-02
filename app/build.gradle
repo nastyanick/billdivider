@@ -74,6 +74,10 @@ dependencies {
     //FAB sheet
     implementation 'com.gordonwong:material-sheet-fab:1.2.1'
 
+    //Room
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    kapt "android.arch.persistence.room:compiler:1.1.1"
+
     testImplementation 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

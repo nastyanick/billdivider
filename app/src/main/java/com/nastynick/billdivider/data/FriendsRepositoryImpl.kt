@@ -1,21 +1,24 @@
 package com.nastynick.billdivider.data
 
+import com.nastynick.billdivider.data.database.dao.FriendDao
 import com.nastynick.billdivider.data.objects.Contact
 import com.nastynick.billdivider.data.objects.Friend
 import com.nastynick.billdivider.data.util.ContactFriendMapper
+import com.nastynick.billdivider.data.util.FriendMapper
 import com.nastynick.billdivider.domain.repository.FriendsRepository
 import io.reactivex.Completable
 import io.reactivex.Observable
-import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
-//TODO implemet repository
-class FriendsRepositoryImpl @Inject constructor() :
-    FriendsRepository {
+class FriendsRepositoryImpl @Inject constructor(
+    val friendDao: FriendDao
+) : FriendsRepository {
 
-    override fun getFriends(): Single<List<Friend>> {
-        return Single.just(listOf())
+    override fun getFriends(): Observable<List<Friend>> {
+        return Observable.fromCallable { friendDao.getAll().map(FriendMapper::fromEntity) }
+            .subscribeOn(Schedulers.computation())
     }
 
 
@@ -27,11 +30,15 @@ class FriendsRepositoryImpl @Inject constructor() :
 
     }
 
-    override fun getFriend(friendId: String): Single<Friend> {
-        return Single.just(Friend())
+    override fun getFriend(friendId: Long): Observable<Friend> {
+        return friendDao.get(friendId)
+            .let(FriendMapper::fromEntity)
+            .let { Observable.just(it) }
     }
 
-    private fun saveFriend(it: Friend?) {
+    private fun saveFriend(friend: Friend) {
+        friendDao.save(FriendMapper.fromData(friend))
     }
+
 }
 

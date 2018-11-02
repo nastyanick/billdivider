@@ -28,7 +28,6 @@ class ContactsPresenter @Inject constructor(
     override fun searchCreated(searchView: SearchView) {
         searchView.let(::fromSearchView)
                 .let(getContactsUseCase::searchContacts)
-                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(view::setContacts)
     }

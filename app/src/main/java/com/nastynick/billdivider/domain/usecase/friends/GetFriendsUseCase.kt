@@ -7,5 +7,5 @@ class GetFriendsUseCase @Inject constructor(private val friendsRepository: Frien
 
     fun getFriends() = friendsRepository.getFriends()
 
-    fun getFriend(friendId: String) = friendsRepository.getFriend(friendId)
+    fun getFriend(friendId: Long) = friendsRepository.getFriend(friendId)
 }
