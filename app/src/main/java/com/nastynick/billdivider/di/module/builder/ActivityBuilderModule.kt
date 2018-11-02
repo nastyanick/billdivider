@@ -18,10 +18,6 @@ abstract class ActivityBuilderModule {
     @ActivityScope
     abstract fun buildRootActivity(): MainActivity
 
-    @ContributesAndroidInjector(modules = arrayOf(AuthorizationActivityModule::class))
-    @ActivityScope
-    abstract fun buildAuthorizationActivity(): SplashActivity
-
     @ContributesAndroidInjector(modules = arrayOf(ContactsModule::class))
     @ActivityScope
     abstract fun buildContactsActivity(): ContactsActivity
