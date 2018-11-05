@@ -1,6 +1,6 @@
 package com.nastynick.billdivider.presentation.contacts
 
-import android.support.v7.widget.SearchView
+import androidx.appcompat.widget.SearchView
 import com.nastynick.billdivider.data.objects.Contact
 import com.nastynick.billdivider.domain.usecase.contact.GetContactsUseCase
 import com.nastynick.billdivider.domain.usecase.friends.SaveFriendsUseCase

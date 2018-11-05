@@ -3,7 +3,7 @@ package com.nastynick.billdivider.presentation.billwizard
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.nastynick.billdivider.R
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.layout_bill_info.*

@@ -1,6 +1,6 @@
 package com.nastynick.billdivider.di.module
 
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import android.content.Context
 import com.nastynick.billdivider.data.database.AppDatabase
 import com.nastynick.billdivider.data.database.dao.FriendDao

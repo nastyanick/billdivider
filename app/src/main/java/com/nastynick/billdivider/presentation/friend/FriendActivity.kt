@@ -3,7 +3,7 @@ package com.nastynick.billdivider.presentation.friend
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Friend
 import dagger.android.AndroidInjection

@@ -1,6 +1,6 @@
 package com.nastynick.billdivider.presentation.bills
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

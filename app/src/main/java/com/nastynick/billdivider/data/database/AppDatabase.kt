@@ -1,7 +1,7 @@
 package com.nastynick.billdivider.data.database
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.Database
+import androidx.room.RoomDatabase
 import com.nastynick.billdivider.data.database.dao.FriendDao
 import com.nastynick.billdivider.data.database.objects.FriendEntity
 
