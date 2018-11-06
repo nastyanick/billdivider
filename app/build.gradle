@@ -78,6 +78,10 @@ dependencies {
     implementation "androidx.room:room-runtime:2.1.0-alpha02"
     kapt "androidx.room:room-compiler:2.1.0-alpha02"
 
+    //Moxy
+    implementation 'com.arello-mobile:moxy-android:1.5.5'
+    kapt 'com.arello-mobile:moxy-compiler:1.5.5'
+
     testImplementation 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'
