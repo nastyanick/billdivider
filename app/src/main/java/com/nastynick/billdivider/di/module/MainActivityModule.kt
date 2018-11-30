@@ -5,13 +5,14 @@ import com.nastynick.billdivider.presentation.main.MainContract
 import com.nastynick.billdivider.presentation.main.MainPresenter
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 
 @Module
-abstract class MainActivityModule {
+class MainActivityModule(private val activity: MainActivity) {
 
-    @Binds
-    abstract fun provideRootView(activity: MainActivity): MainContract.View
+    @Provides
+    fun provideRootView(): MainContract.View = activity
 
-    @Binds
-    abstract fun provideRootPresenter(presenter: MainPresenter): MainContract.Presenter
+    @Provides
+    fun provideRootPresenter(presenter: MainPresenter): MainContract.Presenter = presenter
 }

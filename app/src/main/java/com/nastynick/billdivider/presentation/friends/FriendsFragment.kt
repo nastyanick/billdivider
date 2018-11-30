@@ -1,19 +1,17 @@
 package com.nastynick.billdivider.presentation.friends
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Friend
 import com.nastynick.billdivider.presentation.Navigator
 import com.nastynick.billdivider.presentation.Screens
 import com.nastynick.billdivider.presentation.friend.FriendActivity
 import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
-import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_friends.*
 import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
@@ -21,7 +19,7 @@ import javax.inject.Inject
 class FriendsFragment : Fragment(), FriendsContract.View {
 
     companion object {
-        fun getInstance(): Fragment {
+        fun getInstance(): FriendsFragment {
             return FriendsFragment()
         }
     }
@@ -37,10 +35,6 @@ class FriendsFragment : Fragment(), FriendsContract.View {
 
     private val navigator = FriendsNavigator();
 
-    override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_friends, container, false)

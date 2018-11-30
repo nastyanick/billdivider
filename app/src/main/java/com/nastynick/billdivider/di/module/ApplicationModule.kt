@@ -8,22 +8,22 @@ import com.nastynick.billdivider.data.FriendsRepositoryImpl
 import com.nastynick.billdivider.domain.repository.BillsRepository
 import com.nastynick.billdivider.domain.repository.ContactsRepository
 import com.nastynick.billdivider.domain.repository.FriendsRepository
-import dagger.Binds
+import dagger.Provides
 import dagger.Module
 
 
 @Module
-abstract class ApplicationModule {
+class ApplicationModule(val application: Application) {
 
-    @Binds
-    abstract fun provideContext(application: Application): Context
+    @Provides
+    fun provideContext(): Context = this.application
 
-    @Binds
-    abstract fun provideBillsRepository(billsRepository: BillsRepositoryImpl): BillsRepository
+    @Provides
+    fun provideBillsRepository(billsRepository: BillsRepositoryImpl): BillsRepository = billsRepository
 
-    @Binds
-    abstract fun provideContactsRepository(contactsRepository: ContactsRepositoryImpl): ContactsRepository
+    @Provides
+    fun provideContactsRepository(contactsRepository: ContactsRepositoryImpl): ContactsRepository = contactsRepository
 
-    @Binds
-    abstract fun provideFriendsRepository(friendsRepository: FriendsRepositoryImpl): FriendsRepository
+    @Provides
+    fun provideFriendsRepository(friendsRepository: FriendsRepositoryImpl): FriendsRepository = friendsRepository
 }

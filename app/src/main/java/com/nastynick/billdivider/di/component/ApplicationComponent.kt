@@ -1,38 +1,31 @@
 package com.nastynick.billdivider.di.component
 
-import android.app.Application
 import com.nastynick.billdivider.BillDividerApplication
-import com.nastynick.billdivider.di.module.ApplicationModule
-import com.nastynick.billdivider.di.module.RoomModule
-import com.nastynick.billdivider.di.module.builder.ActivityBuilderModule
-import com.nastynick.billdivider.di.module.builder.FragmentBuilderModule
-import dagger.BindsInstance
+import com.nastynick.billdivider.di.module.*
+import com.nastynick.billdivider.domain.repository.ContactsRepository
+import com.nastynick.billdivider.presentation.billwizard.BillWizardInfoActivity
+import com.nastynick.billdivider.presentation.contacts.ContactsActivity
+import com.nastynick.billdivider.presentation.friend.FriendActivity
+import com.nastynick.billdivider.presentation.main.MainActivity
 import dagger.Component
-import dagger.android.AndroidInjectionModule
-import dagger.android.support.AndroidSupportInjectionModule
-import javax.inject.Singleton
 
-@Singleton
 @Component(
-    modules = arrayOf(
-        AndroidInjectionModule::class,
-        AndroidSupportInjectionModule::class,
-        ApplicationModule::class,
-        RoomModule::class,
-        ActivityBuilderModule::class,
-        FragmentBuilderModule::class
-    )
+        modules = [
+            ApplicationModule::class,
+            RoomModule::class,
+            MainActivityModule::class
+//            ,
+//            ContactsModule::class,
+//            FriendsFragmentModule::class,
+//            FriendModule::class,
+//            BillWizardInfoModule::class,
+//            FriendsFragmentModule::class
+        ]
 )
 interface ApplicationComponent {
 
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        fun application(application: Application): Builder
+    fun injectApplication(application: BillDividerApplication)
 
-        fun build(): ApplicationComponent
-    }
-
-    fun inject(application: BillDividerApplication)
+    fun injectMainActivity(activity: MainActivity)
 
 }

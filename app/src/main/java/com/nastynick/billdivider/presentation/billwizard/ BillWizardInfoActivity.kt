@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.nastynick.billdivider.R
-import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.layout_bill_info.*
 import java.util.*
 import javax.inject.Inject
@@ -22,8 +21,6 @@ class BillWizardInfoActivity : AppCompatActivity(), BillWizardInfoContract.View 
     protected lateinit var presenter: BillWizardInfoContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bill_wizard_info)
 

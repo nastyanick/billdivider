@@ -3,15 +3,15 @@ package com.nastynick.billdivider.di.module
 import com.nastynick.billdivider.presentation.contacts.ContactsActivity
 import com.nastynick.billdivider.presentation.contacts.ContactsContract
 import com.nastynick.billdivider.presentation.contacts.ContactsPresenter
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 
 @Module
-abstract class ContactsModule {
+class ContactsModule(val activity: ContactsActivity) {
 
-    @Binds
-    abstract fun provideContactsView(view: ContactsActivity): ContactsContract.View
+    @Provides
+    fun provideContactsView(): ContactsContract.View = activity
 
-    @Binds
-    abstract fun provideContactsPresenter(presenter: ContactsPresenter): ContactsContract.Presenter
+    @Provides
+    fun provideContactsPresenter(presenter: ContactsPresenter): ContactsContract.Presenter = presenter
 }

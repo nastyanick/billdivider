@@ -7,7 +7,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 
-@Singleton
 class NavigatorsHolder @Inject constructor() {
 
     private val container = mutableMapOf<String, Cicerone<Router>>()

@@ -3,14 +3,15 @@ package com.nastynick.billdivider.di.module
 import com.nastynick.billdivider.presentation.billwizard.BillWizardInfoActivity
 import com.nastynick.billdivider.presentation.billwizard.BillWizardInfoContract
 import com.nastynick.billdivider.presentation.billwizard.BillWizardInfoPresenter
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 
 @Module
-abstract class BillWizardInfoModule {
-    @Binds
-    abstract fun provideBillWizardInfoPresenter(presenter: BillWizardInfoPresenter): BillWizardInfoContract.Presenter
+class BillWizardInfoModule(val activity: BillWizardInfoActivity) {
 
-    @Binds
-    abstract fun provideBillWizardInfoView(view: BillWizardInfoActivity): BillWizardInfoContract.View
+    @Provides
+    fun provideBillWizardInfoView(): BillWizardInfoContract.View = activity
+
+    @Provides
+    fun provideBillWizardInfoPresenter(presenter: BillWizardInfoPresenter): BillWizardInfoContract.Presenter = presenter
 }

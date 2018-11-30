@@ -13,6 +13,8 @@ import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
 import com.gordonwong.materialsheetfab.MaterialSheetFab
 import com.nastynick.billdivider.R
+import com.nastynick.billdivider.di.component.DaggerApplicationComponent
+import com.nastynick.billdivider.di.module.MainActivityModule
 import com.nastynick.billdivider.presentation.Navigator
 import com.nastynick.billdivider.presentation.Screens
 import com.nastynick.billdivider.presentation.bills.BillsFragment
@@ -23,15 +25,12 @@ import com.nastynick.billdivider.presentation.main.MainContract.Presenter.Page.B
 import com.nastynick.billdivider.presentation.main.MainContract.Presenter.Page.FRIENDS
 import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
 import com.nastynick.billdivider.presentation.uikit.AnimatedFloatingActionButton
-import dagger.android.AndroidInjection
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentInjector {
+class MainActivity : AppCompatActivity(), MainContract.View {
 
     companion object {
         fun getIntent(context: Context): Intent {
@@ -40,9 +39,6 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
     }
 
     private val REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION = 1;
-
-    @Inject
-    protected lateinit var dispatchingFragmentInjector: DispatchingAndroidInjector<Fragment>
 
     @Inject
     protected lateinit var presenter: MainContract.Presenter
@@ -55,10 +51,13 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
     private lateinit var materialSheetFab: MaterialSheetFab<AnimatedFloatingActionButton>
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        DaggerApplicationComponent.builder()
+                .mainActivityModule(MainActivityModule(this))
+                .build()
+                .injectMainActivity(this)
 
         initViews()
         initToolbar()
@@ -77,9 +76,9 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
+            requestCode: Int,
+            permissions: Array<String>,
+            grantResults: IntArray
     ) {
         when (requestCode) {
             REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION -> {
@@ -90,15 +89,13 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         }
     }
 
-    override fun supportFragmentInjector() = dispatchingFragmentInjector
-
     private fun initViews() {
         materialSheetFab = MaterialSheetFab(
-            activityMainButtonAdd,
-            activityMainCardViewSheet,
-            activityMainDimOverlatFrameLayout,
-            ContextCompat.getColor(this, R.color.colorWhite),
-            ContextCompat.getColor(this, R.color.colorAccent)
+                activityMainButtonAdd,
+                activityMainCardViewSheet,
+                activityMainDimOverlatFrameLayout,
+                ContextCompat.getColor(this, R.color.colorWhite),
+                ContextCompat.getColor(this, R.color.colorAccent)
         )
     }
 
@@ -126,21 +123,21 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
 
     private fun requestContactsPermission() {
         ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.READ_CONTACTS),
-            REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION
+                this,
+                arrayOf(Manifest.permission.READ_CONTACTS),
+                REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION
         )
     }
 
     private fun isPermissionGranted(permissionCheck: Int) =
-        PackageManager.PERMISSION_GRANTED == permissionCheck
+            PackageManager.PERMISSION_GRANTED == permissionCheck
 
     private inner class PagerAdapter(fragmentManager: FragmentManager) :
-        FragmentPagerAdapter(fragmentManager) {
+            FragmentPagerAdapter(fragmentManager) {
 
         private val titledFragments: List<Pair<Int, Fragment>> = listOf(
-            R.string.tab_bills to BillsFragment.getInstance(),
-            R.string.tab_friends to FriendsFragment.getInstance()
+                R.string.tab_bills to BillsFragment.getInstance(),
+                R.string.tab_friends to FriendsFragment.getInstance()
         )
 
         override fun getItem(position: Int): Fragment? {
@@ -166,8 +163,8 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
 
         private fun openContactsSelection() {
             val permissionCheck = ContextCompat.checkSelfPermission(
-                this@MainActivity,
-                Manifest.permission.READ_CONTACTS
+                    this@MainActivity,
+                    Manifest.permission.READ_CONTACTS
             )
             if (isPermissionGranted(permissionCheck)) {
                 openContacts()
@@ -178,7 +175,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
 
         private fun openBillWizard() {
             BillWizardInfoActivity.getIntent(this@MainActivity)
-                .let(this@MainActivity::startActivity)
+                    .let(this@MainActivity::startActivity)
         }
 
     }

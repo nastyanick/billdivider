@@ -14,7 +14,6 @@ import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Contact
 import com.nastynick.billdivider.presentation.Navigator
 import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
-import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_contacts.*
 import ru.terrakok.cicerone.commands.Back
 import javax.inject.Inject
@@ -40,7 +39,6 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
     private val navigator = ContactsNavigator()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
 

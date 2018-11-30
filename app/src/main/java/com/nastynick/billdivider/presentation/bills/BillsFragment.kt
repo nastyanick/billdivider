@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Bill
-import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_bills.*
 import javax.inject.Inject
 
@@ -27,12 +26,6 @@ class BillsFragment: Fragment(), BillsContract.View {
 
     @Inject
     protected lateinit var adapter: BillsAdapter
-
-
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_bills, container, false)
