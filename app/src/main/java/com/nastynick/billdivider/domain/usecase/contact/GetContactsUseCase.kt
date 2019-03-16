@@ -13,7 +13,8 @@ class GetContactsUseCase @Inject constructor(private val contactsRepository: Con
     fun getContacts() = contactsRepository.getContacts()
 
     fun searchContacts(filter: Observable<String>): Observable<List<Contact>> {
-        return filter.debounce(searchContactsDebounceTimeMillis, TimeUnit.MILLISECONDS)
+        return filter
+                .debounce(searchContactsDebounceTimeMillis, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
                 .switchMap { contactsRepository.searchContacts(it) }
     }

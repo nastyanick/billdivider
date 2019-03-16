@@ -13,32 +13,31 @@ import javax.inject.Inject
 
 
 class FriendsRepositoryImpl @Inject constructor(
-    val friendDao: FriendDao
+        private val friendDao: FriendDao
 ) : FriendsRepository {
 
     override fun getFriends(): Observable<List<Friend>> {
-        return Observable.fromCallable { friendDao.getAll().map(FriendMapper::fromEntity) }
-            .subscribeOn(Schedulers.computation())
+        return Observable
+                .fromCallable { friendDao.getAll().map(FriendMapper::fromEntity) }
+                .subscribeOn(Schedulers.computation())
     }
 
 
     override fun saveFriendsFromContacts(contacts: List<Contact>): Completable {
         return Observable.fromIterable(contacts)
-            .map(ContactFriendMapper::fromContact)
-            .doOnNext(this::saveFriend)
-            .ignoreElements()
-
+                .map(ContactFriendMapper::fromContact)
+                .doOnNext(this::saveFriend)
+                .ignoreElements()
     }
 
     override fun getFriend(friendId: Long): Observable<Friend> {
         return friendDao.get(friendId)
-            .let(FriendMapper::fromEntity)
-            .let { Observable.just(it) }
+                .let(FriendMapper::fromEntity)
+                .let { Observable.just(it) }
     }
 
     private fun saveFriend(friend: Friend) {
         friendDao.save(FriendMapper.fromData(friend))
     }
-
 }
 
