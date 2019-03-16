@@ -2,6 +2,7 @@ package com.nastynick.billdivider.data
 
 import com.nastynick.billdivider.data.objects.Bill
 import com.nastynick.billdivider.domain.repository.BillsRepository
+import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -13,7 +14,6 @@ class BillsRepositoryImpl @Inject constructor() : BillsRepository {
         return Single.just(listOf())
     }
 
-    override fun saveBill(bill: Bill) {
-    }
+    override fun saveBill(bill: Bill) = Completable.complete()
 
 }

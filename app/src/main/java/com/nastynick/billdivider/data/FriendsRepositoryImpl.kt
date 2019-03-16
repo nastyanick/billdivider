@@ -8,7 +8,7 @@ import com.nastynick.billdivider.data.util.FriendMapper
 import com.nastynick.billdivider.domain.repository.FriendsRepository
 import io.reactivex.Completable
 import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.Single
 import javax.inject.Inject
 
 
@@ -16,24 +16,28 @@ class FriendsRepositoryImpl @Inject constructor(
         private val friendDao: FriendDao
 ) : FriendsRepository {
 
-    override fun getFriends(): Observable<List<Friend>> {
-        return Observable
-                .fromCallable { friendDao.getAll().map(FriendMapper::fromEntity) }
-                .subscribeOn(Schedulers.computation())
+    override fun getFriends(): Single<List<Friend>> {
+        return Observable.fromIterable(friendDao.getAll())
+                .map(FriendMapper::fromEntity)
+                .toList()
     }
 
 
+    //TODO remove extra convert from contact -> friednd -> entity
     override fun saveFriendsFromContacts(contacts: List<Contact>): Completable {
-        return Observable.fromIterable(contacts)
-                .map(ContactFriendMapper::fromContact)
-                .doOnNext(this::saveFriend)
-                .ignoreElements()
+        return Completable
+                .fromCallable {
+                    friendDao.saveAll(contacts.map {
+                        FriendMapper.fromData(
+                                ContactFriendMapper.fromContact(it)
+                        )
+                    })
+                }
     }
 
-    override fun getFriend(friendId: Long): Observable<Friend> {
+    override fun getFriend(friendId: Long): Single<Friend> {
         return friendDao.get(friendId)
-                .let(FriendMapper::fromEntity)
-                .let { Observable.just(it) }
+                .map(FriendMapper::fromEntity)
     }
 
     private fun saveFriend(friend: Friend) {
