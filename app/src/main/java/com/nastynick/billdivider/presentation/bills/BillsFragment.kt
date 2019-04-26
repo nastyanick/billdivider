@@ -34,7 +34,7 @@ class BillsFragment: Fragment(), BillsContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        DependencyResolver.billsSubComponent().inject(this)
+        DependencyResolver.presentationComponent().inject(this)
 
         initBillsList()
         presenter.onStart(this)

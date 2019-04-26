@@ -44,7 +44,7 @@ class FriendsFragment : Fragment(), FriendsContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        DependencyResolver.friendsComponent().inject(this)
+        DependencyResolver.presentationComponent().inject(this)
 
         initViews()
         initListeners()

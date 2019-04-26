@@ -7,6 +7,7 @@ import com.nastynick.billdivider.di.module.RoomModule
 
 object DependencyResolver {
     private lateinit var applicationComponent: ApplicationComponent
+    private var presentationComponent: PresentationComponent? = null
 
     fun plusApplicationComponent(application: Application) {
         applicationComponent = DaggerApplicationComponent.builder()
@@ -15,20 +16,10 @@ object DependencyResolver {
                 .build()
     }
 
-    fun contactsComponent(): ContactsComponent {
-        return applicationComponent.plusContactsComponent()
-    }
 
-    fun billsSubComponent(): BillsComponent {
-        return applicationComponent.plusBillsComponent()
+    fun presentationComponent(): PresentationComponent {
+        return presentationComponent
+                ?: applicationComponent.presentationComponent()
+                        .also { presentationComponent = it }
     }
-
-    fun mainActivityComponent(): MainActivityComponent {
-        return applicationComponent.plusMainActivityComponent()
-    }
-
-    fun friendsComponent(): FriendsComponent {
-        return applicationComponent.plusFriendsComponent()
-    }
-
 }

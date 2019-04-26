@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        DependencyResolver.mainActivityComponent().injectMainActivity(this)
+        DependencyResolver.presentationComponent().injectMainActivity(this)
 
         initViews()
         initToolbar()

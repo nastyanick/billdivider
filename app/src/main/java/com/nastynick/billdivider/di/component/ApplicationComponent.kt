@@ -10,10 +10,8 @@ import dagger.Component
             RoomModule::class
         ]
 )
+
 interface ApplicationComponent {
 
-    fun plusContactsComponent(): ContactsComponent
-    fun plusBillsComponent(): BillsComponent
-    fun plusMainActivityComponent(): MainActivityComponent
-    fun plusFriendsComponent(): FriendsComponent
+    fun presentationComponent(): PresentationComponent
 }
