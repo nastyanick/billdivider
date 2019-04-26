@@ -5,16 +5,15 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.core.content.ContextCompat
-import androidx.appcompat.app.AppCompatActivity
 import com.gordonwong.materialsheetfab.MaterialSheetFab
 import com.nastynick.billdivider.R
-import com.nastynick.billdivider.di.component.DaggerApplicationComponent
-import com.nastynick.billdivider.di.module.MainActivityModule
+import com.nastynick.billdivider.di.DependencyResolver
 import com.nastynick.billdivider.presentation.Navigator
 import com.nastynick.billdivider.presentation.Screens
 import com.nastynick.billdivider.presentation.bills.BillsFragment
@@ -54,10 +53,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        DaggerApplicationComponent.builder()
-                .mainActivityModule(MainActivityModule(this))
-                .build()
-                .injectMainActivity(this)
+        DependencyResolver.mainActivityComponent().injectMainActivity(this)
 
         initViews()
         initToolbar()

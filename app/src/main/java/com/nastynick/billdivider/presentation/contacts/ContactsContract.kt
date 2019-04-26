@@ -15,7 +15,7 @@ interface ContactsContract {
     }
 
     interface Presenter {
-        fun onStart()
+        fun onStart(view: View)
 
         fun searchCreated(searchView: SearchView)
 

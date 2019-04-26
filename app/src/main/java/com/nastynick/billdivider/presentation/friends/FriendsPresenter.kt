@@ -7,12 +7,11 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class FriendsPresenter @Inject constructor(
-        private val view: FriendsContract.View,
         private val getFriendsUseCase: GetFriendsUseCase,
         private val router: FriendsRouter
 ) : FriendsContract.Presenter {
 
-    override fun onStart() {
+    override fun onStart(view: FriendsContract.View) {
         getFriendsUseCase.getFriends()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

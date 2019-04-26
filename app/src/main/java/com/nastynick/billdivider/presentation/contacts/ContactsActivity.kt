@@ -48,7 +48,7 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
         initViews()
         initListeners()
 
-        presenter.onStart()
+        presenter.onStart(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Friend
+import com.nastynick.billdivider.di.DependencyResolver
 import com.nastynick.billdivider.presentation.Navigator
 import com.nastynick.billdivider.presentation.Screens
 import com.nastynick.billdivider.presentation.friend.FriendActivity
@@ -43,13 +44,15 @@ class FriendsFragment : Fragment(), FriendsContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        DependencyResolver.friendsComponent().inject(this)
+
         initViews()
         initListeners()
     }
 
     override fun onStart() {
         super.onStart()
-        presenter.onStart()
+        presenter.onStart(this)
     }
 
     override fun onResume() {

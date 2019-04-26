@@ -2,7 +2,7 @@ package com.nastynick.billdivider
 
 import android.app.Application
 import com.github.tamir7.contacts.Contacts
-import com.nastynick.billdivider.di.component.DaggerApplicationComponent
+import com.nastynick.billdivider.di.DependencyResolver
 
 class BillDividerApplication : Application() {
 
@@ -14,6 +14,7 @@ class BillDividerApplication : Application() {
     }
 
     private fun initDaggerComponent() {
+        DependencyResolver.plusApplicationComponent(this)
     }
 
     private fun initContactsProvider() {

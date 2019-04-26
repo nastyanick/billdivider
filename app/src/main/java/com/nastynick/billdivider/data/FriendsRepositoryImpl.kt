@@ -17,9 +17,10 @@ class FriendsRepositoryImpl @Inject constructor(
 ) : FriendsRepository {
 
     override fun getFriends(): Single<List<Friend>> {
-        return Observable.fromIterable(friendDao.getAll())
-                .map(FriendMapper::fromEntity)
-                .toList()
+//        return Observable.fromIterable(friendDao.getAll())
+//                .map(FriendMapper::fromEntity)
+//                .toList()
+        return Single.just(listOf())
     }
 
 

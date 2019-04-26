@@ -1,6 +1,5 @@
 package com.nastynick.billdivider.presentation.bills
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Bill
+import com.nastynick.billdivider.di.DependencyResolver
 import kotlinx.android.synthetic.main.fragment_bills.*
 import javax.inject.Inject
 
@@ -34,8 +34,10 @@ class BillsFragment: Fragment(), BillsContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        DependencyResolver.billsSubComponent().inject(this)
+
         initBillsList()
-        presenter.onStart()
+        presenter.onStart(this)
     }
 
     override fun showBills(bills: List<Bill>) {

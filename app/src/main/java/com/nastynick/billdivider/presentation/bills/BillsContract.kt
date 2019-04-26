@@ -9,6 +9,6 @@ interface BillsContract {
     }
 
     interface Presenter {
-        fun onStart()
+        fun onStart(view: View)
     }
 }

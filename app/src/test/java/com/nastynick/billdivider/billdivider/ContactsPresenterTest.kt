@@ -36,7 +36,7 @@ class ContactsPresenterTest {
     @Before
     fun setup() {
         testScheduler = TestScheduler()
-        presenter = ContactsPresenter(view, getContactsUseCase, saveContactsUseCase, router)
+        presenter = ContactsPresenter(getContactsUseCase, saveContactsUseCase, router)
     }
 
     @Test
@@ -46,7 +46,7 @@ class ContactsPresenterTest {
                 .`when`(getContactsUseCase)
                 .getContacts()
 
-        presenter.onStart()
+        presenter.onStart(view)
 
         testScheduler.triggerActions()
 

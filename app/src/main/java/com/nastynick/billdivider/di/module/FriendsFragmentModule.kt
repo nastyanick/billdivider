@@ -8,10 +8,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class FriendsFragmentModule(val fragment: FriendsFragment) {
-
-    @Provides
-    fun provideFriendsView(): FriendsContract.View = fragment
+class FriendsFragmentModule {
 
     @Provides
     fun provideFriendsPresenter(presenter: FriendsPresenter): FriendsContract.Presenter = presenter

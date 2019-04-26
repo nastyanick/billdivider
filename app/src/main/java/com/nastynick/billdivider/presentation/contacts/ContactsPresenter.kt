@@ -10,15 +10,16 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ContactsPresenter @Inject constructor(
-        private val view: ContactsContract.View,
         private val getContactsUseCase: GetContactsUseCase,
         private val saveFriendsUseCase: SaveFriendsUseCase,
         private val router: ContactsRouter
 ) : ContactsContract.Presenter {
 
+    private lateinit var view: ContactsContract.View
     private val selectedContacts = mutableSetOf<Contact>()
 
-    override fun onStart() {
+    override fun onStart(view: ContactsContract.View) {
+        this.view = view
         getContactsUseCase.getContacts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

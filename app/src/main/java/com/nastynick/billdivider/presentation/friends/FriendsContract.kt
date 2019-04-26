@@ -9,7 +9,7 @@ interface FriendsContract {
     }
 
     interface Presenter {
-        fun onStart()
+        fun onStart(view: FriendsContract.View)
         fun onFriendClick(friend: Friend)
     }
 }
