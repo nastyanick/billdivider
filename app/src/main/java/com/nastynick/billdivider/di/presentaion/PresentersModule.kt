@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.di.module
+package com.nastynick.billdivider.di.presentaion
 
 import com.nastynick.billdivider.presentation.bills.BillsContract
 import com.nastynick.billdivider.presentation.bills.BillsPresenter

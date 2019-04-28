@@ -1,28 +1,28 @@
-package com.nastynick.billdivider.di.module
+package com.nastynick.billdivider.di.application
 
+import android.app.Application
 import androidx.room.Room
-import android.content.Context
-import com.nastynick.billdivider.BillDividerApplication
 import com.nastynick.billdivider.data.database.AppDatabase
 import com.nastynick.billdivider.data.database.dao.FriendDao
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @Module
 class RoomModule {
 
+    @ApplicationScope
     @Provides
-    fun providesDatabase(context: Context): AppDatabase {
+    fun providesDatabase(application: Application): AppDatabase {
         return Room.databaseBuilder<AppDatabase>(
-                context,
+                application,
                 AppDatabase::class.java,
                 "bill_divider_database"
         ).build()
     }
 
+    @ApplicationScope
     @Provides
-    fun providesFriendsRepository(database: AppDatabase): FriendDao {
+    fun providesFriendsDao(database: AppDatabase): FriendDao {
         return database.friendDao()
     }
 }

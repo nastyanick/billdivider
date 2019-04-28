@@ -1,9 +1,11 @@
 package com.nastynick.billdivider.di
 
 import android.app.Application
-import com.nastynick.billdivider.di.component.*
-import com.nastynick.billdivider.di.module.ApplicationModule
-import com.nastynick.billdivider.di.module.RoomModule
+import com.nastynick.billdivider.di.application.ApplicationComponent
+import com.nastynick.billdivider.di.application.ApplicationModule
+import com.nastynick.billdivider.di.application.DaggerApplicationComponent
+import com.nastynick.billdivider.di.application.RoomModule
+import com.nastynick.billdivider.di.presentaion.PresentationComponent
 
 object DependencyResolver {
     private lateinit var applicationComponent: ApplicationComponent

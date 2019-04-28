@@ -1,6 +1,5 @@
-package com.nastynick.billdivider.di.component
+package com.nastynick.billdivider.di.presentaion
 
-import com.nastynick.billdivider.di.module.PresentersModule
 import com.nastynick.billdivider.presentation.bills.BillsFragment
 import com.nastynick.billdivider.presentation.contacts.ContactsActivity
 import com.nastynick.billdivider.presentation.friends.FriendsFragment
