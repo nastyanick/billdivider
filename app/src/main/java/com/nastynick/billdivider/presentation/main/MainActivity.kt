@@ -28,7 +28,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
 
-
 class MainActivity : AppCompatActivity(), MainContract.View {
 
     companion object {
@@ -37,7 +36,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         }
     }
 
-    private val REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION = 1;
+    private val REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION = 1
 
     @Inject
     protected lateinit var presenter: MainContract.Presenter
@@ -72,9 +71,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun onRequestPermissionsResult(
-            requestCode: Int,
-            permissions: Array<String>,
-            grantResults: IntArray
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
     ) {
         when (requestCode) {
             REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION -> {
@@ -173,6 +172,5 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             BillWizardInfoActivity.getIntent(this@MainActivity)
                     .let(this@MainActivity::startActivity)
         }
-
     }
 }

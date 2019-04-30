@@ -18,6 +18,6 @@ class BillDividerApplication : Application() {
     }
 
     private fun initContactsProvider() {
-        Contacts.initialize(this);
+        Contacts.initialize(this)
     }
 }

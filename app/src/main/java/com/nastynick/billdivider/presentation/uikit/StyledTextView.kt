@@ -25,7 +25,6 @@ class StyledTextView : FrameLayout {
         init(context, attrs)
     }
 
-
     fun setText(text: String?) {
         billDividerTextView.text = text
     }

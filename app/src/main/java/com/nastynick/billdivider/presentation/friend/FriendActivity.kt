@@ -41,5 +41,4 @@ class FriendActivity : AppCompatActivity(), FriendContact.View {
     }
 
     fun getFriendId() = intent.getLongExtra(ARGUMENT_FRIEND_ID, 0)
-
 }

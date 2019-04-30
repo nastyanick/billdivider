@@ -20,5 +20,4 @@ interface FriendDao {
 
     @Insert
     fun saveAll(friend: List<FriendEntity>)
-
 }

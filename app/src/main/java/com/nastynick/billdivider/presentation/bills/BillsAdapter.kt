@@ -9,7 +9,6 @@ import com.nastynick.billdivider.data.objects.Bill
 import kotlinx.android.synthetic.main.item_bill.view.*
 import javax.inject.Inject
 
-
 class BillsAdapter @Inject constructor() : RecyclerView.Adapter<BillsAdapter.ViewHolder>() {
     private var bills: List<Bill> = listOf()
 

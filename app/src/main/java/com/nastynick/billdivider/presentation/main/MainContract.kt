@@ -9,7 +9,5 @@ interface MainContract {
         fun addBillClick()
     }
 
-    interface View {
-    }
+    interface View
 }
-

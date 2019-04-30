@@ -7,8 +7,8 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class FriendsPresenter @Inject constructor(
-        private val getFriendsUseCase: GetFriendsUseCase,
-        private val router: FriendsRouter
+    private val getFriendsUseCase: GetFriendsUseCase,
+    private val router: FriendsRouter
 ) : FriendsContract.Presenter {
 
     override fun onStart(view: FriendsContract.View) {
@@ -21,5 +21,4 @@ class FriendsPresenter @Inject constructor(
     override fun onFriendClick(friend: Friend) {
         router.openFriendsDetails(friend.id)
     }
-
 }

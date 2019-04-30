@@ -7,13 +7,11 @@ import com.nastynick.billdivider.data.util.ContactFriendMapper
 import com.nastynick.billdivider.data.util.FriendMapper
 import com.nastynick.billdivider.domain.repository.FriendsRepository
 import io.reactivex.Completable
-import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
-
 class FriendsRepositoryImpl @Inject constructor(
-        private val friendDao: FriendDao
+    private val friendDao: FriendDao
 ) : FriendsRepository {
 
     override fun getFriends(): Single<List<Friend>> {
@@ -23,8 +21,7 @@ class FriendsRepositoryImpl @Inject constructor(
         return Single.just(listOf())
     }
 
-
-    //TODO remove extra convert from contact -> friednd -> entity
+    // TODO remove extra convert from contact -> friednd -> entity
     override fun saveFriendsFromContacts(contacts: List<Contact>): Completable {
         return Completable
                 .fromCallable {
@@ -45,4 +42,3 @@ class FriendsRepositoryImpl @Inject constructor(
         friendDao.save(FriendMapper.fromData(friend))
     }
 }
-

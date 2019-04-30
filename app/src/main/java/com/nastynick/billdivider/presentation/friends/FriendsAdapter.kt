@@ -34,7 +34,6 @@ class FriendsAdapter @Inject constructor() : RecyclerView.Adapter<FriendsAdapter
         this.friends = friends
     }
 
-
     private fun getFriends() = friends
 
     private fun getFriend(position: Int) = getFriends()[position]

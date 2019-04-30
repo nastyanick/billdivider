@@ -4,8 +4,6 @@ import com.nastynick.billdivider.presentation.Navigator
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
-import javax.inject.Singleton
-
 
 class NavigatorsHolder @Inject constructor() {
 

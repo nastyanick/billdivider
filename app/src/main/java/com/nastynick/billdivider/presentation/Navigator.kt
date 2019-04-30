@@ -2,7 +2,6 @@ package com.nastynick.billdivider.presentation
 
 import ru.terrakok.cicerone.commands.Command
 
-
 abstract class Navigator : ru.terrakok.cicerone.Navigator {
 
     override fun applyCommands(commands: Array<out Command>) {

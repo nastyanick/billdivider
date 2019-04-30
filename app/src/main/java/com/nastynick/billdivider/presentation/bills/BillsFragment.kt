@@ -12,14 +12,13 @@ import com.nastynick.billdivider.di.DependencyResolver
 import kotlinx.android.synthetic.main.fragment_bills.*
 import javax.inject.Inject
 
-class BillsFragment: Fragment(), BillsContract.View {
+class BillsFragment : Fragment(), BillsContract.View {
 
     companion object {
         fun getInstance(): BillsFragment {
             return BillsFragment()
         }
     }
-
 
     @Inject
     protected lateinit var presenter: BillsContract.Presenter

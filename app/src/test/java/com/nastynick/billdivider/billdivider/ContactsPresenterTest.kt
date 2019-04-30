@@ -17,7 +17,6 @@ import io.reactivex.schedulers.TestScheduler
 import org.junit.Before
 import org.junit.Test
 
-
 class ContactsPresenterTest {
 
     private val view: ContactsContract.View = mock()
@@ -51,9 +50,7 @@ class ContactsPresenterTest {
         testScheduler.triggerActions()
 
         verify(view).updateContact(contacts[0])
-
     }
-
 
     @Test
     fun `contacts interactor search contacts`() {

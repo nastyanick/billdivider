@@ -10,9 +10,9 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ContactsPresenter @Inject constructor(
-        private val getContactsUseCase: GetContactsUseCase,
-        private val saveFriendsUseCase: SaveFriendsUseCase,
-        private val router: ContactsRouter
+    private val getContactsUseCase: GetContactsUseCase,
+    private val saveFriendsUseCase: SaveFriendsUseCase,
+    private val router: ContactsRouter
 ) : ContactsContract.Presenter {
 
     private lateinit var view: ContactsContract.View

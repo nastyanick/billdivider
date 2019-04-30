@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_contacts.*
 import ru.terrakok.cicerone.commands.Back
 import javax.inject.Inject
 
-
 class ContactsActivity : AppCompatActivity(), ContactsContract.View {
 
     companion object {
@@ -40,7 +39,6 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         setContentView(R.layout.activity_contacts)
         setSupportActionBar(activityContactsToolbar)
@@ -87,7 +85,6 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
         activityContactButtonSave.setOnClickListener { presenter.saveButtonClicked() }
     }
 
-
     override fun setContacts(contacts: List<Contact>) {
         adapter.setContacts(contacts)
         adapter.notifyDataSetChanged()
@@ -104,7 +101,6 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
     override fun updateContact(contact: Contact) {
         adapter.notifyContactChanged(contact)
     }
-
 
     private fun getSearchView(): SearchView? {
         val searchItem = activityContactsToolbar.menu.findItem(R.id.menu_item_contacts_search)

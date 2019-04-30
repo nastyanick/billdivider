@@ -4,7 +4,7 @@ import com.nastynick.billdivider.domain.usecase.bill.ReadBillsUseCase
 import javax.inject.Inject
 
 class BillsPresenter @Inject constructor(
-        val readBillsUseCase: ReadBillsUseCase
+    val readBillsUseCase: ReadBillsUseCase
 ) : BillsContract.Presenter {
 
     override fun onStart(view: BillsContract.View) {

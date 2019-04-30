@@ -12,7 +12,6 @@ import javax.inject.Inject
 class ContactsAdapter @Inject constructor() : RecyclerView.Adapter<ContactsAdapter.ViewHolder>() {
     var onContactSelected: ((Contact) -> Unit)? = null
 
-
     private var contacts = listOf<Contact>()
     private val selectedContactsIds = mutableListOf<Long>()
 
@@ -31,7 +30,6 @@ class ContactsAdapter @Inject constructor() : RecyclerView.Adapter<ContactsAdapt
         return LayoutInflater.from(parent.context).inflate(R.layout.item_contact, null)
                 .let(this::ViewHolder)
     }
-
 
     fun setContacts(contacts: List<Contact>) {
         this.contacts = contacts

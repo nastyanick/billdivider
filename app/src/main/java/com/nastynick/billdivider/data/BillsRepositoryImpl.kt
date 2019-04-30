@@ -6,8 +6,7 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
 
-
-//TODO implement repository
+// TODO implement repository
 class BillsRepositoryImpl @Inject constructor() : BillsRepository {
 
     override fun getBills(): Single<List<Bill>> {
@@ -15,5 +14,4 @@ class BillsRepositoryImpl @Inject constructor() : BillsRepository {
     }
 
     override fun saveBill(bill: Bill) = Completable.complete()
-
 }

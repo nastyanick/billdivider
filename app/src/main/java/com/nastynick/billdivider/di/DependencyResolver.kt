@@ -18,7 +18,6 @@ object DependencyResolver {
                 .build()
     }
 
-
     fun presentationComponent(): PresentationComponent {
         return presentationComponent
                 ?: applicationComponent.presentationComponent()

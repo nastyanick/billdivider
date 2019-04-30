@@ -32,10 +32,10 @@ class BillWizardInfoActivity : AppCompatActivity(), BillWizardInfoContract.View 
     }
 
     override fun setTime(date: Date) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 
     override fun setAddress(address: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 }

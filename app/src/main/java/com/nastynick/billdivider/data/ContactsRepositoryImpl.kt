@@ -32,5 +32,4 @@ class ContactsRepositoryImpl @Inject constructor() : ContactsRepository {
     private fun getDeviceContactsContacts(): List<com.github.tamir7.contacts.Contact>? {
         return Contacts.getQuery().find()
     }
-
 }

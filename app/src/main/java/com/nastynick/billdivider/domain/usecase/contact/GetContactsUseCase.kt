@@ -6,7 +6,6 @@ import io.reactivex.Observable
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-
 class GetContactsUseCase @Inject constructor(private val contactsRepository: ContactsRepository) {
     private val searchContactsDebounceTimeMillis = 100L
 

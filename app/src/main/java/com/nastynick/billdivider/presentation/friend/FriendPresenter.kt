@@ -6,9 +6,9 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class FriendPresenter @Inject constructor(
-        private val view: FriendContact.View,
-        private val friendId: Long,
-        private val getFriendsUseCase: GetFriendsUseCase
+    private val view: FriendContact.View,
+    private val friendId: Long,
+    private val getFriendsUseCase: GetFriendsUseCase
 ) : FriendContact.Presenter {
 
     override fun onStart() {
