@@ -3,13 +3,15 @@ package com.nastynick.billdivider.presentation.billwizard
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import com.arellomobile.mvp.MvpAppCompatActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
 import kotlinx.android.synthetic.main.layout_bill_info.*
 import java.util.*
 import javax.inject.Inject
 
-class BillWizardInfoActivity : AppCompatActivity(), BillWizardInfoContract.View {
+class BillWizardInfoActivity : MvpAppCompatActivity(), BillWizardInfoView {
     companion object {
 
         fun getIntent(context: Context): Intent {
@@ -18,7 +20,8 @@ class BillWizardInfoActivity : AppCompatActivity(), BillWizardInfoContract.View 
     }
 
     @Inject
-    protected lateinit var presenter: BillWizardInfoContract.Presenter
+    @InjectPresenter
+    lateinit var presenter: BillWizardInfoPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +29,9 @@ class BillWizardInfoActivity : AppCompatActivity(), BillWizardInfoContract.View 
 
         presenter.onStart()
     }
+
+    @ProvidePresenter
+    fun providePresenter() = presenter
 
     override fun setName(name: String) {
         viewBillInfoTextViewName.setText("Test name")

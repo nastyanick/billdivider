@@ -1,14 +1,18 @@
 package com.nastynick.billdivider.presentation.main
 
+import com.arellomobile.mvp.InjectViewState
+import com.arellomobile.mvp.MvpPresenter
 import javax.inject.Inject
 
-class MainPresenter @Inject constructor(private val router: MainRouter) : MainContract.Presenter {
+@InjectViewState
+class MainPresenter @Inject constructor(private val router: MainRouter) :
+        MvpPresenter<MainView>() {
 
-    override fun addFriendClick() {
+    fun addFriendClick() {
         router.openContactsList()
     }
 
-    override fun addBillClick() {
+    fun addBillClick() {
         router.openBillWizard()
     }
 }

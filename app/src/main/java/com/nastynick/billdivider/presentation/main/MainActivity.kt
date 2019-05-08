@@ -5,12 +5,14 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.arellomobile.mvp.MvpAppCompatActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.gordonwong.materialsheetfab.MaterialSheetFab
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.di.DependencyResolver
@@ -20,15 +22,15 @@ import com.nastynick.billdivider.presentation.bills.BillsFragment
 import com.nastynick.billdivider.presentation.billwizard.BillWizardInfoActivity
 import com.nastynick.billdivider.presentation.contacts.ContactsActivity
 import com.nastynick.billdivider.presentation.friends.FriendsFragment
-import com.nastynick.billdivider.presentation.main.MainContract.Presenter.Page.BILLS
-import com.nastynick.billdivider.presentation.main.MainContract.Presenter.Page.FRIENDS
+import com.nastynick.billdivider.presentation.main.Page.BILLS
+import com.nastynick.billdivider.presentation.main.Page.FRIENDS
 import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
 import com.nastynick.billdivider.presentation.uikit.AnimatedFloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainContract.View {
+class MainActivity : MvpAppCompatActivity(), MainView {
 
     companion object {
         fun getIntent(context: Context): Intent {
@@ -39,7 +41,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     private val REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION = 1
 
     @Inject
-    protected lateinit var presenter: MainContract.Presenter
+    @InjectPresenter
+    lateinit var presenter: MainPresenter
 
     @Inject
     protected lateinit var navigatorsHolder: NavigatorsHolder
@@ -49,16 +52,20 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     private lateinit var materialSheetFab: MaterialSheetFab<AnimatedFloatingActionButton>
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        DependencyResolver.presentationComponent().inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        DependencyResolver.presentationComponent().injectMainActivity(this)
 
         initViews()
         initToolbar()
         initPager()
         initListeners()
     }
+
+    @ProvidePresenter
+    fun providePresenter() = presenter
+
 
     override fun onResume() {
         super.onResume()
@@ -71,9 +78,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
+            requestCode: Int,
+            permissions: Array<String>,
+            grantResults: IntArray
     ) {
         when (requestCode) {
             REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION -> {

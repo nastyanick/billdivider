@@ -4,21 +4,24 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.content.ContextCompat
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.appcompat.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
+import com.arellomobile.mvp.MvpAppCompatActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Contact
+import com.nastynick.billdivider.di.DependencyResolver
 import com.nastynick.billdivider.presentation.Navigator
 import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
 import kotlinx.android.synthetic.main.activity_contacts.*
 import ru.terrakok.cicerone.commands.Back
 import javax.inject.Inject
 
-class ContactsActivity : AppCompatActivity(), ContactsContract.View {
+class ContactsActivity : MvpAppCompatActivity(), ContactsView {
 
     companion object {
         fun getIntent(context: Context): Intent {
@@ -27,17 +30,19 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
     }
 
     @Inject
-    protected lateinit var presenter: ContactsContract.Presenter
+    @InjectPresenter
+    lateinit var presenter: ContactsPresenter
 
     @Inject
     protected lateinit var adapter: ContactsAdapter
 
     @Inject
-    protected lateinit var navigatorsHolder: NavigatorsHolder
+    lateinit var navigatorsHolder: NavigatorsHolder
 
     private val navigator = ContactsNavigator()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        DependencyResolver.presentationComponent().inject(this)
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_contacts)
@@ -46,8 +51,11 @@ class ContactsActivity : AppCompatActivity(), ContactsContract.View {
         initViews()
         initListeners()
 
-        presenter.onStart(this)
+        presenter.onStart()
     }
+
+    @ProvidePresenter
+    fun providePresenter() = presenter
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_contacts_search, menu)

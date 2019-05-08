@@ -1,12 +1,12 @@
 package com.nastynick.billdivider.presentation.billwizard
 
+import com.arellomobile.mvp.MvpPresenter
 import javax.inject.Inject
 
 class BillWizardInfoPresenter @Inject constructor(
-    val view: BillWizardInfoContract.View
-) : BillWizardInfoContract.Presenter {
+) : MvpPresenter<BillWizardInfoView>() {
 
-    override fun onStart() {
-        view.setName("presenter test")
+    fun onStart() {
+        viewState.setName("presenter test")
     }
 }

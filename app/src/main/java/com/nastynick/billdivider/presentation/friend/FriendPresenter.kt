@@ -1,20 +1,21 @@
 package com.nastynick.billdivider.presentation.friend
 
+import com.arellomobile.mvp.InjectViewState
+import com.arellomobile.mvp.MvpPresenter
 import com.nastynick.billdivider.domain.usecase.friends.GetFriendsUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
+@InjectViewState
 class FriendPresenter @Inject constructor(
-    private val view: FriendContact.View,
-    private val friendId: Long,
-    private val getFriendsUseCase: GetFriendsUseCase
-) : FriendContact.Presenter {
+        private val getFriendsUseCase: GetFriendsUseCase
+) : MvpPresenter<FriendView>() {
 
-    override fun onStart() {
-        getFriendsUseCase.getFriend(friendId)
+    fun onStart() {
+        getFriendsUseCase.getFriend(0)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(view::setFriend)
+                .subscribe(viewState::setFriend)
     }
 }

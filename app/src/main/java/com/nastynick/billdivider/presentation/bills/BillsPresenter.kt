@@ -1,13 +1,16 @@
 package com.nastynick.billdivider.presentation.bills
 
+import com.arellomobile.mvp.InjectViewState
+import com.arellomobile.mvp.MvpPresenter
 import com.nastynick.billdivider.domain.usecase.bill.ReadBillsUseCase
 import javax.inject.Inject
 
+@InjectViewState
 class BillsPresenter @Inject constructor(
-    val readBillsUseCase: ReadBillsUseCase
-) : BillsContract.Presenter {
+        val readBillsUseCase: ReadBillsUseCase
+) : MvpPresenter<BillsView>() {
 
-    override fun onStart(view: BillsContract.View) {
-        readBillsUseCase.readBills().subscribe(view::showBills)
+    fun onStart() {
+        readBillsUseCase.readBills().subscribe(viewState::showBills)
     }
 }

@@ -3,13 +3,16 @@ package com.nastynick.billdivider.presentation.friend
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import com.arellomobile.mvp.MvpAppCompatActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Friend
+import com.nastynick.billdivider.di.DependencyResolver
 import kotlinx.android.synthetic.main.activity_friend.*
 import javax.inject.Inject
 
-class FriendActivity : AppCompatActivity(), FriendContact.View {
+class FriendActivity : MvpAppCompatActivity(), FriendView {
 
     companion object {
         private const val ARGUMENT_FRIEND_ID = "friend_id_arg"
@@ -20,12 +23,17 @@ class FriendActivity : AppCompatActivity(), FriendContact.View {
     }
 
     @Inject
-    protected lateinit var presenter: FriendContact.Presenter
+    @InjectPresenter
+    lateinit var presenter: FriendPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        DependencyResolver.presentationComponent().inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_friend)
     }
+
+    @ProvidePresenter
+    fun providePresenter() = presenter
 
     override fun onStart() {
         super.onStart()
