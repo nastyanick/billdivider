@@ -43,7 +43,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'com.google.android.material:material:1.0.0'
 
 
@@ -73,9 +73,9 @@ dependencies {
     implementation 'com.gordonwong:material-sheet-fab:1.2.1'
 
     //Room
-    implementation "androidx.room:room-runtime:2.1.0-alpha02"
-    kapt "androidx.room:room-compiler:2.1.0-alpha02"
-    implementation "android.arch.persistence.room:rxjava2:1.0.0"
+    implementation "androidx.room:room-runtime:2.1.0-alpha07"
+    kapt "androidx.room:room-compiler:2.1.0-alpha07"
+    implementation "android.arch.persistence.room:rxjava2:1.1.1"
 
     //Moxy
     implementation 'tech.schoolhelper:moxy-x-androidx:1.5.6'
