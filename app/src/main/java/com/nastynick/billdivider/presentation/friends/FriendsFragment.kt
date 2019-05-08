@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.fragment_friends.*
 import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
 
-
 class FriendsFragment : MvpAppCompatFragment(), FriendView {
 
     companion object {

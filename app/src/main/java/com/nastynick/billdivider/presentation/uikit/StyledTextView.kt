@@ -1,9 +1,11 @@
 package com.nastynick.billdivider.presentation.uikit
 
 import android.content.Context
+import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import androidx.annotation.RequiresApi
 import com.nastynick.billdivider.R
 import kotlinx.android.synthetic.main.view_text_view_regular.view.*
 
@@ -21,6 +23,7 @@ class StyledTextView : FrameLayout {
         init(context, attrs)
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
         init(context, attrs)
     }

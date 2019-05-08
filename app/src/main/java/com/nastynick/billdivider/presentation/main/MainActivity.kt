@@ -66,7 +66,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     @ProvidePresenter
     fun providePresenter() = presenter
 
-
     override fun onResume() {
         super.onResume()
         navigatorsHolder.addNavigator(MainRouter.NAME, navigator)

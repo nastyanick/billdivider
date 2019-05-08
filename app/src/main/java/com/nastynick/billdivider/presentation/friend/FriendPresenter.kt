@@ -1,7 +1,6 @@
 package com.nastynick.billdivider.presentation.friend
 
 import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
 import com.nastynick.billdivider.domain.usecase.friends.GetFriendsUseCase
 import com.nastynick.billdivider.presentation.base.BasePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -10,7 +9,7 @@ import javax.inject.Inject
 
 @InjectViewState
 class FriendPresenter @Inject constructor(
-        private val getFriendsUseCase: GetFriendsUseCase
+    private val getFriendsUseCase: GetFriendsUseCase
 ) : BasePresenter<FriendView>() {
 
     fun onStart() {

@@ -3,9 +3,11 @@ package com.nastynick.billdivider.presentation.uikit
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import androidx.annotation.RequiresApi
 import com.nastynick.billdivider.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.view_circular_image_view.view.*
@@ -33,6 +35,7 @@ class CircularImageView : FrameLayout {
         init(context, attrs)
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
         init(context, attrs)
     }

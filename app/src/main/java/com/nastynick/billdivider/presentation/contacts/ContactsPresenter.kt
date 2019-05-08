@@ -13,14 +13,14 @@ import javax.inject.Inject
 
 @InjectViewState
 class ContactsPresenter @Inject constructor(
-    private val getContactsUseCase: GetContactsUseCase,
-    private val saveFriendsUseCase: SaveFriendsUseCase,
-    private val router: ContactsRouter
+        private val getContactsUseCase: GetContactsUseCase,
+        private val saveFriendsUseCase: SaveFriendsUseCase,
+        private val router: ContactsRouter
 ) : BasePresenter<ContactsView>() {
 
     private val selectedContacts = mutableSetOf<Contact>()
 
-     fun onStart() {
+    fun onStart() {
         getContactsUseCase
                 .getContacts()
                 .subscribeOn(Schedulers.io())
@@ -29,7 +29,7 @@ class ContactsPresenter @Inject constructor(
                 .connect()
     }
 
-     fun searchCreated(searchView: SearchView) {
+    fun searchCreated(searchView: SearchView) {
         searchView
                 .let(::fromSearchView)
                 .let(getContactsUseCase::searchContacts)
@@ -38,7 +38,7 @@ class ContactsPresenter @Inject constructor(
                 .connect()
     }
 
-     fun contactSelected(contact: Contact) {
+    fun contactSelected(contact: Contact) {
         val contactId = contact.id ?: return
 
         if (selectedContacts.contains(contact)) {
@@ -51,7 +51,7 @@ class ContactsPresenter @Inject constructor(
         viewState.updateContact(contact)
     }
 
-     fun saveButtonClicked() {
+    fun saveButtonClicked() {
         saveFriendsUseCase
                 .saveFriendsFromContacts(selectedContacts.toList())
                 .subscribeOn(Schedulers.io())

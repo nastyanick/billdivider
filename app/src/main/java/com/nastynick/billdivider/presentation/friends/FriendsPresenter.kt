@@ -10,8 +10,8 @@ import javax.inject.Inject
 
 @InjectViewState
 class FriendsPresenter @Inject constructor(
-        private val getFriendsUseCase: GetFriendsUseCase,
-        private val router: FriendsRouter
+    private val getFriendsUseCase: GetFriendsUseCase,
+    private val router: FriendsRouter
 ) : BasePresenter<FriendView>() {
 
     fun onStart() {

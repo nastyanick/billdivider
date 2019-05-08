@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @InjectViewState
 class BillsPresenter @Inject constructor(
-        private val readBillsUseCase: ReadBillsUseCase
+    private val readBillsUseCase: ReadBillsUseCase
 ) : BasePresenter<BillsView>() {
 
     fun onStart() {
