@@ -1,11 +1,14 @@
 package com.nastynick.billdivider.presentation.friends
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.arellomobile.mvp.MvpAppCompatFragment
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Friend
 import com.nastynick.billdivider.di.DependencyResolver
@@ -17,7 +20,8 @@ import kotlinx.android.synthetic.main.fragment_friends.*
 import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
 
-class FriendsFragment : Fragment(), FriendsContract.View {
+
+class FriendsFragment : MvpAppCompatFragment(), FriendView {
 
     companion object {
         fun getInstance(): FriendsFragment {
@@ -26,7 +30,8 @@ class FriendsFragment : Fragment(), FriendsContract.View {
     }
 
     @Inject
-    protected lateinit var presenter: FriendsContract.Presenter
+    @InjectPresenter
+    lateinit var presenter: FriendsPresenter
 
     @Inject
     protected lateinit var adapter: FriendsAdapter
@@ -36,6 +41,16 @@ class FriendsFragment : Fragment(), FriendsContract.View {
 
     private val navigator = FriendsNavigator()
 
+    @ProvidePresenter
+    fun providePresenter(): FriendsPresenter {
+        return presenter
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        DependencyResolver.presentationComponent().inject(this)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_friends, container, false)
     }
@@ -43,15 +58,13 @@ class FriendsFragment : Fragment(), FriendsContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        DependencyResolver.presentationComponent().inject(this)
-
         initViews()
         initListeners()
     }
 
     override fun onStart() {
         super.onStart()
-        presenter.onStart(this)
+        presenter.onStart()
     }
 
     override fun onResume() {
@@ -65,7 +78,7 @@ class FriendsFragment : Fragment(), FriendsContract.View {
     }
 
     private fun initViews() {
-        fragmentFriendsRecyclerView.layoutManager = LinearLayoutManager(context)
+        fragmentFriendsRecyclerView.layoutManager = LinearLayoutManager(activity)
         fragmentFriendsRecyclerView.adapter = adapter
     }
 
@@ -82,7 +95,7 @@ class FriendsFragment : Fragment(), FriendsContract.View {
         override fun applyCommand(command: Any) {
             if (command is Forward) {
                 when (command.screenKey) {
-                    Screens.FRIEND_DETAILS.name -> FriendActivity.getIntent(context, command.transitionData as Long)
+                    Screens.FRIEND_DETAILS.name -> FriendActivity.getIntent(activity, command.transitionData as Long)
                             .let(this@FriendsFragment::startActivity)
                 }
             }

@@ -8,8 +8,6 @@ import com.nastynick.billdivider.presentation.contacts.ContactsContract
 import com.nastynick.billdivider.presentation.contacts.ContactsPresenter
 import com.nastynick.billdivider.presentation.friend.FriendContact
 import com.nastynick.billdivider.presentation.friend.FriendPresenter
-import com.nastynick.billdivider.presentation.friends.FriendsContract
-import com.nastynick.billdivider.presentation.friends.FriendsPresenter
 import com.nastynick.billdivider.presentation.main.MainContract
 import com.nastynick.billdivider.presentation.main.MainPresenter
 import dagger.Module
@@ -29,9 +27,6 @@ class PresentersModule {
 
     @Provides
     fun provideFriendPresenter(presenter: FriendPresenter): FriendContact.Presenter = presenter
-
-    @Provides
-    fun provideFriendsPresenter(presenter: FriendsPresenter): FriendsContract.Presenter = presenter
 
     @Provides
     fun provideRootPresenter(presenter: MainPresenter): MainContract.Presenter = presenter
