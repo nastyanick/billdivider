@@ -5,8 +5,7 @@ import com.arellomobile.mvp.MvpPresenter
 import javax.inject.Inject
 
 @InjectViewState
-class MainPresenter @Inject constructor(private val router: MainRouter) :
-        MvpPresenter<MainView>() {
+class MainPresenter @Inject constructor(private val router: MainRouter) : MvpPresenter<MainView>() {
 
     fun addFriendClick() {
         router.openContactsList()
