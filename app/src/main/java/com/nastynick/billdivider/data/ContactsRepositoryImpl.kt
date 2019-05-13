@@ -9,27 +9,28 @@ import javax.inject.Inject
 
 class ContactsRepositoryImpl @Inject constructor() : ContactsRepository {
 
-    private var contactsCache: List<Contact> = listOf()
+    private var contactsCache: Observable<Contact>? = null
 
     override fun getContacts(): Single<List<Contact>> {
-        return Observable.fromIterable(getDeviceContactsContacts())
-                .map(Contact.Companion::from)
+        return getContactsObservable()
                 .toList()
-                .doOnSuccess { contactsCache = it }
     }
 
-    override fun searchContacts(filter: String): Observable<List<Contact>> {
-        return Observable.fromIterable(contactsCache)
+    private fun getContactsObservable(): Observable<Contact> {
+        return Observable.fromIterable(getDeviceContactsContacts())
+                .also { contactsCache = it }
+    }
+
+    override fun searchContacts(filter: String): Observable<Contact> {
+        return (contactsCache ?: getContactsObservable())
                 .filter { contactContainsFilter(it, filter) }
-                .toList()
-                .toObservable()
     }
 
     private fun contactContainsFilter(contact: Contact, filter: String): Boolean {
         return contact.toString().contains(filter, true)
     }
 
-    private fun getDeviceContactsContacts(): List<com.github.tamir7.contacts.Contact>? {
-        return Contacts.getQuery().find()
+    private fun getDeviceContactsContacts(): List<Contact> {
+        return Contacts.getQuery().find().map { Contact.from(it) }
     }
 }
