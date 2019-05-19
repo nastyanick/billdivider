@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.billdivider
+package com.nastynick.billdivider.presentation.contacts
 
 import com.nastynick.billdivider.data.objects.Contact
 import com.nastynick.billdivider.domain.repository.ContactsRepository
@@ -23,7 +23,6 @@ class ContactsPresenterTest {
     private val getContactsUseCase: GetContactsUseCase = mock()
     private val saveContactsUseCase: SaveFriendsUseCase = mock()
     private val router: ContactsRouter = mock()
-    private val contactsRepository: ContactsRepository = mock()
 
     private lateinit var presenter: ContactsPresenter
     private lateinit var testScheduler: TestScheduler
@@ -39,8 +38,7 @@ class ContactsPresenterTest {
     }
 
 //    @Test
-    fun `get contact should display contacts`() {
-
+    fun `get contacts should display contacts`() {
         doReturn(Single.just(contacts))
                 .`when`(getContactsUseCase)
                 .getContacts()
@@ -49,25 +47,6 @@ class ContactsPresenterTest {
 
         testScheduler.triggerActions()
 
-        verify(view).updateContact(contacts[0])
-    }
-
-    @Test
-    fun `contacts interactor search contacts`() {
-        val getContactsUseCase = GetContactsUseCase(contactsRepository)
-        val filterString = "Ivan"
-        val filter = Observable.just(filterString)
-        val searchResult = Observable.just(contacts[0])
-
-        whenever(contactsRepository.searchContacts(filterString)).thenReturn(searchResult)
-
-        val testObserver = getContactsUseCase.searchContacts(filter).test()
-        testObserver.awaitTerminalEvent()
-
-        verify(contactsRepository).searchContacts(filterString)
-
-        testObserver
-                .assertNoErrors()
-                .assertValueCount(1)
+        verify(view).setContacts(contacts)
     }
 }
