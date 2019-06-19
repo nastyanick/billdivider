@@ -7,7 +7,7 @@ import com.nastynick.billdivider.presentation.friends.FriendsFragment
 import com.nastynick.billdivider.presentation.main.MainActivity
 import dagger.Subcomponent
 
-@Subcomponent(modules = [PresentersModule::class])
+@Subcomponent
 interface PresentationComponent {
 
     fun inject(fragment: FriendsFragment)

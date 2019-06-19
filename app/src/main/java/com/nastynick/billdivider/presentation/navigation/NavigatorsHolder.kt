@@ -1,10 +1,12 @@
 package com.nastynick.billdivider.presentation.navigation
 
+import com.nastynick.billdivider.di.application.ApplicationScope
 import com.nastynick.billdivider.presentation.Navigator
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
+@ApplicationScope
 class NavigatorsHolder @Inject constructor() {
 
     private val container = mutableMapOf<String, Cicerone<Router>>()
