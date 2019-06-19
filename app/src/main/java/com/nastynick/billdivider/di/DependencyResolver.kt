@@ -9,7 +9,6 @@ import com.nastynick.billdivider.di.presentaion.PresentationComponent
 
 object DependencyResolver {
     private lateinit var applicationComponent: ApplicationComponent
-    private var presentationComponent: PresentationComponent? = null
 
     fun plusApplicationComponent(application: Application) {
         applicationComponent = DaggerApplicationComponent.builder()
@@ -19,8 +18,6 @@ object DependencyResolver {
     }
 
     fun presentationComponent(): PresentationComponent {
-        return presentationComponent
-                ?: applicationComponent.presentationComponent()
-                        .also { presentationComponent = it }
+        return applicationComponent.presentationComponent()
     }
 }
