@@ -4,7 +4,7 @@ import android.app.Application
 import com.github.tamir7.contacts.Contacts
 import com.nastynick.billdivider.di.DependencyResolver
 
-class BillDividerApplication : Application() {
+open class BillDividerApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
