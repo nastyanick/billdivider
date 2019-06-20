@@ -1,9 +1,9 @@
 package com.nastynick.billdivider.presentation.navigation
 
 import com.nastynick.billdivider.di.application.ApplicationScope
-import com.nastynick.billdivider.presentation.Navigator
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Router
+import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import javax.inject.Inject
 
 @ApplicationScope
@@ -23,7 +23,7 @@ class NavigatorsHolder @Inject constructor() {
 
     fun getRouter(name: String) = get(name)?.router
 
-    fun addNavigator(name: String, navigator: Navigator) {
+    fun addNavigator(name: String, navigator: SupportAppNavigator) {
         get(name)?.run {
             navigatorHolder.setNavigator(navigator)
         }

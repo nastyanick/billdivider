@@ -1,6 +1,8 @@
 package com.nastynick.billdivider.presentation.main
 
 import com.nastynick.billdivider.presentation.Screens
+import com.nastynick.billdivider.presentation.navigation.BillWizardScreen
+import com.nastynick.billdivider.presentation.navigation.ContactsScreen
 import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
 import javax.inject.Inject
 
@@ -13,10 +15,10 @@ class MainRouter @Inject constructor(private val navigatorsHolder: NavigatorsHol
     val router = navigatorsHolder.getRouter(NAME)
 
     fun openContactsList() {
-        router?.navigateTo(Screens.CONTACTS_LIST.name)
+        router?.navigateTo(ContactsScreen())
     }
 
     fun openBillWizard() {
-        router?.navigateTo(Screens.BILL_WIZARD.name)
+        router?.navigateTo(BillWizardScreen())
     }
 }

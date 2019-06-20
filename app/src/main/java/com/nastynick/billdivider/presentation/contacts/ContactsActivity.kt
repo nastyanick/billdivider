@@ -3,25 +3,23 @@ package com.nastynick.billdivider.presentation.contacts
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.appcompat.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
-import com.arellomobile.mvp.MvpAppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Contact
 import com.nastynick.billdivider.di.DependencyResolver
-import com.nastynick.billdivider.presentation.Navigator
+import com.nastynick.billdivider.presentation.base.BaseActivity
 import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
 import kotlinx.android.synthetic.main.activity_contacts.*
-import ru.terrakok.cicerone.commands.Back
 import javax.inject.Inject
 
-class ContactsActivity : MvpAppCompatActivity(), ContactsView {
+class ContactsActivity : BaseActivity(), ContactsView {
 
     companion object {
         fun getIntent(context: Context): Intent {
@@ -38,8 +36,6 @@ class ContactsActivity : MvpAppCompatActivity(), ContactsView {
 
     @Inject
     lateinit var navigatorsHolder: NavigatorsHolder
-
-    private val navigator = ContactsNavigator()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         DependencyResolver.presentationComponent().inject(this)
@@ -118,13 +114,5 @@ class ContactsActivity : MvpAppCompatActivity(), ContactsView {
     private fun initViews() {
         activityContactsRecyclerView.layoutManager = LinearLayoutManager(this)
         activityContactsRecyclerView.adapter = adapter
-    }
-
-    inner class ContactsNavigator : Navigator() {
-        override fun applyCommand(command: Any) {
-            if (command is Back) {
-                finish()
-            }
-        }
     }
 }

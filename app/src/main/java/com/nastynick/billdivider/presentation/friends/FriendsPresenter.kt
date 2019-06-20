@@ -24,6 +24,6 @@ class FriendsPresenter @Inject constructor(
     }
 
     fun onFriendClick(friend: Friend) {
-        router.openFriendsDetails(friend.id)
+        friend.id?.let(router::openFriendsDetails)
     }
 }

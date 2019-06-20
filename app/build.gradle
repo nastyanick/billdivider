@@ -67,7 +67,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
     //Cicerone for navigation
-    implementation 'ru.terrakok.cicerone:cicerone:3.0.0'
+    implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
 
     //FAB sheet
     implementation 'com.gordonwong:material-sheet-fab:1.2.1'

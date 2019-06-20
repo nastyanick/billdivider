@@ -38,8 +38,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     @Inject
     protected lateinit var navigatorsHolder: NavigatorsHolder
 
-    private val navigator = MainNavigator()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         DependencyResolver.presentationComponent().inject(this)
 
@@ -56,12 +54,12 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     override fun onResume() {
         super.onResume()
-        navigatorsHolder.addNavigator(MainRouter.NAME, navigator)
+//        navigatorsHolder.addNavigator(MainRouter.NAME, navigator)
     }
 
     override fun onPause() {
         super.onPause()
-        navigatorsHolder.removeNavigator(MainRouter.NAME)
+//        navigatorsHolder.removeNavigator(MainRouter.NAME)
     }
 
     override fun onRequestPermissionsResult(
@@ -105,12 +103,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     inner class MainNavigator : Navigator() {
         override fun applyCommand(command: Any) {
-            if (command is Forward) {
-                when (command.screenKey) {
-                    Screens.CONTACTS_LIST.name -> openContactsSelection()
-                    Screens.BILL_WIZARD.name -> openBillWizard()
-                }
-            }
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
 
         private fun openContactsSelection() {
@@ -123,11 +116,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             } else {
                 requestContactsPermission()
             }
-        }
-
-        private fun openBillWizard() {
-            BillWizardInfoActivity.getIntent(this@MainActivity)
-                    .let(this@MainActivity::startActivity)
         }
     }
 }
