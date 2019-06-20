@@ -26,7 +26,7 @@ class FriendsAdapter @Inject constructor() : RecyclerView.Adapter<FriendsAdapter
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_contact, null)
+                .inflate(R.layout.item_contact, parent, false)
                 .let(this::ViewHolder)
     }
 

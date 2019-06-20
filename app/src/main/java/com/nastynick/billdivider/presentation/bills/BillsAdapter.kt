@@ -18,7 +18,7 @@ class BillsAdapter @Inject constructor() : RecyclerView.Adapter<BillsAdapter.Vie
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_bill, null)
+                .inflate(R.layout.item_bill, parent, false)
                 .let(this::ViewHolder)
     }
 

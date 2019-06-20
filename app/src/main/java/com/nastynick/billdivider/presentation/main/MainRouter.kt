@@ -14,11 +14,4 @@ class MainRouter @Inject constructor(private val navigatorsHolder: NavigatorsHol
 
     val router = navigatorsHolder.getRouter(NAME)
 
-    fun openContactsList() {
-        router?.navigateTo(ContactsScreen())
-    }
-
-    fun openBillWizard() {
-        router?.navigateTo(BillWizardScreen())
-    }
 }

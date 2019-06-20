@@ -7,21 +7,18 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.di.DependencyResolver
 import com.nastynick.billdivider.presentation.Navigator
-import com.nastynick.billdivider.presentation.Screens
-import com.nastynick.billdivider.presentation.billwizard.BillWizardInfoActivity
+import com.nastynick.billdivider.presentation.base.BaseActivity
 import com.nastynick.billdivider.presentation.contacts.ContactsActivity
 import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
 import kotlinx.android.synthetic.main.activity_main.*
-import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
 
-class MainActivity : MvpAppCompatActivity(), MainView {
+class MainActivity : BaseActivity(), MainView {
 
     companion object {
         fun getIntent(context: Context): Intent {
@@ -45,8 +42,11 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         setContentView(R.layout.activity_main)
 
         initViews()
-        initToolbar()
         initListeners()
+
+        if (savedInstanceState == null) {
+            presenter.onAppStarted()
+        }
     }
 
     @ProvidePresenter
@@ -54,12 +54,12 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     override fun onResume() {
         super.onResume()
-//        navigatorsHolder.addNavigator(MainRouter.NAME, navigator)
+        navigatorsHolder.addNavigator(MainRouter.NAME, navigator)
     }
 
     override fun onPause() {
         super.onPause()
-//        navigatorsHolder.removeNavigator(MainRouter.NAME)
+        navigatorsHolder.removeNavigator(MainRouter.NAME)
     }
 
     override fun onRequestPermissionsResult(
@@ -79,11 +79,15 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     private fun initViews() {
     }
 
-    private fun initToolbar() {
-        setSupportActionBar(activityMainToolbar)
-    }
-
     private fun initListeners() {
+        activityMainBottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.menu_main_bottom_navigation_current_bill -> presenter.onCurrentBillsNavigationButtonClick()
+                R.id.menu_main_bottom_navigation_bills -> presenter.onBillsNavigationButtonClick()
+                R.id.menu_main_bottom_navigation_friends -> presenter.onFriendsNavigationButtonClick()
+            }
+            return@setOnNavigationItemSelectedListener true
+        }
     }
 
     private fun openContacts() {
