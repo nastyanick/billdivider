@@ -2,8 +2,8 @@
     <string name="app_name">billdivider</string>
 
     <string name="tabs_title">Дели счет</string>
-    <string name="tab_bills">Счета</string>
-    <string name="tab_friends">Друзья</string>
+    <string name="bills">Счета</string>
+    <string name="friends">Друзья</string>
 
     <string name="contacts_title">Контакты</string>
 
@@ -13,4 +13,5 @@
 
     <string name="create_friend">Создать друга</string>
     <string name="add_friend_from_contacts">Добавить из контактов</string>
+    <string name="current_bill">Текущий счет</string>
 </resources>

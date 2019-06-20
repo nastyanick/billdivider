@@ -7,25 +7,16 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import com.gordonwong.materialsheetfab.MaterialSheetFab
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.di.DependencyResolver
 import com.nastynick.billdivider.presentation.Navigator
 import com.nastynick.billdivider.presentation.Screens
-import com.nastynick.billdivider.presentation.bills.BillsFragment
 import com.nastynick.billdivider.presentation.billwizard.BillWizardInfoActivity
 import com.nastynick.billdivider.presentation.contacts.ContactsActivity
-import com.nastynick.billdivider.presentation.friends.FriendsFragment
-import com.nastynick.billdivider.presentation.main.Page.BILLS
-import com.nastynick.billdivider.presentation.main.Page.FRIENDS
 import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
-import com.nastynick.billdivider.presentation.uikit.AnimatedFloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
@@ -49,8 +40,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     private val navigator = MainNavigator()
 
-    private lateinit var materialSheetFab: MaterialSheetFab<AnimatedFloatingActionButton>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         DependencyResolver.presentationComponent().inject(this)
 
@@ -59,7 +48,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
         initViews()
         initToolbar()
-        initPager()
         initListeners()
     }
 
@@ -91,31 +79,13 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     private fun initViews() {
-        materialSheetFab = MaterialSheetFab(
-                activityMainButtonAdd,
-                activityMainCardViewSheet,
-                activityMainDimOverlatFrameLayout,
-                ContextCompat.getColor(this, R.color.colorWhite),
-                ContextCompat.getColor(this, R.color.colorAccent)
-        )
     }
 
     private fun initToolbar() {
         setSupportActionBar(activityMainToolbar)
     }
 
-    private fun initPager() {
-        activityMainPager.adapter = PagerAdapter(supportFragmentManager)
-        activityMainTabLayout.setupWithViewPager(activityMainPager)
-    }
-
     private fun initListeners() {
-        activityMainButtonAdd.setOnClickListener {
-            when (activityMainPager.currentItem) {
-                BILLS.ordinal -> presenter.addBillClick()
-                FRIENDS.ordinal -> presenter.addFriendClick()
-            }
-        }
     }
 
     private fun openContacts() {
@@ -132,25 +102,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     private fun isPermissionGranted(permissionCheck: Int) =
             PackageManager.PERMISSION_GRANTED == permissionCheck
-
-    private inner class PagerAdapter(fragmentManager: FragmentManager) :
-            FragmentPagerAdapter(fragmentManager) {
-
-        private val titledFragments: List<Pair<Int, Fragment>> = listOf(
-                R.string.tab_bills to BillsFragment.getInstance(),
-                R.string.tab_friends to FriendsFragment.getInstance()
-        )
-
-        override fun getItem(position: Int): Fragment? {
-            return titledFragments[position].second
-        }
-
-        override fun getPageTitle(position: Int): CharSequence {
-            return titledFragments[position].first.let(this@MainActivity::getString)
-        }
-
-        override fun getCount() = titledFragments.size
-    }
 
     inner class MainNavigator : Navigator() {
         override fun applyCommand(command: Any) {

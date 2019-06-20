@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#A986A8</color>
-    <color name="colorPrimaryDark">#936992</color>
+    <color name="colorPrimary">@color/colorWhite</color>
+    <color name="colorPrimaryDark">@color/colorWhite</color>
     <color name="colorAccent">#79BCB5</color>
     <color name="colorLight">#B2DFDB</color>
     <color name="colorWhite">#FFFFFF</color>
@@ -14,6 +14,9 @@
 
     <color name="colorTextRegular">#000000</color>
     <color name="colorTextGray">#9B9B9B</color>
+
+    <color name="blue_gray_700">#455A64</color>
+    <color name="light_blue_a700">#0091EA</color>
 
     <!--black 12%-->
     <color name="colorDelimiter">#1E000000</color>

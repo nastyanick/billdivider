@@ -17,62 +17,20 @@
             app:title="@string/tabs_title"
             app:titleTextColor="@color/colorWhite" />
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/activityMainTabLayout"
-            style="@style/MainTabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/activityMainPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    <com.nastynick.billdivider.presentation.uikit.AnimatedFloatingActionButton
-        android:id="@+id/activityMainButtonAdd"
-        style="@style/FloatingActionButton.Add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end" />
-
-    <com.gordonwong.materialsheetfab.DimOverlayFrameLayout
-        android:id="@+id/activityMainDimOverlatFrameLayout"
+    <FrameLayout
+        android:id="@+id/activityMainFrameLayoutContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <io.codetail.widget.RevealFrameLayout
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom">
+        android:layout_gravity="bottom"
+        android:background="@color/colorWhite"
+        app:itemIconTint="@color/sel_bottom_bar_color"
+        app:itemTextColor="@color/sel_bottom_bar_color"
+        app:menu="@menu/menu_main_bottom_navigation" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="250dp"
-            android:id="@+id/activityMainCardViewSheet"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/space_large">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <com.nastynick.billdivider.presentation.uikit.StyledTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/space_large"
-                    android:text="@string/create_friend"
-                    app:textStyle="medium" />
-
-                <com.nastynick.billdivider.presentation.uikit.StyledTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/space_large"
-                    android:text="@string/add_friend_from_contacts"
-                    app:textStyle="medium" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </io.codetail.widget.RevealFrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
