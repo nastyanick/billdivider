@@ -12,24 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".presentation.authorization.SplashActivity"
-            android:theme="@style/AppTheme.Splash">
+        <activity android:name=".presentation.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.main.MainActivity" />
 
         <activity
             android:name=".presentation.contacts.ContactsActivity"
             android:windowSoftInputMode="adjustNothing" />
 
-        <activity android:name=".presentation.friend.FriendActivity"/>
+        <activity android:name=".presentation.friend.FriendActivity" />
 
-        <activity android:name=".presentation.billwizard.BillWizardInfoActivity"/>
+        <activity android:name=".presentation.billwizard.BillWizardInfoActivity" />
     </application>
 </manifest>
