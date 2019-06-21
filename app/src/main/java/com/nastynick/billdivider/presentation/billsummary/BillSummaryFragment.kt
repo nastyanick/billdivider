@@ -10,6 +10,8 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.presentation.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_bill_summary.*
+import ru.terrakok.cicerone.Navigator
+import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
 
 class BillSummaryFragment : BaseFragment(), BillSummaryView {
@@ -21,6 +23,12 @@ class BillSummaryFragment : BaseFragment(), BillSummaryView {
     @Inject
     @InjectPresenter
     lateinit var presenter: BillSummaryPresenter
+
+    @Inject
+    protected lateinit var navigator: Navigator
+
+    @Inject
+    protected lateinit var navigatorHolder: NavigatorHolder
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -34,6 +42,16 @@ class BillSummaryFragment : BaseFragment(), BillSummaryView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        navigatorHolder.setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        navigatorHolder.removeNavigator()
+        super.onPause()
     }
 
     @ProvidePresenter
