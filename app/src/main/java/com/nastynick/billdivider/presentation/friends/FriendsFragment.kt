@@ -61,11 +61,6 @@ class FriendsFragment : BaseFragment(), FriendView {
         initListeners()
     }
 
-    override fun onStart() {
-        super.onStart()
-        presenter.onStart()
-    }
-
     override fun onResume() {
         super.onResume()
         navigatorHolder.setNavigator(navigator)

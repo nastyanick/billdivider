@@ -19,7 +19,7 @@ class FriendsPresenter @Inject constructor(
         private val router: Router
 ) : BasePresenter<FriendView>() {
 
-    fun onStart() {
+    override fun onFirstViewAttach() {
         getFriendsUseCase
                 .getFriends()
                 .subscribeOn(Schedulers.io())

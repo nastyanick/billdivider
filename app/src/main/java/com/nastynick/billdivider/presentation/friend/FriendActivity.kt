@@ -34,11 +34,6 @@ class FriendActivity : BaseActivity(), FriendView {
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    override fun onStart() {
-        super.onStart()
-        presenter.onStart()
-    }
-
     override fun setFriend(friend: Friend) {
         with(friend) {
             activityFriendTextViewName.setText(name)

@@ -12,7 +12,7 @@ class FriendPresenter @Inject constructor(
     private val getFriendsUseCase: GetFriendsUseCase
 ) : BasePresenter<FriendView>() {
 
-    fun onStart() {
+    override fun onFirstViewAttach() {
         getFriendsUseCase
                 .getFriend(0)
                 .subscribeOn(Schedulers.io())

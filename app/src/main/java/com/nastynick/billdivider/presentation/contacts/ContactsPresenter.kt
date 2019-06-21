@@ -24,7 +24,7 @@ class ContactsPresenter @Inject constructor(
 
     private val selectedContacts = mutableSetOf<Contact>()
 
-    fun onStart() {
+    override fun onFirstViewAttach() {
         rxPermissions
                 .request(Manifest.permission.READ_CONTACTS)
                 .subscribe { granted -> if (granted) getContacts() }

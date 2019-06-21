@@ -55,8 +55,6 @@ class ContactsActivity : BaseActivity(), ContactsView {
 
         initViews()
         initListeners()
-
-        presenter.onStart()
     }
 
     @ProvidePresenter

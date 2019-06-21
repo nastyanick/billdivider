@@ -9,11 +9,11 @@ import javax.inject.Inject
 
 @InjectViewState
 class BillsPresenter @Inject constructor(
-    private val readBillsUseCase: ReadBillsUseCase,
-    private val router: Router
+        private val readBillsUseCase: ReadBillsUseCase,
+        private val router: Router
 ) : BasePresenter<BillsView>() {
 
-    fun onStart() {
+    override fun onFirstViewAttach() {
         readBillsUseCase
                 .readBills()
                 .subscribe(viewState::showBills)

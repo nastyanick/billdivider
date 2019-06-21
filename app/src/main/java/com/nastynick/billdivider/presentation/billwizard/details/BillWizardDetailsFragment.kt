@@ -45,11 +45,6 @@ class BillWizardDetailsFragment : BaseFragment(), BillWizardDetailsView {
         initListeners()
     }
 
-    override fun onStart() {
-        super.onStart()
-        presenter.onStart()
-    }
-
     private fun initListeners() {
         fragmentBillWizardDetailsMaterialButtonAddPositions.setOnClickListener { presenter.onAddPositionsClick() }
     }

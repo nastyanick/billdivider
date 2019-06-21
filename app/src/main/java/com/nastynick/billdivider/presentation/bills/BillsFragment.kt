@@ -54,8 +54,6 @@ class BillsFragment : BaseFragment(), BillsView {
 
         initView()
         initListeners()
-
-        presenter.onStart()
     }
 
     override fun onResume() {

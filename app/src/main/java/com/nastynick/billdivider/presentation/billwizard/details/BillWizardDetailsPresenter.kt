@@ -16,7 +16,7 @@ class BillWizardDetailsPresenter @Inject constructor(
         private val locationService: LocationService
 ) : BasePresenter<BillWizardDetailsView>() {
 
-    fun onStart() {
+    override fun onFirstViewAttach() {
         rxPermissions
                 .request(Manifest.permission.ACCESS_FINE_LOCATION)
                 .subscribe { granted -> if (granted) requestLocation() }
