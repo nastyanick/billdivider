@@ -2,7 +2,6 @@ package com.nastynick.billdivider.di.presentaion
 
 import com.nastynick.billdivider.presentation.bills.BillsFragment
 import com.nastynick.billdivider.presentation.billsummary.BillSummaryFragment
-import com.nastynick.billdivider.presentation.billwizard.BillWizardInfoActivity
 import com.nastynick.billdivider.presentation.contacts.ContactsActivity
 import com.nastynick.billdivider.presentation.friend.FriendActivity
 import com.nastynick.billdivider.presentation.friends.FriendsFragment
@@ -23,7 +22,7 @@ interface PresentationComponent {
 
     fun inject(friendActivity: FriendActivity)
 
-    fun inject(billWizardInfoActivity: BillWizardInfoActivity)
-
     fun inject(billSummaryFragment: BillSummaryFragment)
+
+    fun billWizardComponent(): BillWizardComponent
 }

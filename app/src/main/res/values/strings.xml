@@ -16,4 +16,10 @@
     <string name="create_friend">Создать друзей</string>
     <string name="current_bill">Текущий счет</string>
     <string name="add_bill">Добавить счет</string>
+    <string name="add_position">Добавить позицию</string>
+    <string name="add_more">Добавить еще</string>
+    <string name="done">Готово</string>
+    <string name="calculate">Рассчитать</string>
+    <string name="positions">Позиции</string>
+    <string name="summary">Итог</string>
 </resources>

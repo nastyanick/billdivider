@@ -5,7 +5,11 @@ import android.content.Intent
 import androidx.fragment.app.Fragment
 import com.nastynick.billdivider.presentation.bills.BillsFragment
 import com.nastynick.billdivider.presentation.billsummary.BillSummaryFragment
-import com.nastynick.billdivider.presentation.billwizard.BillWizardInfoActivity
+import com.nastynick.billdivider.presentation.billwizard.details.BillWizardDetailsFragment
+import com.nastynick.billdivider.presentation.billwizard.flow.BillWizardFlowActivity
+import com.nastynick.billdivider.presentation.billwizard.position.BillWizardPositionFragment
+import com.nastynick.billdivider.presentation.billwizard.positions.BillWizardPositionsFragment
+import com.nastynick.billdivider.presentation.billwizard.summary.BillWizardSummaryFragment
 import com.nastynick.billdivider.presentation.contacts.ContactsActivity
 import com.nastynick.billdivider.presentation.friend.FriendActivity
 import com.nastynick.billdivider.presentation.friends.FriendsFragment
@@ -17,17 +21,41 @@ class FriendDetailsScreen(private val friendId: Long) : SupportAppScreen() {
     }
 }
 
-class ContactsScreen : SupportAppScreen(){
+class ContactsScreen : SupportAppScreen() {
     override fun getActivityIntent(context: Context): Intent {
         return ContactsActivity.getIntent(context)
     }
 }
 
-class CreateFriendsScreen: SupportAppScreen()
+class CreateFriendsScreen : SupportAppScreen()
 
-class BillWizardScreen : SupportAppScreen() {
+class BillWizardFlowScreen : SupportAppScreen() {
     override fun getActivityIntent(context: Context): Intent {
-        return BillWizardInfoActivity.getIntent(context)
+        return BillWizardFlowActivity.getIntent(context)
+    }
+}
+
+class BillWizardDetailsScreen : SupportAppScreen() {
+    override fun getFragment(): Fragment {
+        return BillWizardDetailsFragment.getInstance()
+    }
+}
+
+class BillWizardPositionScreen : SupportAppScreen() {
+    override fun getFragment(): Fragment {
+        return BillWizardPositionFragment.getInstance()
+    }
+}
+
+class BillWizardPositionsScreen : SupportAppScreen() {
+    override fun getFragment(): Fragment {
+        return BillWizardPositionsFragment.getInstance()
+    }
+}
+
+class BillWizardSummaryScreen : SupportAppScreen() {
+    override fun getFragment(): Fragment {
+        return BillWizardSummaryFragment.getInstance()
     }
 }
 

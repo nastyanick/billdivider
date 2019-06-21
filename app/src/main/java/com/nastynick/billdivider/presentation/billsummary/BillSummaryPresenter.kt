@@ -2,7 +2,7 @@ package com.nastynick.billdivider.presentation.billsummary
 
 import com.arellomobile.mvp.InjectViewState
 import com.nastynick.billdivider.presentation.base.BasePresenter
-import com.nastynick.billdivider.presentation.navigation.BillWizardScreen
+import com.nastynick.billdivider.presentation.navigation.BillWizardFlowScreen
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
@@ -12,6 +12,6 @@ class BillSummaryPresenter @Inject constructor(
 ) : BasePresenter<BillSummaryView>() {
 
     fun onAddBillClick() {
-        router.navigateTo(BillWizardScreen())
+        router.navigateTo(BillWizardFlowScreen())
     }
 }

@@ -17,6 +17,7 @@
 
     <color name="blue_gray_700">#455A64</color>
     <color name="light_blue_a700">#0091EA</color>
+    <color name="green_a700">#00C853</color>
 
     <!--black 12%-->
     <color name="colorDelimiter">#1E000000</color>
