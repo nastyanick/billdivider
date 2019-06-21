@@ -31,4 +31,15 @@
                 app:titleTextColor="@color/blue_gray_700" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/fragmentBillsSummaryMaterialButton"
+        style="@style/MaterialButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:text="@string/add_bill"
+        app:backgroundTint="@color/light_blue_a700"
+        app:cornerRadius="@dimen/space_xlarge"
+        app:icon="@drawable/vec_add" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

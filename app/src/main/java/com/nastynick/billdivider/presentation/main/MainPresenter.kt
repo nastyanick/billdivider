@@ -24,6 +24,6 @@ class MainPresenter @Inject constructor(private val router: Router) : MvpPresent
     }
 
     fun onAppStarted() {
-        router.newRootScreen(BillSummaryScreen())
+        router.newRootScreen(BillsScreen())
     }
 }
