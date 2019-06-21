@@ -1,6 +1,8 @@
 package com.nastynick.billdivider.di.presentaion
 
 import androidx.fragment.app.FragmentActivity
+import com.nastynick.billdivider.presentation.service.LocationService
+import com.tbruyelle.rxpermissions2.RxPermissions
 import dagger.Module
 import dagger.Provides
 import ru.terrakok.cicerone.Cicerone
@@ -11,7 +13,7 @@ import ru.terrakok.cicerone.android.support.SupportAppNavigator
 
 @Module
 class PresentationModule(
-        private val fragmentActivity: FragmentActivity,
+        private val activity: FragmentActivity,
         private val containerId: Int
 ) {
 
@@ -29,5 +31,19 @@ class PresentationModule(
 
     @PresentationScope
     @Provides
-    fun provideNavigator(): Navigator = SupportAppNavigator(fragmentActivity, fragmentActivity.supportFragmentManager, containerId)
+    fun provideNavigator(): Navigator = SupportAppNavigator(activity, activity.supportFragmentManager, containerId)
+
+    @PresentationScope
+    @Provides
+    fun provideLocationService(): LocationService = LocationService(activity)
+
+    @Provides
+    fun provideRxPermissions(): RxPermissions {
+        val currentFragment = activity.supportFragmentManager.findFragmentById(containerId)
+        return if (currentFragment != null) {
+            RxPermissions(currentFragment)
+        } else {
+            RxPermissions(activity)
+        }
+    }
 }

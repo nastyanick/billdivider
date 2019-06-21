@@ -11,8 +11,6 @@ import dagger.Subcomponent
 @Subcomponent
 interface BillWizardComponent {
 
-    fun inject(billWizardDetailsFragment: BillWizardDetailsFragment)
-
     fun inject(billWizardFlowActivity: BillWizardFlowActivity)
 
     fun inject(billWizardPositionFragment: BillWizardPositionFragment)
@@ -20,4 +18,7 @@ interface BillWizardComponent {
     fun inject(billWizardPositionsFragment: BillWizardPositionsFragment)
 
     fun inject(billWizardSummaryFragment: BillWizardSummaryFragment)
+
+    fun inject(billWizardDetailsFragment: BillWizardDetailsFragment)
+
 }

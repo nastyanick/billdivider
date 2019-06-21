@@ -56,12 +56,7 @@ class ContactsActivity : BaseActivity(), ContactsView {
         initViews()
         initListeners()
 
-        val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
-        if (isPermissionGranted(permissionCheck)) {
-            presenter.onStart()
-        } else {
-            requestContactsPermission()
-        }
+        presenter.onStart()
     }
 
     @ProvidePresenter
@@ -128,32 +123,5 @@ class ContactsActivity : BaseActivity(), ContactsView {
     private fun initViews() {
         activityContactsRecyclerView.layoutManager = LinearLayoutManager(this)
         activityContactsRecyclerView.adapter = adapter
-    }
-
-
-    private fun requestContactsPermission() {
-        ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.READ_CONTACTS),
-                REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION
-        )
-    }
-
-    private fun isPermissionGranted(permissionCheck: Int) =
-            PackageManager.PERMISSION_GRANTED == permissionCheck
-
-
-    override fun onRequestPermissionsResult(
-            requestCode: Int,
-            permissions: Array<String>,
-            grantResults: IntArray
-    ) {
-        when (requestCode) {
-            REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION -> {
-                if (grantResults.isNotEmpty() && isPermissionGranted(grantResults[0])) {
-                    presenter.onStart()
-                }
-            }
-        }
     }
 }

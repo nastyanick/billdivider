@@ -43,6 +43,10 @@ class BillWizardDetailsFragment : BaseFragment(), BillWizardDetailsView {
         super.onViewCreated(view, savedInstanceState)
 
         initListeners()
+    }
+
+    override fun onStart() {
+        super.onStart()
         presenter.onStart()
     }
 
@@ -58,5 +62,6 @@ class BillWizardDetailsFragment : BaseFragment(), BillWizardDetailsView {
     }
 
     override fun setAddress(address: String) {
+        viewBillInfoTextViewPlace.setText(address)
     }
 }
