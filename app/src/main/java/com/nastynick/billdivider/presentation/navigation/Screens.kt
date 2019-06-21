@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.nastynick.billdivider.presentation.bills.BillsFragment
 import com.nastynick.billdivider.presentation.billsummary.BillSummaryFragment
 import com.nastynick.billdivider.presentation.billwizard.BillWizardInfoActivity
+import com.nastynick.billdivider.presentation.contacts.ContactsActivity
 import com.nastynick.billdivider.presentation.friend.FriendActivity
 import com.nastynick.billdivider.presentation.friends.FriendsFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
@@ -16,7 +17,13 @@ class FriendDetailsScreen(private val friendId: Long) : SupportAppScreen() {
     }
 }
 
-class ContactsScreen : SupportAppScreen()
+class ContactsScreen : SupportAppScreen(){
+    override fun getActivityIntent(context: Context): Intent {
+        return ContactsActivity.getIntent(context)
+    }
+}
+
+class CreateFriendsScreen: SupportAppScreen()
 
 class BillWizardScreen : SupportAppScreen() {
     override fun getActivityIntent(context: Context): Intent {

@@ -9,7 +9,7 @@ class FriendsRouter @Inject constructor(navigatorsHolder: NavigatorsHolder) {
         const val NAME = "friends_router"
     }
 
-    private val router = navigatorsHolder.getRouter(NAME)
+    val router = navigatorsHolder.getRouter(NAME)
 
     fun openFriendsDetails(friendId: Long) {
         router?.navigateTo(FriendDetailsScreen(friendId))

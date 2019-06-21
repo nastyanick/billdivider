@@ -6,20 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Friend
 import com.nastynick.billdivider.di.DependencyResolver
-import com.nastynick.billdivider.presentation.Navigator
-import com.nastynick.billdivider.presentation.Screens
 import com.nastynick.billdivider.presentation.base.BaseFragment
-import com.nastynick.billdivider.presentation.friend.FriendActivity
 import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
 import kotlinx.android.synthetic.main.fragment_friends.*
-import ru.terrakok.cicerone.android.support.SupportAppNavigator
-import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
 
 class FriendsFragment : BaseFragment(), FriendView {
@@ -39,6 +34,8 @@ class FriendsFragment : BaseFragment(), FriendView {
 
     @Inject
     protected lateinit var navigatorsHolder: NavigatorsHolder
+
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
 
     @ProvidePresenter
     fun providePresenter(): FriendsPresenter {
@@ -79,14 +76,24 @@ class FriendsFragment : BaseFragment(), FriendView {
     private fun initViews() {
         fragmentFriendsRecyclerView.layoutManager = LinearLayoutManager(activity)
         fragmentFriendsRecyclerView.adapter = adapter
+
+        bottomSheetBehavior = BottomSheetBehavior.from(fragmentFriendsLinearLayoutBottomSheet)
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
     }
 
     private fun initListeners() {
         adapter.onFriendClick = presenter::onFriendClick
+        fragmentFriendsMaterialButtonAddFriend.setOnClickListener { presenter.onAddFriendClick() }
+        fragmentFriendsStyledTextViewAddFriendFromContacts.setOnClickListener { presenter.onAddFriendFromContactsClick() }
+        fragmentFriendsStyledTextViewCreateFriend.setOnClickListener { presenter.onCreateFriendClick() }
     }
 
     override fun setFriends(friends: List<Friend>) {
         adapter.setFriends(friends)
         adapter.notifyDataSetChanged()
+    }
+
+    override fun openFriendAddingMenu() {
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 }

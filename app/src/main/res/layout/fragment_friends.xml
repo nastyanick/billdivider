@@ -31,4 +31,42 @@
                 app:titleTextColor="@color/blue_gray_700" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/fragmentFriendsMaterialButtonAddFriend"
+        style="@style/MaterialButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:text="@string/add_friend"
+        app:backgroundTint="@color/light_blue_a700"
+        app:cornerRadius="@dimen/space_xlarge"
+        app:icon="@drawable/vec_add" />
+
+    <LinearLayout
+        android:id="@+id/fragmentFriendsLinearLayoutBottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:elevation="@dimen/space_regular"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/space_regular"
+        android:paddingBottom="@dimen/space_regular"
+        app:behavior_hideable="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <com.nastynick.billdivider.presentation.uikit.StyledTextView
+            android:id="@+id/fragmentFriendsStyledTextViewAddFriendFromContacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space_regular"
+            android:text="@string/add_friend_from_contacts" />
+
+        <com.nastynick.billdivider.presentation.uikit.StyledTextView
+            android:id="@+id/fragmentFriendsStyledTextViewCreateFriend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space_regular"
+            android:text="@string/create_friend" />
+    </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

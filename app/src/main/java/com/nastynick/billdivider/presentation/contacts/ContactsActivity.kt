@@ -1,12 +1,15 @@
 package com.nastynick.billdivider.presentation.contacts
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -22,6 +25,8 @@ import javax.inject.Inject
 class ContactsActivity : BaseActivity(), ContactsView {
 
     companion object {
+        private const val REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION = 1
+
         fun getIntent(context: Context): Intent {
             return Intent(context, ContactsActivity::class.java)
         }
@@ -47,7 +52,12 @@ class ContactsActivity : BaseActivity(), ContactsView {
         initViews()
         initListeners()
 
-        presenter.onStart()
+        val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
+        if (isPermissionGranted(permissionCheck)) {
+            presenter.onStart()
+        } else {
+            requestContactsPermission()
+        }
     }
 
     @ProvidePresenter
@@ -114,5 +124,32 @@ class ContactsActivity : BaseActivity(), ContactsView {
     private fun initViews() {
         activityContactsRecyclerView.layoutManager = LinearLayoutManager(this)
         activityContactsRecyclerView.adapter = adapter
+    }
+
+
+    private fun requestContactsPermission() {
+        ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_CONTACTS),
+                REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION
+        )
+    }
+
+    private fun isPermissionGranted(permissionCheck: Int) =
+            PackageManager.PERMISSION_GRANTED == permissionCheck
+
+
+    override fun onRequestPermissionsResult(
+            requestCode: Int,
+            permissions: Array<String>,
+            grantResults: IntArray
+    ) {
+        when (requestCode) {
+            REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION -> {
+                if (grantResults.isNotEmpty() && isPermissionGranted(grantResults[0])) {
+                    presenter.onStart()
+                }
+            }
+        }
     }
 }

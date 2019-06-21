@@ -26,7 +26,6 @@ class MainActivity : BaseActivity(), MainView {
         }
     }
 
-    private val REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION = 1
 
     @Inject
     @InjectPresenter
@@ -62,19 +61,7 @@ class MainActivity : BaseActivity(), MainView {
         navigatorsHolder.removeNavigator(MainRouter.NAME)
     }
 
-    override fun onRequestPermissionsResult(
-            requestCode: Int,
-            permissions: Array<String>,
-            grantResults: IntArray
-    ) {
-        when (requestCode) {
-            REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION -> {
-                if (grantResults.isNotEmpty() && isPermissionGranted(grantResults[0])) {
-                    openContacts()
-                }
-            }
-        }
-    }
+
 
     private fun initViews() {
     }
@@ -87,39 +74,6 @@ class MainActivity : BaseActivity(), MainView {
                 R.id.menu_main_bottom_navigation_friends -> presenter.onFriendsNavigationButtonClick()
             }
             return@setOnNavigationItemSelectedListener true
-        }
-    }
-
-    private fun openContacts() {
-        ContactsActivity.getIntent(this).let(this::startActivity)
-    }
-
-    private fun requestContactsPermission() {
-        ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.READ_CONTACTS),
-                REQUEST_CODE_GRANT_READ_CONTACTS_PERMISSION
-        )
-    }
-
-    private fun isPermissionGranted(permissionCheck: Int) =
-            PackageManager.PERMISSION_GRANTED == permissionCheck
-
-    inner class MainNavigator : Navigator() {
-        override fun applyCommand(command: Any) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
-
-        private fun openContactsSelection() {
-            val permissionCheck = ContextCompat.checkSelfPermission(
-                    this@MainActivity,
-                    Manifest.permission.READ_CONTACTS
-            )
-            if (isPermissionGranted(permissionCheck)) {
-                openContacts()
-            } else {
-                requestContactsPermission()
-            }
         }
     }
 }
