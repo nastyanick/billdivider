@@ -9,13 +9,14 @@ import com.nastynick.billdivider.presentation.base.BasePresenter
 import com.nastynick.billdivider.presentation.util.fromSearchView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
 class ContactsPresenter @Inject constructor(
         private val getContactsUseCase: GetContactsUseCase,
         private val saveFriendsUseCase: SaveFriendsUseCase,
-        private val router: ContactsRouter
+        private val router: Router
 ) : BasePresenter<ContactsView>() {
 
     private val selectedContacts = mutableSetOf<Contact>()
@@ -56,7 +57,7 @@ class ContactsPresenter @Inject constructor(
                 .saveFriendsFromContacts(selectedContacts.toList())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { router.close() }
+                .subscribe { router.exit() }
                 .connect()
     }
 }

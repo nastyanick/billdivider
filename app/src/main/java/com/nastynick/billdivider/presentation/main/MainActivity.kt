@@ -1,21 +1,15 @@
 package com.nastynick.billdivider.presentation.main
 
-import android.Manifest
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
-import com.nastynick.billdivider.di.DependencyResolver
-import com.nastynick.billdivider.presentation.Navigator
 import com.nastynick.billdivider.presentation.base.BaseActivity
-import com.nastynick.billdivider.presentation.contacts.ContactsActivity
-import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
 import kotlinx.android.synthetic.main.activity_main.*
+import ru.terrakok.cicerone.Navigator
+import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainView {
@@ -32,15 +26,17 @@ class MainActivity : BaseActivity(), MainView {
     lateinit var presenter: MainPresenter
 
     @Inject
-    protected lateinit var navigatorsHolder: NavigatorsHolder
+    protected lateinit var navigatorHolder: NavigatorHolder
+
+    @Inject
+    protected lateinit var navigator: Navigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        DependencyResolver.presentationComponent().inject(this)
+        getComponent().inject(this)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initViews()
         initListeners()
 
         if (savedInstanceState == null) {
@@ -53,17 +49,12 @@ class MainActivity : BaseActivity(), MainView {
 
     override fun onResume() {
         super.onResume()
-        navigatorsHolder.addNavigator(MainRouter.NAME, navigator)
+        navigatorHolder.setNavigator(navigator)
     }
 
     override fun onPause() {
+        navigatorHolder.removeNavigator()
         super.onPause()
-        navigatorsHolder.removeNavigator(MainRouter.NAME)
-    }
-
-
-
-    private fun initViews() {
     }
 
     private fun initListeners() {

@@ -2,11 +2,10 @@ package com.nastynick.billdivider.presentation.base
 
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.nastynick.billdivider.R
-import ru.terrakok.cicerone.android.support.SupportAppNavigator
+import com.nastynick.billdivider.di.DependencyResolver
 
 open class BaseFragment : MvpAppCompatFragment() {
 
-    protected val navigator by lazy {
-        SupportAppNavigator(requireActivity(), childFragmentManager, R.id.container)
-    }
+    fun getComponent() = DependencyResolver.presentationComponent(requireActivity(), R.id.container)
+
 }

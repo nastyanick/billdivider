@@ -16,10 +16,10 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Contact
-import com.nastynick.billdivider.di.DependencyResolver
 import com.nastynick.billdivider.presentation.base.BaseActivity
-import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
 import kotlinx.android.synthetic.main.activity_contacts.*
+import ru.terrakok.cicerone.Navigator
+import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
 
 class ContactsActivity : BaseActivity(), ContactsView {
@@ -40,10 +40,14 @@ class ContactsActivity : BaseActivity(), ContactsView {
     protected lateinit var adapter: ContactsAdapter
 
     @Inject
-    lateinit var navigatorsHolder: NavigatorsHolder
+    lateinit var navigatorHolder: NavigatorHolder
+
+    @Inject
+    lateinit var navigator: Navigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        DependencyResolver.presentationComponent().inject(this)
+        getComponent().inject(this)
+
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_contacts)
@@ -74,12 +78,12 @@ class ContactsActivity : BaseActivity(), ContactsView {
 
     override fun onResume() {
         super.onResume()
-        navigatorsHolder.addNavigator(ContactsRouter.NAME, navigator)
+        navigatorHolder.setNavigator(navigator)
     }
 
     override fun onPause() {
+        navigatorHolder.removeNavigator()
         super.onPause()
-        navigatorsHolder.removeNavigator(ContactsRouter.NAME)
     }
 
     private fun setTextColor(searchView: SearchView) {

@@ -7,11 +7,13 @@ import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
+import com.nastynick.billdivider.di.DependencyResolver
+import com.nastynick.billdivider.presentation.base.BaseActivity
 import kotlinx.android.synthetic.main.layout_bill_info.*
 import java.util.*
 import javax.inject.Inject
 
-class BillWizardInfoActivity : MvpAppCompatActivity(), BillWizardInfoView {
+class BillWizardInfoActivity : BaseActivity(), BillWizardInfoView {
     companion object {
 
         fun getIntent(context: Context): Intent {
@@ -24,6 +26,8 @@ class BillWizardInfoActivity : MvpAppCompatActivity(), BillWizardInfoView {
     lateinit var presenter: BillWizardInfoPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        getComponent().inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bill_wizard_info)
 

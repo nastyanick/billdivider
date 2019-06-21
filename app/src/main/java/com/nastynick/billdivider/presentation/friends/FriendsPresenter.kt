@@ -7,14 +7,16 @@ import com.nastynick.billdivider.presentation.base.BasePresenter
 import com.nastynick.billdivider.presentation.contacts.ContactsActivity
 import com.nastynick.billdivider.presentation.navigation.ContactsScreen
 import com.nastynick.billdivider.presentation.navigation.CreateFriendsScreen
+import com.nastynick.billdivider.presentation.navigation.FriendDetailsScreen
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
 class FriendsPresenter @Inject constructor(
         private val getFriendsUseCase: GetFriendsUseCase,
-        private val router: FriendsRouter
+        private val router: Router
 ) : BasePresenter<FriendView>() {
 
     fun onStart() {
@@ -27,7 +29,7 @@ class FriendsPresenter @Inject constructor(
     }
 
     fun onFriendClick(friend: Friend) {
-        friend.id?.let(router::openFriendsDetails)
+        friend.id?.let { router.navigateTo(FriendDetailsScreen(it)) }
     }
 
     fun onAddFriendClick() {
@@ -35,10 +37,10 @@ class FriendsPresenter @Inject constructor(
     }
 
     fun onAddFriendFromContactsClick() {
-        router.router?.navigateTo(ContactsScreen())
+        router.navigateTo(ContactsScreen())
     }
 
     fun onCreateFriendClick() {
-        router.router?.navigateTo(CreateFriendsScreen())
+        router.navigateTo(CreateFriendsScreen())
     }
 }

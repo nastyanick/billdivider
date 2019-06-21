@@ -1,5 +1,6 @@
 package com.nastynick.billdivider.presentation.bills
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +11,11 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Bill
-import com.nastynick.billdivider.di.DependencyResolver
+import com.nastynick.billdivider.presentation.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_bills.*
 import javax.inject.Inject
 
-class BillsFragment : Fragment(), BillsView {
+class BillsFragment : BaseFragment(), BillsView {
 
     companion object {
         fun getInstance(): BillsFragment {
@@ -29,15 +30,17 @@ class BillsFragment : Fragment(), BillsView {
     @Inject
     protected lateinit var adapter: BillsAdapter
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        getComponent().inject(this)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_bills, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        DependencyResolver.presentationComponent().inject(this)
-
         initBillsList()
         presenter.onStart()
     }

@@ -5,24 +5,25 @@ import com.arellomobile.mvp.MvpPresenter
 import com.nastynick.billdivider.presentation.navigation.BillSummaryScreen
 import com.nastynick.billdivider.presentation.navigation.BillsScreen
 import com.nastynick.billdivider.presentation.navigation.FriendsScreen
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
-class MainPresenter @Inject constructor(private val router: MainRouter) : MvpPresenter<MainView>() {
+class MainPresenter @Inject constructor(private val router: Router) : MvpPresenter<MainView>() {
 
     fun onCurrentBillsNavigationButtonClick() {
-        router.router?.navigateTo(BillSummaryScreen())
+        router.navigateTo(BillSummaryScreen())
     }
 
     fun onBillsNavigationButtonClick() {
-        router.router?.newRootScreen(BillsScreen())
+        router.newRootScreen(BillsScreen())
     }
 
     fun onFriendsNavigationButtonClick() {
-        router.router?.newRootScreen(FriendsScreen())
+        router.newRootScreen(FriendsScreen())
     }
 
     fun onAppStarted() {
-        router.router?.newRootScreen(BillSummaryScreen())
+        router.newRootScreen(BillSummaryScreen())
     }
 }

@@ -11,10 +11,10 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Friend
-import com.nastynick.billdivider.di.DependencyResolver
 import com.nastynick.billdivider.presentation.base.BaseFragment
-import com.nastynick.billdivider.presentation.navigation.NavigatorsHolder
 import kotlinx.android.synthetic.main.fragment_friends.*
+import ru.terrakok.cicerone.Navigator
+import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
 
 class FriendsFragment : BaseFragment(), FriendView {
@@ -33,7 +33,10 @@ class FriendsFragment : BaseFragment(), FriendView {
     protected lateinit var adapter: FriendsAdapter
 
     @Inject
-    protected lateinit var navigatorsHolder: NavigatorsHolder
+    protected lateinit var navigatorHolder: NavigatorHolder
+
+    @Inject
+    protected lateinit var navigator: Navigator
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
 
@@ -44,7 +47,7 @@ class FriendsFragment : BaseFragment(), FriendView {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        DependencyResolver.presentationComponent().inject(this)
+        getComponent().inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -65,12 +68,12 @@ class FriendsFragment : BaseFragment(), FriendView {
 
     override fun onResume() {
         super.onResume()
-        navigatorsHolder.addNavigator(FriendsRouter.NAME, navigator)
+        navigatorHolder.setNavigator(navigator)
     }
 
     override fun onPause() {
+        navigatorHolder.removeNavigator()
         super.onPause()
-        navigatorsHolder.removeNavigator(FriendsRouter.NAME)
     }
 
     private fun initViews() {

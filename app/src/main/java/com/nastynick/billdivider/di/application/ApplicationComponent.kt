@@ -1,6 +1,7 @@
 package com.nastynick.billdivider.di.application
 
 import com.nastynick.billdivider.di.presentaion.PresentationComponent
+import com.nastynick.billdivider.di.presentaion.PresentationModule
 import dagger.Component
 
 @ApplicationScope
@@ -14,5 +15,5 @@ import dagger.Component
 
 interface ApplicationComponent {
 
-    fun presentationComponent(): PresentationComponent
+    fun presentationComponent(presentationModule: PresentationModule): PresentationComponent
 }
