@@ -3,6 +3,7 @@ package com.nastynick.billdivider.data
 import com.nastynick.billdivider.data.database.dao.FriendDao
 import com.nastynick.billdivider.data.objects.Contact
 import com.nastynick.billdivider.data.objects.Friend
+import com.nastynick.billdivider.data.schedulers.SchedulersProvider
 import com.nastynick.billdivider.data.util.ContactFriendMapper
 import com.nastynick.billdivider.data.util.FriendMapper
 import com.nastynick.billdivider.domain.repository.FriendsRepository
@@ -11,7 +12,8 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class FriendsRepositoryImpl @Inject constructor(
-    private val friendDao: FriendDao
+    private val friendDao: FriendDao,
+    private val schedulers: SchedulersProvider
 ) : FriendsRepository {
 
     override fun getFriends(): Single<List<Friend>> {
@@ -31,10 +33,14 @@ class FriendsRepositoryImpl @Inject constructor(
                         )
                     })
                 }
+                .subscribeOn(schedulers.io())
+                .observeOn(schedulers.ui())
     }
 
     override fun getFriend(friendId: Long): Single<Friend> {
         return friendDao.get(friendId)
+                .subscribeOn(schedulers.io())
+                .observeOn(schedulers.ui())
                 .map(FriendMapper::fromEntity)
     }
 

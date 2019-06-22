@@ -22,8 +22,6 @@ class FriendsPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         getFriendsUseCase
                 .getFriends()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(viewState::setFriends)
                 .connect()
     }

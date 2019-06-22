@@ -34,8 +34,6 @@ class ContactsPresenter @Inject constructor(
     private fun getContacts() {
         getContactsUseCase
                 .getContacts()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { contacts -> viewState.setContacts(contacts) }
                 .connect()
     }
@@ -44,7 +42,6 @@ class ContactsPresenter @Inject constructor(
         searchView
                 .let(::fromSearchView)
                 .let(getContactsUseCase::searchContacts)
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(viewState::setContacts)
                 .connect()
     }
@@ -65,8 +62,6 @@ class ContactsPresenter @Inject constructor(
     fun saveButtonClicked() {
         saveFriendsUseCase
                 .saveFriendsFromContacts(selectedContacts.toList())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { router.exit() }
                 .connect()
     }

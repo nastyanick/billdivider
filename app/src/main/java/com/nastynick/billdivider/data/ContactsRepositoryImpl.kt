@@ -2,17 +2,22 @@ package com.nastynick.billdivider.data
 
 import com.github.tamir7.contacts.Contacts
 import com.nastynick.billdivider.data.objects.Contact
+import com.nastynick.billdivider.data.schedulers.SchedulersProvider
 import com.nastynick.billdivider.domain.repository.ContactsRepository
 import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
-class ContactsRepositoryImpl @Inject constructor() : ContactsRepository {
+class ContactsRepositoryImpl @Inject constructor(
+        private val schedulers: SchedulersProvider
+) : ContactsRepository {
 
     private var contactsCache: Observable<Contact>? = null
 
     override fun getContacts(): Single<List<Contact>> {
         return getContactsObservable()
+                .subscribeOn(schedulers.io())
+                .observeOn(schedulers.ui())
                 .toList()
     }
 
