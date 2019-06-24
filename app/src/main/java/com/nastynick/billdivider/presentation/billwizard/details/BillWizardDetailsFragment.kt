@@ -10,9 +10,8 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.di.DependencyResolver
 import com.nastynick.billdivider.presentation.base.BaseFragment
+import com.nastynick.billdivider.presentation.util.afterTextChanged
 import kotlinx.android.synthetic.main.fragment_bill_wizard_details.*
-import kotlinx.android.synthetic.main.layout_bill_info.*
-import java.util.*
 import javax.inject.Inject
 
 class BillWizardDetailsFragment : BaseFragment(), BillWizardDetailsView {
@@ -47,13 +46,16 @@ class BillWizardDetailsFragment : BaseFragment(), BillWizardDetailsView {
 
     private fun initListeners() {
         fragmentBillWizardDetailsMaterialButtonAddPositions.setOnClickListener { presenter.onAddPositionsClick() }
+        viewBillInfoTextViewName.afterTextChanged { presenter.onNameTextChanged(it) }
+        viewBillInfoTextViewPlace.afterTextChanged { presenter.onAddressTextChanged(it) }
     }
 
-    override fun setName(name: String) {
-        viewBillInfoTextViewName.setText(name)
+    override fun setDefaultBillName(billNumber: Int) {
+        viewBillInfoTextViewName.setText(String.format(getString(R.string.default_bill_name), billNumber))
     }
 
-    override fun setTime(date: Date) {
+    override fun setTime(date: String) {
+        viewBillInfoTextViewDate.setText(date)
     }
 
     override fun setAddress(address: String) {

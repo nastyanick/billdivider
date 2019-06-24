@@ -5,11 +5,12 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity
-class Bill {
+class BillEntity {
 
-    @PrimaryKey
-    var id: String? = null
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null
 
+    var name: String? = null
     var address: String? = null
     var time: Date? = null
     var total: Double? = null

@@ -2,19 +2,27 @@ package com.nastynick.billdivider.presentation.billwizard.details
 
 import android.Manifest
 import com.arellomobile.mvp.InjectViewState
+import com.nastynick.billdivider.data.objects.BillDetails
+import com.nastynick.billdivider.domain.usecase.bill.SaveBillUseCase
 import com.nastynick.billdivider.presentation.base.BasePresenter
 import com.nastynick.billdivider.presentation.navigation.BillWizardPositionScreen
 import com.nastynick.billdivider.presentation.service.LocationService
+import com.nastynick.billdivider.presentation.util.DateFormat
 import com.tbruyelle.rxpermissions2.RxPermissions
 import ru.terrakok.cicerone.Router
+import java.util.*
 import javax.inject.Inject
 
 @InjectViewState
 class BillWizardDetailsPresenter @Inject constructor(
+        private val saveBillUseCase: SaveBillUseCase,
         private val router: Router,
         private val rxPermissions: RxPermissions,
-        private val locationService: LocationService
+        private val locationService: LocationService,
+        private val dateFormat: DateFormat
 ) : BasePresenter<BillWizardDetailsView>() {
+
+    private var bill = BillDetails()
 
     override fun onFirstViewAttach() {
         rxPermissions
@@ -22,7 +30,14 @@ class BillWizardDetailsPresenter @Inject constructor(
                 .subscribe { granted -> if (granted) requestLocation() }
                 .connect()
 
-        viewState.setName("presenter test")
+        viewState.setDefaultBillName(1)
+        setTime()
+    }
+
+    private fun setTime() {
+        val billDate = Date()
+        bill = bill.copy(time = billDate)
+        viewState.setTime(dateFormat.formatWithTime(billDate))
     }
 
     private fun requestLocation() {
@@ -32,6 +47,17 @@ class BillWizardDetailsPresenter @Inject constructor(
     }
 
     fun onAddPositionsClick() {
-        router.navigateTo(BillWizardPositionScreen())
+        saveBillUseCase
+                .saveBillDetails(bill)
+                .subscribe { router.navigateTo(BillWizardPositionScreen()) }
+                .connect()
+    }
+
+    fun onNameTextChanged(name: String) {
+        bill = bill.copy(name = name)
+    }
+
+    fun onAddressTextChanged(address: String) {
+        bill = bill.copy(address = address)
     }
 }

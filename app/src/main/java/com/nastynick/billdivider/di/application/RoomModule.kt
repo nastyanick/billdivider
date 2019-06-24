@@ -3,6 +3,7 @@ package com.nastynick.billdivider.di.application
 import android.app.Application
 import androidx.room.Room
 import com.nastynick.billdivider.data.database.AppDatabase
+import com.nastynick.billdivider.data.database.dao.BillDao
 import com.nastynick.billdivider.data.database.dao.FriendDao
 import dagger.Module
 import dagger.Provides
@@ -24,5 +25,11 @@ class RoomModule {
     @Provides
     fun providesFriendsDao(database: AppDatabase): FriendDao {
         return database.friendDao()
+    }
+
+    @ApplicationScope
+    @Provides
+    fun provideBillDao(database: AppDatabase): BillDao {
+        return database.billDao()
     }
 }

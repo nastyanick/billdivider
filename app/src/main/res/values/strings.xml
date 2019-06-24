@@ -22,4 +22,7 @@
     <string name="calculate">Рассчитать</string>
     <string name="positions">Позиции</string>
     <string name="summary">Итог</string>
+    <string name="place_name">Название места</string>
+    <string name="default_bill_name">Счет%d</string>
+    <string name="address">Адрес</string>
 </resources>
