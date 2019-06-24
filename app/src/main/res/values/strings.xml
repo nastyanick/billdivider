@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">billdivider</string>
+    <string name="app_name">Дели счет</string>
 
     <string name="tabs_title">Дели счет</string>
     <string name="bills">Счета</string>
