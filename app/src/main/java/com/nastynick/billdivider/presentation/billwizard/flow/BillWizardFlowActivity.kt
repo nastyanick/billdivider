@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.nastynick.billdivider.R
-import com.nastynick.billdivider.di.DependencyResolver
+import com.nastynick.billdivider.di.ComponentsHolder
 import com.nastynick.billdivider.presentation.base.BaseActivity
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
@@ -28,7 +28,7 @@ class BillWizardFlowActivity : BaseActivity() {
     protected lateinit var navigatorHolder: NavigatorHolder
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        DependencyResolver
+        ComponentsHolder
                 .billWizardComponent(this, R.id.container)
                 .inject(this)
 
@@ -49,7 +49,7 @@ class BillWizardFlowActivity : BaseActivity() {
     }
 
     override fun onDestroy() {
-        DependencyResolver.destroyBillWizardComponent()
+        ComponentsHolder.destroyBillWizardComponent()
         super.onDestroy()
     }
 }

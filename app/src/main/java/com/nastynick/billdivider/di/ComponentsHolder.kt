@@ -2,7 +2,6 @@ package com.nastynick.billdivider.di
 
 import android.app.Application
 import androidx.fragment.app.FragmentActivity
-import com.nastynick.billdivider.data.objects.Bill
 import com.nastynick.billdivider.di.application.ApplicationComponent
 import com.nastynick.billdivider.di.application.ApplicationModule
 import com.nastynick.billdivider.di.application.DaggerApplicationComponent
@@ -11,7 +10,7 @@ import com.nastynick.billdivider.di.presentaion.BillWizardComponent
 import com.nastynick.billdivider.di.presentaion.PresentationComponent
 import com.nastynick.billdivider.di.presentaion.PresentationModule
 
-object DependencyResolver {
+object ComponentsHolder {
     private lateinit var applicationComponent: ApplicationComponent
     private var billWizardComponent: BillWizardComponent? = null
 

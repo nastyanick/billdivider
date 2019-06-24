@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
-import com.nastynick.billdivider.di.DependencyResolver
+import com.nastynick.billdivider.di.ComponentsHolder
 import com.nastynick.billdivider.presentation.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_bill_wizard_position.*
 import javax.inject.Inject
@@ -28,7 +28,7 @@ class BillWizardPositionFragment : BaseFragment(), BillWizardPositionView {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        DependencyResolver
+        ComponentsHolder
                 .billWizardComponent(requireActivity(), R.id.container)
                 .inject(this)
     }
