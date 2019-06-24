@@ -3,7 +3,7 @@ package com.nastynick.billdivider.presentation.billwizard.details
 import android.Manifest
 import com.arellomobile.mvp.InjectViewState
 import com.nastynick.billdivider.data.objects.BillDetails
-import com.nastynick.billdivider.domain.usecase.bill.SaveBillUseCase
+import com.nastynick.billdivider.domain.usecase.bill.BillInteractor
 import com.nastynick.billdivider.presentation.base.BasePresenter
 import com.nastynick.billdivider.presentation.navigation.BillWizardPositionScreen
 import com.nastynick.billdivider.presentation.service.LocationService
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @InjectViewState
 class BillWizardDetailsPresenter @Inject constructor(
-        private val saveBillUseCase: SaveBillUseCase,
+        private val billInteractor: BillInteractor,
         private val router: Router,
         private val rxPermissions: RxPermissions,
         private val locationService: LocationService,
@@ -48,7 +48,7 @@ class BillWizardDetailsPresenter @Inject constructor(
     }
 
     fun onAddPositionsClick() {
-        saveBillUseCase
+        billInteractor
                 .saveBillDetails(bill)
                 .subscribe { router.navigateTo(BillWizardPositionScreen()) }
                 .connect()

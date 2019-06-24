@@ -2,7 +2,7 @@ package com.nastynick.billdivider.presentation.friends
 
 import com.arellomobile.mvp.InjectViewState
 import com.nastynick.billdivider.data.objects.Friend
-import com.nastynick.billdivider.domain.usecase.friends.GetFriendsUseCase
+import com.nastynick.billdivider.domain.usecase.friends.FriendsInteractor
 import com.nastynick.billdivider.presentation.base.BasePresenter
 import com.nastynick.billdivider.presentation.navigation.ContactsScreen
 import com.nastynick.billdivider.presentation.navigation.FriendDetailsScreen
@@ -12,13 +12,13 @@ import javax.inject.Inject
 
 @InjectViewState
 class FriendsPresenter @Inject constructor(
-        private val getFriendsUseCase: GetFriendsUseCase,
+        private val friendsInteractor: FriendsInteractor,
         private val router: Router,
         private val stubUtil: StubUtil
 ) : BasePresenter<FriendView>() {
 
     override fun onFirstViewAttach() {
-        getFriendsUseCase
+        friendsInteractor
                 .getFriends()
                 .subscribe(this::setFriends)
                 .connect()

@@ -2,14 +2,14 @@ package com.nastynick.billdivider.domain.usecase.contacts
 
 import com.nastynick.billdivider.data.objects.Contact
 import com.nastynick.billdivider.domain.repository.ContactsRepository
-import com.nastynick.billdivider.domain.usecase.contact.GetContactsUseCase
+import com.nastynick.billdivider.domain.usecase.contact.ContactsInteractor
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Observable
 import org.junit.Test
 
-class GetContactsUseCaseTest {
+class ContactsInteractorTest {
     private val contactsRepository: ContactsRepository = mock()
 
     @Test
@@ -18,7 +18,7 @@ class GetContactsUseCaseTest {
                 Contact(1, "Ivan", "23233", "ivan@mail.ru", null),
                 Contact(2, "Petr", "1111", "petr@mail.ru", null)
         )
-        val getContactsUseCase = GetContactsUseCase(contactsRepository)
+        val getContactsUseCase = ContactsInteractor(contactsRepository)
         val filterString = "Ivan"
         val filter = Observable.just(filterString)
         val searchResult = Observable.just(contacts[0])

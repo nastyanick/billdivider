@@ -2,8 +2,8 @@ package com.nastynick.billdivider.presentation.contacts
 
 import android.Manifest
 import com.nastynick.billdivider.data.objects.Contact
-import com.nastynick.billdivider.domain.usecase.contact.GetContactsUseCase
-import com.nastynick.billdivider.domain.usecase.friends.SaveFriendsUseCase
+import com.nastynick.billdivider.domain.usecase.contact.ContactsInteractor
+import com.nastynick.billdivider.domain.usecase.friends.FriendsInteractor
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
@@ -17,14 +17,14 @@ class ContactsPresenterTest {
 
     private val view: ContactsView = mock()
 
-    private val getContactsUseCase: GetContactsUseCase = mock()
-    private val saveContactsUseCase: SaveFriendsUseCase = mock()
+    private val contactsInteractor: ContactsInteractor = mock()
+    private val friendsInteractor: FriendsInteractor = mock()
     private val router: Router = mock()
     private val rxPermissions: RxPermissions = mock()
 
     private val presenter = ContactsPresenter(
-            getContactsUseCase,
-            saveContactsUseCase,
+            contactsInteractor,
+            friendsInteractor,
             router,
             rxPermissions
     )
@@ -36,7 +36,7 @@ class ContactsPresenterTest {
 
     @Test
     fun `attach view display contacts`() {
-        whenever(getContactsUseCase.getContacts())
+        whenever(contactsInteractor.getContacts())
                 .thenReturn(Single.just(contacts))
 
         whenever(rxPermissions.request(Manifest.permission.READ_CONTACTS))

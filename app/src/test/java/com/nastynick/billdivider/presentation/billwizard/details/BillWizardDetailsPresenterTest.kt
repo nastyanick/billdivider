@@ -1,7 +1,7 @@
 package com.nastynick.billdivider.presentation.billwizard.details
 
 import android.Manifest
-import com.nastynick.billdivider.domain.usecase.bill.SaveBillUseCase
+import com.nastynick.billdivider.domain.usecase.bill.BillInteractor
 import com.nastynick.billdivider.presentation.service.LocationService
 import com.nastynick.billdivider.presentation.util.DateFormat
 import com.nhaarman.mockito_kotlin.any
@@ -29,7 +29,7 @@ class BillWizardDetailsPresenterTest {
 
     @Before
     fun init() {
-        val saveBillUseCase: SaveBillUseCase = mock()
+        val billInteractor: BillInteractor = mock()
         val router: Router = mock()
 
         rxPermissions = mock()
@@ -42,7 +42,7 @@ class BillWizardDetailsPresenterTest {
                 .thenReturn(Observable.just(true))
 
         presenter = BillWizardDetailsPresenter(
-                saveBillUseCase,
+                billInteractor,
                 router,
                 rxPermissions,
                 locationService,
