@@ -14,7 +14,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_layout_height">
+        android:layout_height="@dimen/height_app_bar_layout">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -48,22 +48,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
-        android:elevation="@dimen/space_regular"
         android:orientation="vertical"
         android:paddingTop="@dimen/space_regular"
         android:paddingBottom="@dimen/space_regular"
         app:behavior_hideable="true"
+        android:elevation="@dimen/space_regular"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-        <com.nastynick.billdivider.presentation.uikit.StyledTextView
+        <TextView
             android:id="@+id/fragmentFriendsStyledTextViewAddFriendFromContacts"
+            style="@style/TextView.Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/space_regular"
             android:text="@string/add_friend_from_contacts" />
 
-        <com.nastynick.billdivider.presentation.uikit.StyledTextView
+        <TextView
             android:id="@+id/fragmentFriendsStyledTextViewCreateFriend"
+            style="@style/TextView.Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/space_regular"

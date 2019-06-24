@@ -6,7 +6,6 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/activityContactsToolbar"
-        style="@style/PrimaryToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="@string/contacts_title" />
@@ -18,7 +17,6 @@
 
     <Button
         android:id="@+id/activityContactButtonSave"
-        style="@style/Button.Regular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_large"

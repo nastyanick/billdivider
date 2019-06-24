@@ -8,7 +8,6 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/activityFriendToolbar"
-        style="@style/PrimaryToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:navigationIcon="@drawable/vec_navigation_back" />
@@ -20,30 +19,66 @@
 
     <LinearLayout
         android:id="@+id/activityFriendLinearLayoutFriendContainer"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.nastynick.billdivider.presentation.uikit.StyledTextView
-            android:id="@+id/activityFriendTextViewName"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:textStyle="large"
-            tools:text="Иван Петров" />
+            android:layout_margin="@dimen/space_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <com.nastynick.billdivider.presentation.uikit.StyledTextView
-            android:id="@+id/activityFriendTextViewPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:textStyle="medium"
-            tools:text="893232233" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/activityFriendTextViewName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/place_name"
+                android:imeOptions="actionDone"
+                android:inputType="textCapWords"
+                tools:text="Иван Петров" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.nastynick.billdivider.presentation.uikit.StyledTextView
-            android:id="@+id/activityFriendTextViewEmail"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:textStyle="medium"
-            tools:text="r@r.com" />
+            android:layout_margin="@dimen/space_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/activityFriendTextViewPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/place_name"
+                android:imeOptions="actionDone"
+                android:inputType="phone"
+                tools:text="893232233" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/activityFriendTextViewEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/place_name"
+                android:imeOptions="actionDone"
+                android:inputType="textEmailAddress"
+                tools:text="r@r.com" />
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,19 +17,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.nastynick.billdivider.presentation.uikit.StyledTextView
+        <TextView
             android:id="@+id/itemContactTextViewName"
-            style="@style/ItemView.TopView"
+            style="@style/TextView.Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:textStyle="medium"
+            android:paddingTop="@dimen/space_large"
             tools:text="Alex" />
 
-        <com.nastynick.billdivider.presentation.uikit.StyledTextView
+        <TextView
             android:id="@+id/itemContactTextViewPhone"
-            style="@style/ItemView.BottomView"
+            style="@style/TextView.Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/space_large"
             tools:text="8938499302" />
 
 
