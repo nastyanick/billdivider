@@ -1,32 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/fragmentBillWizardPositionMaterialButtonAddMore"
-        style="@style/MaterialButton"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_app_bar_layout">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:title="@string/position"
+                app:titleTextColor="@color/blue_gray_700" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_more"
-        app:icon="@drawable/vec_add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/fragmentBillWizardPositionMaterialButtonDone"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:layout_gravity="center|bottom"
+        android:orientation="vertical">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/fragmentBillWizardPositionMaterialButtonDone"
-        style="@style/MaterialButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/done"
-        app:backgroundTint="@color/green_a700"
-        app:icon="@drawable/vec_done_white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/fragmentBillWizardPositionMaterialButtonAddMore"
-        app:layout_constraintRight_toRightOf="@id/fragmentBillWizardPositionMaterialButtonAddMore" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fragmentBillWizardPositionMaterialButtonAddMore"
+            style="@style/MaterialButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_more"
+            app:icon="@drawable/vec_add" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fragmentBillWizardPositionMaterialButtonDone"
+            style="@style/MaterialButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/done"
+            app:backgroundTint="@color/green_a700"
+            app:icon="@drawable/vec_done_white" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

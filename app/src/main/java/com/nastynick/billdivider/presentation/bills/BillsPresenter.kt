@@ -1,6 +1,7 @@
 package com.nastynick.billdivider.presentation.bills
 
 import com.arellomobile.mvp.InjectViewState
+import com.nastynick.billdivider.data.objects.Bill
 import com.nastynick.billdivider.domain.usecase.bill.ReadBillsUseCase
 import com.nastynick.billdivider.presentation.base.BasePresenter
 import com.nastynick.billdivider.presentation.navigation.BillWizardFlowScreen
@@ -16,8 +17,13 @@ class BillsPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         readBillsUseCase
                 .readBills()
-                .subscribe(viewState::showBills)
+                .subscribe(::setBills)
                 .connect()
+    }
+
+    private fun setBills(bills: List<Bill>) {
+        viewState.showEmptyView(bills.isEmpty())
+        viewState.showBills(bills)
     }
 
     fun onAddBillClick() {

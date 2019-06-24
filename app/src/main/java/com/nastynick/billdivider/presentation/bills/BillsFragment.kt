@@ -11,6 +11,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Bill
 import com.nastynick.billdivider.presentation.base.BaseFragment
+import com.nastynick.billdivider.presentation.util.setVisibleElseGone
 import kotlinx.android.synthetic.main.fragment_bills.*
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
@@ -80,5 +81,9 @@ class BillsFragment : BaseFragment(), BillsView {
         fragmentBillsSummaryMaterialButton.setOnClickListener {
             presenter.onAddBillClick()
         }
+    }
+
+    override fun showEmptyView(show: Boolean) {
+        fragmentBillsFrameLayoutStub.setVisibleElseGone(show)
     }
 }

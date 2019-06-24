@@ -5,4 +5,5 @@ import com.nastynick.billdivider.data.objects.Bill
 
 interface BillsView : MvpView {
     fun showBills(bills: List<Bill>)
+    fun showEmptyView(show: Boolean)
 }

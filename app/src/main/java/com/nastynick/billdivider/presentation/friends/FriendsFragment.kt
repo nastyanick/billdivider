@@ -12,6 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Friend
 import com.nastynick.billdivider.presentation.base.BaseFragment
+import com.nastynick.billdivider.presentation.util.setVisibleElseGone
 import kotlinx.android.synthetic.main.fragment_friends.*
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
@@ -93,5 +94,9 @@ class FriendsFragment : BaseFragment(), FriendView {
 
     override fun openFriendAddingMenu() {
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+    }
+
+    override fun showEmptyView(show: Boolean) {
+        fragmentFriendsFrameLayoutStub.setVisibleElseGone(show)
     }
 }

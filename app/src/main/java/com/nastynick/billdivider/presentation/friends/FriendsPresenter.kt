@@ -4,26 +4,29 @@ import com.arellomobile.mvp.InjectViewState
 import com.nastynick.billdivider.data.objects.Friend
 import com.nastynick.billdivider.domain.usecase.friends.GetFriendsUseCase
 import com.nastynick.billdivider.presentation.base.BasePresenter
-import com.nastynick.billdivider.presentation.contacts.ContactsActivity
 import com.nastynick.billdivider.presentation.navigation.ContactsScreen
-import com.nastynick.billdivider.presentation.navigation.CreateFriendsScreen
 import com.nastynick.billdivider.presentation.navigation.FriendDetailsScreen
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.nastynick.billdivider.presentation.util.StubUtil
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
 class FriendsPresenter @Inject constructor(
         private val getFriendsUseCase: GetFriendsUseCase,
-        private val router: Router
+        private val router: Router,
+        private val stubUtil: StubUtil
 ) : BasePresenter<FriendView>() {
 
     override fun onFirstViewAttach() {
         getFriendsUseCase
                 .getFriends()
-                .subscribe(viewState::setFriends)
+                .subscribe(this::setFriends)
                 .connect()
+    }
+
+    private fun setFriends(friends: List<Friend>) {
+        viewState.showEmptyView(friends.isEmpty())
+        viewState.setFriends(friends)
     }
 
     fun onFriendClick(friend: Friend) {
@@ -39,6 +42,7 @@ class FriendsPresenter @Inject constructor(
     }
 
     fun onCreateFriendClick() {
-        router.navigateTo(CreateFriendsScreen())
+        stubUtil.showUnderDevelopmentYetMessage()
+//        router.navigateTo(CreateFriendsScreen())
     }
 }
