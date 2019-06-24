@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/viewCircularImageViewFrameLayoutBorder"
     style="@style/CircularImageViewContainer"
     android:layout_width="@dimen/width_circular_image_view_out_circle"
@@ -9,5 +10,5 @@
         android:id="@+id/circularImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_friend" />
+        android:src="@drawable/ic_person_outline" />
 </FrameLayout>

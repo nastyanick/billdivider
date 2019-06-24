@@ -61,7 +61,7 @@ class CircularImageView : FrameLayout {
     fun setImage(source: String?) {
         Picasso.with(context)
                 .load(source)
-                .placeholder(R.drawable.ic_friend)
+                .placeholder(R.drawable.ic_person_outline)
                 .into(circularImageView)
     }
 
