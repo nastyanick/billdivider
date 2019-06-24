@@ -25,4 +25,8 @@ class LocationService constructor(private val activity: Activity) {
                     }
         }
     }
+
+    fun getAddress(): Single<String> {
+        return getLocation().map { address -> address.getAddressLine(0) }
+    }
 }

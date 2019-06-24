@@ -27,7 +27,7 @@ class BillWizardDetailsPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         rxPermissions
                 .request(Manifest.permission.ACCESS_FINE_LOCATION)
-                .subscribe { granted -> if (granted) requestLocation() }
+                .subscribe { granted -> if (granted) requestAddress() }
                 .connect()
 
         viewState.setDefaultBillName(1)
@@ -40,10 +40,11 @@ class BillWizardDetailsPresenter @Inject constructor(
         viewState.setTime(dateFormat.formatWithTime(billDate))
     }
 
-    private fun requestLocation() {
-        locationService.getLocation().subscribe { address ->
-            viewState.setAddress(address.getAddressLine(0))
-        }.connect()
+    private fun requestAddress() {
+        locationService
+                .getAddress()
+                .subscribe(viewState::setAddress)
+                .connect()
     }
 
     fun onAddPositionsClick() {
