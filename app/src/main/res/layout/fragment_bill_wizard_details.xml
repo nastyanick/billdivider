@@ -42,7 +42,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/viewBillInfoTextViewName"
+                android:id="@+id/fragmentBillWizardDetailsTextViewName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/place_name"
@@ -51,7 +51,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/viewBillInfoTextViewDate"
+            android:id="@+id/fragmentBillWizardDetailsTextViewDate"
             style="@style/TextView.Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/viewBillInfoTextViewPlace"
+                android:id="@+id/fragmentBillWizardDetailsTextViewPlace"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/vec_edit_location"

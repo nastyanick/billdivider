@@ -46,19 +46,19 @@ class BillWizardDetailsFragment : BaseFragment(), BillWizardDetailsView {
 
     private fun initListeners() {
         fragmentBillWizardDetailsMaterialButtonAddPositions.setOnClickListener { presenter.onAddPositionsClick() }
-        viewBillInfoTextViewName.afterTextChanged { presenter.onNameTextChanged(it) }
-        viewBillInfoTextViewPlace.afterTextChanged { presenter.onAddressTextChanged(it) }
+        fragmentBillWizardDetailsTextViewName.afterTextChanged { presenter.onNameTextChanged(it) }
+        fragmentBillWizardDetailsTextViewPlace.afterTextChanged { presenter.onAddressTextChanged(it) }
     }
 
     override fun setDefaultBillName(billNumber: Int) {
-        viewBillInfoTextViewName.setText(String.format(getString(R.string.default_bill_name), billNumber))
+        fragmentBillWizardDetailsTextViewName.setText(String.format(getString(R.string.default_bill_name), billNumber))
     }
 
     override fun setTime(date: String) {
-        viewBillInfoTextViewDate.setText(date)
+        fragmentBillWizardDetailsTextViewDate.setText(date)
     }
 
     override fun setAddress(address: String) {
-        viewBillInfoTextViewPlace.setText(address)
+        fragmentBillWizardDetailsTextViewPlace.setText(address)
     }
 }

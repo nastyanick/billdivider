@@ -83,8 +83,8 @@ class FriendsFragment : BaseFragment(), FriendView {
     private fun initListeners() {
         adapter.onFriendClick = presenter::onFriendClick
         fragmentFriendsMaterialButtonAddFriend.setOnClickListener { presenter.onAddFriendClick() }
-        fragmentFriendsStyledTextViewAddFriendFromContacts.setOnClickListener { presenter.onAddFriendFromContactsClick() }
-        fragmentFriendsStyledTextViewCreateFriend.setOnClickListener { presenter.onCreateFriendClick() }
+        fragmentFriendsTextViewAddFriendFromContacts.setOnClickListener { presenter.onAddFriendFromContactsClick() }
+        fragmentFriendsTextViewCreateFriend.setOnClickListener { presenter.onCreateFriendClick() }
     }
 
     override fun showFriends(friends: List<Friend>) {

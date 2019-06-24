@@ -79,7 +79,7 @@ class BillsFragment : BaseFragment(), BillsView {
     }
 
     private fun initListeners() {
-        fragmentBillsSummaryMaterialButton.setOnClickListener {
+        fragmentBillsMaterialButton.setOnClickListener {
             presenter.onAddBillClick()
         }
     }
