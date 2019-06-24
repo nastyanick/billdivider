@@ -21,14 +21,18 @@ class BillSummaryFragment : BaseFragment(), BillSummaryView {
     }
 
     @Inject
-    @InjectPresenter
-    lateinit var presenter: BillSummaryPresenter
-
-    @Inject
     protected lateinit var navigator: Navigator
 
     @Inject
     protected lateinit var navigatorHolder: NavigatorHolder
+
+
+    @Inject
+    @InjectPresenter
+    lateinit var presenter: BillSummaryPresenter
+
+    @ProvidePresenter
+    fun providePresenter() = presenter
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -53,9 +57,6 @@ class BillSummaryFragment : BaseFragment(), BillSummaryView {
         navigatorHolder.removeNavigator()
         super.onPause()
     }
-
-    @ProvidePresenter
-    fun providePresenter() = presenter
 
     private fun initListeners() {
         fragmentBillSummaryMaterialButton.setOnClickListener {

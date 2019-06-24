@@ -26,19 +26,26 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/fragmentBillWizardSummaryMaterialButtonDone"
-            style="@style/MaterialButton"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/fragmentBillWizardSummaryTextViewAddress"
+            style="@style/TextView.Medium"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/done"
-            app:backgroundTint="@color/green_a700"
-            app:icon="@drawable/vec_done_white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-
+            android:padding="@dimen/space_large"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/fragmentBillWizardSummaryMaterialButtonDone"
+        style="@style/MaterialButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:text="@string/done"
+        app:backgroundTint="@color/green_a700"
+        app:icon="@drawable/vec_done_white" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

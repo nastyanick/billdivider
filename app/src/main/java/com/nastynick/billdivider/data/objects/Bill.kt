@@ -1,10 +1,28 @@
 package com.nastynick.billdivider.data.objects
 
-import java.util.*
+import com.nastynick.billdivider.data.database.objects.BillEntity
 
 data class Bill(
-    var id: String? = null,
-    var address: String? = null,
-    var time: Date? = null,
-    var total: Double? = null
-)
+        val id: Int? = null,
+        val details: BillDetails
+) {
+    companion object {
+
+        fun fromEntity(entity: BillEntity): Bill {
+            return with(entity) {
+                Bill(id, BillDetails(address, time, name))
+            }
+        }
+
+        fun toEntity(bill: Bill): BillEntity {
+            val entity = BillEntity()
+            with(bill.details) {
+                entity.address = address
+                entity.time = time
+                entity.name = name
+            }
+            return entity
+        }
+    }
+}
+

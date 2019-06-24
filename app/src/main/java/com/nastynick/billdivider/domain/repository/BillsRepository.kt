@@ -11,4 +11,6 @@ interface BillsRepository {
 
     fun saveBill(bill: Bill): Completable
     fun saveBillDetails(billDetails: BillDetails): Completable
+
+    fun getCurrentBill(): Single<Bill>
 }
