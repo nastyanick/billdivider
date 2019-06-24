@@ -28,15 +28,16 @@ class BillsFragment : BaseFragment(), BillsView {
     @Inject
     protected lateinit var adapter: BillsAdapter
 
-    @Inject
-    @InjectPresenter
-    lateinit var presenter: BillsPresenter
 
     @Inject
     protected lateinit var navigator: Navigator
 
     @Inject
     protected lateinit var navigatorHolder: NavigatorHolder
+
+    @Inject
+    @InjectPresenter
+    lateinit var presenter: BillsPresenter
 
     @ProvidePresenter
     fun providePresenter() = presenter

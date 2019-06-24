@@ -22,8 +22,11 @@ class BillsPresenter @Inject constructor(
     }
 
     private fun setBills(bills: List<Bill>) {
-        viewState.showEmptyView(bills.isEmpty())
-        viewState.showBills(bills)
+        val isEmpty = bills.isEmpty()
+        if (!isEmpty) {
+            viewState.showBills(bills)
+        }
+        viewState.showEmptyView(isEmpty)
     }
 
     fun onAddBillClick() {

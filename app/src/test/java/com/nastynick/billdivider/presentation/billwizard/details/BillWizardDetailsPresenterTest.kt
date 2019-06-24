@@ -28,7 +28,7 @@ class BillWizardDetailsPresenterTest {
     private val address = "Samara, ul. Lesnaya, 100"
 
     @Before
-    fun init() {
+    fun setUp() {
         val billInteractor: BillInteractor = mock()
         val router: Router = mock()
 

@@ -25,8 +25,11 @@ class FriendsPresenter @Inject constructor(
     }
 
     private fun setFriends(friends: List<Friend>) {
-        viewState.showEmptyView(friends.isEmpty())
-        viewState.setFriends(friends)
+        val isEmpty = friends.isEmpty()
+        if (!isEmpty) {
+            viewState.showFriends(friends)
+        }
+        viewState.showEmptyView(isEmpty)
     }
 
     fun onFriendClick(friend: Friend) {

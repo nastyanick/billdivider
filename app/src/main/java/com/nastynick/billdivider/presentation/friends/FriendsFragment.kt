@@ -87,7 +87,7 @@ class FriendsFragment : BaseFragment(), FriendView {
         fragmentFriendsStyledTextViewCreateFriend.setOnClickListener { presenter.onCreateFriendClick() }
     }
 
-    override fun setFriends(friends: List<Friend>) {
+    override fun showFriends(friends: List<Friend>) {
         adapter.setFriends(friends)
         adapter.notifyDataSetChanged()
     }

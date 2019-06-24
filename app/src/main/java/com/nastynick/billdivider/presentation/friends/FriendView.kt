@@ -4,7 +4,7 @@ import com.arellomobile.mvp.MvpView
 import com.nastynick.billdivider.data.objects.Friend
 
 interface FriendView : MvpView {
-    fun setFriends(friends: List<Friend>)
+    fun showFriends(friends: List<Friend>)
     fun openFriendAddingMenu()
     fun showEmptyView(show: Boolean)
 }
