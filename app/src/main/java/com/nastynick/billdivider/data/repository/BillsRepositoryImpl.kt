@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.data
+package com.nastynick.billdivider.data.repository
 
 import com.nastynick.billdivider.data.database.dao.BillDao
 import com.nastynick.billdivider.data.objects.Bill

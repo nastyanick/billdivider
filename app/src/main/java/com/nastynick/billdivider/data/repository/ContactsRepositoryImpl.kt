@@ -1,4 +1,4 @@
-package com.nastynick.billdivider.data
+package com.nastynick.billdivider.data.repository
 
 import com.github.tamir7.contacts.Contacts
 import com.nastynick.billdivider.data.objects.Contact
@@ -12,30 +12,25 @@ class ContactsRepositoryImpl @Inject constructor(
         private val schedulers: SchedulersProvider
 ) : ContactsRepository {
 
-    private var contactsCache: Observable<Contact>? = null
+    private val contactsObservable by lazy {
+        Observable
+                .fromIterable(Contacts.getQuery().find())
+                .map { Contact.from(it) }
+    }
 
     override fun getContacts(): Single<List<Contact>> {
-        return getContactsObservable()
+        return contactsObservable
                 .subscribeOn(schedulers.io())
                 .observeOn(schedulers.ui())
                 .toList()
     }
 
-    private fun getContactsObservable(): Observable<Contact> {
-        return Observable.fromIterable(getDeviceContactsContacts())
-                .also { contactsCache = it }
-    }
-
     override fun searchContacts(filter: String): Observable<Contact> {
-        return (contactsCache ?: getContactsObservable())
+        return contactsObservable
                 .filter { contactContainsFilter(it, filter) }
     }
 
     private fun contactContainsFilter(contact: Contact, filter: String): Boolean {
         return contact.toString().contains(filter, true)
-    }
-
-    private fun getDeviceContactsContacts(): List<Contact> {
-        return Contacts.getQuery().find().map { Contact.from(it) }
     }
 }
