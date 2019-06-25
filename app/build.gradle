@@ -54,7 +54,7 @@ dependencies {
 
     // RxJava
     implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
 
     // Contacts
     implementation 'com.github.tamir7.contacts:contacts:1.1.7'
@@ -73,8 +73,8 @@ dependencies {
     implementation 'com.gordonwong:material-sheet-fab:1.2.1'
 
     //Room
-    implementation "androidx.room:room-runtime:2.1.0-alpha07"
-    kapt "androidx.room:room-compiler:2.1.0-alpha07"
+    implementation "androidx.room:room-runtime:2.1.0"
+    kapt "androidx.room:room-compiler:2.1.0"
     implementation "android.arch.persistence.room:rxjava2:1.1.1"
 
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
