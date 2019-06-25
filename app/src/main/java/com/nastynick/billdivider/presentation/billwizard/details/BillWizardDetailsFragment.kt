@@ -55,7 +55,7 @@ class BillWizardDetailsFragment : BaseFragment(), BillWizardDetailsView {
     }
 
     override fun setTime(date: String) {
-        fragmentBillWizardDetailsTextViewDate.setText(date)
+        fragmentBillWizardDetailsTextViewDate.text = date
     }
 
     override fun setAddress(address: String) {

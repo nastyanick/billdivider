@@ -9,17 +9,6 @@
         <item name="colorControlNormal">@color/colorWhite</item>
     </style>
 
-    <style name="ToolBarStyle">
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="titleTextAppearance">@style/ToolBarStyle.Title</item>
-    </style>
-
-    <style name="ToolBarStyle.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">48sp</item>
-    </style>
-
     <style name="MaterialButton" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:layout_marginBottom">@dimen/space_large</item>
         <item name="android:paddingTop">@dimen/space_medium</item>

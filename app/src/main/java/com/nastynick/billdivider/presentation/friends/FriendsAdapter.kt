@@ -50,8 +50,8 @@ class FriendsAdapter @Inject constructor() : RecyclerView.Adapter<FriendsAdapter
 
         fun bind(friend: Friend) {
             with(friend) {
-                view.itemContactTextViewName.setText(name)
-                view.itemContactTextViewPhone.setText(phone ?: email)
+                view.itemContactTextViewName.text = name
+                view.itemContactTextViewPhone.text = phone ?: email
             }
         }
     }

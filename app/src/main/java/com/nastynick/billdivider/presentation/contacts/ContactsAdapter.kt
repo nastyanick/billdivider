@@ -67,8 +67,8 @@ class ContactsAdapter @Inject constructor() : RecyclerView.Adapter<ContactsAdapt
 
         fun bind(contact: Contact) {
             with(contact) {
-                view.itemContactTextViewName.setText(name)
-                view.itemContactTextViewPhone.setText(phone ?: email)
+                view.itemContactTextViewName.text = name
+                view.itemContactTextViewPhone.text = phone ?: email
                 view.itemContactCircularImageView.setImage(contact.photoUri)
             }
         }

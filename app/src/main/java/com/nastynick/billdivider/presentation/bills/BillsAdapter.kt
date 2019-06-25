@@ -31,8 +31,8 @@ class BillsAdapter @Inject constructor() : RecyclerView.Adapter<BillsAdapter.Vie
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(bill: Bill) {
             with(bill.details) {
-                view.itemBillTextViewName.setText(name)
-                view.itemBillTextViewAddress.setText(address)
+                view.itemBillTextViewName.text = name
+                view.itemBillTextViewAddress.text = address
             }
         }
     }

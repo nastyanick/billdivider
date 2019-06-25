@@ -12,17 +12,21 @@ class LocationService constructor(private val activity: Activity) {
 
     fun getLocation(): Single<Address> {
         return Single.create<Address> { emitter ->
-            LocationServices
-                    .getFusedLocationProviderClient(activity)
-                    ?.lastLocation
-                    ?.addOnSuccessListener(activity) { location: Location ->
-                        val address = Geocoder(activity, Locale.getDefault())
-                                .getFromLocation(location.latitude, location.longitude, 1)[0]
+            try {
+                LocationServices
+                        .getFusedLocationProviderClient(activity)
+                        ?.lastLocation
+                        ?.addOnSuccessListener(activity) { location: Location ->
+                            val address = Geocoder(activity, Locale.getDefault())
+                                    .getFromLocation(location.latitude, location.longitude, 1)[0]
 
-                        if (address != null) {
-                            emitter.onSuccess(address)
+                            if (address != null) {
+                                emitter.onSuccess(address)
+                            }
                         }
-                    }
+            } catch (exception: SecurityException) {
+                emitter.onError(exception)
+            }
         }
     }
 
