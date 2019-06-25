@@ -7,5 +7,5 @@ import io.reactivex.Single
 interface ContactsRepository {
 
     fun getContacts(): Single<List<Contact>>
-    fun searchContacts(filter: String): Observable<Contact>
+    fun searchContacts(filter: String): Observable<List<Contact>>
 }

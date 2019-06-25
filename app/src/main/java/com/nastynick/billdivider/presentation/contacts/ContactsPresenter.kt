@@ -1,14 +1,13 @@
 package com.nastynick.billdivider.presentation.contacts
 
 import android.Manifest
-import androidx.appcompat.widget.SearchView
 import com.arellomobile.mvp.InjectViewState
 import com.nastynick.billdivider.data.objects.Contact
 import com.nastynick.billdivider.domain.usecase.contact.ContactsInteractor
 import com.nastynick.billdivider.domain.usecase.friends.FriendsInteractor
 import com.nastynick.billdivider.presentation.base.BasePresenter
-import com.nastynick.billdivider.presentation.util.fromSearchView
 import com.tbruyelle.rxpermissions2.RxPermissions
+import io.reactivex.Observable
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
@@ -36,10 +35,8 @@ class ContactsPresenter @Inject constructor(
                 .connect()
     }
 
-    fun searchCreated(searchView: SearchView) {
-        searchView
-                .let(::fromSearchView)
-                .let(contactsInteractor::searchContacts)
+    fun searchCreated(searchSource: Observable<String>) {
+        contactsInteractor.searchFrom(searchSource)
                 .subscribe(viewState::setContacts)
                 .connect()
     }

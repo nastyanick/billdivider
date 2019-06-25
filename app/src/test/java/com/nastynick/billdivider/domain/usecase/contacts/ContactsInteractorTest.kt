@@ -21,11 +21,11 @@ class ContactsInteractorTest {
         val getContactsUseCase = ContactsInteractor(contactsRepository)
         val filterString = "Ivan"
         val filter = Observable.just(filterString)
-        val searchResult = Observable.just(contacts[0])
+        val searchResult = Observable.just(listOf(contacts[0]))
 
         whenever(contactsRepository.searchContacts(filterString)).thenReturn(searchResult)
 
-        val testObserver = getContactsUseCase.searchContacts(filter).test()
+        val testObserver = getContactsUseCase.searchFrom(filter).test()
         testObserver.awaitTerminalEvent()
 
         verify(contactsRepository).searchContacts(filterString)

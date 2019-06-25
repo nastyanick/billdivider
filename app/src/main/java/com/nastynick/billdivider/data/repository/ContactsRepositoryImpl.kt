@@ -12,22 +12,16 @@ class ContactsRepositoryImpl @Inject constructor(
         private val schedulers: SchedulersProvider
 ) : ContactsRepository {
 
-    private val contactsObservable by lazy {
-        Observable
-                .fromIterable(Contacts.getQuery().find())
-                .map { Contact.from(it) }
-    }
-
     override fun getContacts(): Single<List<Contact>> {
-        return contactsObservable
+        return Single.fromCallable { Contacts.getQuery().hasPhoneNumber().find().map { Contact.from(it) } }
                 .subscribeOn(schedulers.io())
                 .observeOn(schedulers.ui())
-                .toList()
     }
 
-    override fun searchContacts(filter: String): Observable<Contact> {
-        return contactsObservable
-                .filter { contactContainsFilter(it, filter) }
+    override fun searchContacts(filter: String): Observable<List<Contact>> {
+        return Observable.empty()
+//        return Observable.just { Contacts.getQuery().hasPhoneNumber().find().map { Contact.from(it) } }
+//                .filter { contactContainsFilter(it, filter) }
     }
 
     private fun contactContainsFilter(contact: Contact, filter: String): Boolean {

@@ -62,6 +62,11 @@ class FriendsFragment : BaseFragment(), FriendView {
         initListeners()
     }
 
+    override fun onStart() {
+        super.onStart()
+        presenter.onStart()
+    }
+
     override fun onResume() {
         super.onResume()
         navigatorHolder.setNavigator(navigator)
@@ -94,6 +99,10 @@ class FriendsFragment : BaseFragment(), FriendView {
 
     override fun openFriendAddingMenu() {
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+    }
+
+    override fun closeFriendAddingMenu() {
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
     }
 
     override fun showEmptyView(show: Boolean) {

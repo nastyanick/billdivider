@@ -42,10 +42,16 @@ class FriendsPresenter @Inject constructor(
 
     fun onAddFriendFromContactsClick() {
         router.navigateTo(ContactsScreen())
+        viewState.closeFriendAddingMenu()
     }
 
     fun onCreateFriendClick() {
-        stubUtil.showUnderDevelopmentYetMessage()
+        stubUtil.showUnderDevelopmentMessage()
+        viewState.closeFriendAddingMenu()
 //        router.navigateTo(CreateFriendsScreen())
+    }
+
+    fun onStart() {
+        onFirstViewAttach()
     }
 }

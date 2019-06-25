@@ -12,11 +12,10 @@ class ContactsInteractor @Inject constructor(private val contactsRepository: Con
 
     fun getContacts() = contactsRepository.getContacts()
 
-    fun searchContacts(filter: Observable<String>): Single<List<Contact>> {
-        return filter
+    fun searchFrom(searchSource: Observable<String>): Observable<List<Contact>> {
+        return searchSource
                 .debounce(searchContactsDebounceTimeMillis, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
-                .flatMap { contactsRepository.searchContacts(it) }
-                .toList()
+                .switchMap { contactsRepository.searchContacts(it) }
     }
 }

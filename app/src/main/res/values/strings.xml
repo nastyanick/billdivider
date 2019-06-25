@@ -4,13 +4,9 @@
     <string name="tabs_title">Дели счет</string>
     <string name="bills">Счета</string>
     <string name="friends">Друзья</string>
-
     <string name="contacts_title">Контакты</string>
-
-    <string name="contacts_save_button">Добавить контакты</string>
-
+    <string name="contacts_save_button">Добавить</string>
     <string name="bill_wizard_info_title">Данные счета</string>
-
     <string name="add_friend">Добавить друзей</string>
     <string name="add_friend_from_contacts">Добавить из контактов</string>
     <string name="create_friend">Создать друзей</string>
@@ -27,4 +23,7 @@
     <string name="default_bill_name">Счет%d</string>
     <string name="address">Адрес</string>
     <string name="list_is_empty">Список пуст</string>
+    <string name="email">Почта</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="name">Имя</string>
 </resources>

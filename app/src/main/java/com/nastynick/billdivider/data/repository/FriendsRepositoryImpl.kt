@@ -15,7 +15,10 @@ class FriendsRepositoryImpl @Inject constructor(
 ) : FriendsRepository {
 
     override fun getFriends(): Single<List<Friend>> {
-        return Single.fromCallable { friendDao.getAll().map { Friend.fromEntity(it) } }
+        return Single
+                .fromCallable { friendDao.getAll().map { Friend.fromEntity(it) } }
+                .subscribeOn(schedulers.io())
+                .observeOn(schedulers.ui())
     }
 
     override fun saveFriendsFromContacts(contacts: List<Contact>): Completable {

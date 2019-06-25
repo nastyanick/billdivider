@@ -8,7 +8,7 @@ class StubUtil @Inject constructor(
         private val application: Application
 ) {
 
-    fun showUnderDevelopmentYetMessage() {
+    fun showUnderDevelopmentMessage() {
         Toast.makeText(application, "В разработке", Toast.LENGTH_SHORT).show()
     }
 }

@@ -1,22 +1,19 @@
 package com.nastynick.billdivider.presentation.contacts
 
-import android.Manifest
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.EditText
 import androidx.appcompat.widget.SearchView
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Contact
 import com.nastynick.billdivider.presentation.base.BaseActivity
+import com.nastynick.billdivider.presentation.util.StubUtil
+import com.nastynick.billdivider.presentation.util.getSearchListener
 import kotlinx.android.synthetic.main.activity_contacts.*
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
@@ -33,10 +30,6 @@ class ContactsActivity : BaseActivity(), ContactsView {
     }
 
     @Inject
-    @InjectPresenter
-    lateinit var presenter: ContactsPresenter
-
-    @Inject
     protected lateinit var adapter: ContactsAdapter
 
     @Inject
@@ -44,6 +37,16 @@ class ContactsActivity : BaseActivity(), ContactsView {
 
     @Inject
     lateinit var navigator: Navigator
+
+    @Inject
+    lateinit var stubUtil: StubUtil
+
+    @Inject
+    @InjectPresenter
+    lateinit var presenter: ContactsPresenter
+
+    @ProvidePresenter
+    fun providePresenter() = presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         getComponent().inject(this)
@@ -57,15 +60,10 @@ class ContactsActivity : BaseActivity(), ContactsView {
         initListeners()
     }
 
-    @ProvidePresenter
-    fun providePresenter() = presenter
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_contacts_search, menu)
-        getSearchView()
-                ?.also { setTextColor(it) }
-                ?.let(presenter::searchCreated)
-
+//        val searchView = getSearchView()
+//        presenter.searchCreated(searchView.getSearchListener())
         return true
     }
 
@@ -79,14 +77,12 @@ class ContactsActivity : BaseActivity(), ContactsView {
         super.onPause()
     }
 
-    private fun setTextColor(searchView: SearchView) {
-        val searchEditText = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
-        searchEditText.setTextColor(ContextCompat.getColor(this, R.color.colorWhite))
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.menu_item_contacts_search -> true
+            R.id.menu_item_contacts_search -> {
+                stubUtil.showUnderDevelopmentMessage()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -113,9 +109,9 @@ class ContactsActivity : BaseActivity(), ContactsView {
         adapter.notifyContactChanged(contact)
     }
 
-    private fun getSearchView(): SearchView? {
+    private fun getSearchView(): SearchView {
         val searchItem = activityContactsToolbar.menu.findItem(R.id.menu_item_contacts_search)
-        return searchItem.actionView as? SearchView
+        return searchItem.actionView as SearchView
     }
 
     private fun initViews() {
