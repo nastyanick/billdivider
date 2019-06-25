@@ -20,9 +20,9 @@ interface PresentationComponent {
 
     fun inject(contactsActivity: ContactsActivity)
 
-    fun inject(friendActivity: FriendActivity)
-
     fun inject(billSummaryFragment: BillSummaryFragment)
 
     fun billWizardComponent(): BillWizardComponent
+
+    fun friendComponent(friendModule: FriendModule): FriendComponent
 }

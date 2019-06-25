@@ -7,12 +7,13 @@ import javax.inject.Inject
 
 @InjectViewState
 class FriendPresenter @Inject constructor(
-    private val friendsInteractor: FriendsInteractor
+    private val friendsInteractor: FriendsInteractor,
+    private val friendId: Long
 ) : BasePresenter<FriendView>() {
 
     override fun onFirstViewAttach() {
         friendsInteractor
-                .getFriend(0)
+                .getFriend(friendId)
                 .subscribe(viewState::setFriend)
                 .connect()
     }

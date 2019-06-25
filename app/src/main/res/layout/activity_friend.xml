@@ -15,7 +15,8 @@
     <com.nastynick.billdivider.presentation.uikit.CircularImageView
         android:id="@+id/activityFriendCircularImageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_large" />
 
     <LinearLayout
         android:id="@+id/activityFriendLinearLayoutFriendContainer"
@@ -36,7 +37,7 @@
                 android:id="@+id/activityFriendTextViewName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/place_name"
+                android:hint="@string/name"
                 android:imeOptions="actionDone"
                 android:inputType="textCapWords"
                 tools:text="Иван Петров" />
@@ -55,7 +56,7 @@
                 android:id="@+id/activityFriendTextViewPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/place_name"
+                android:hint="@string/phone_number"
                 android:imeOptions="actionDone"
                 android:inputType="phone"
                 tools:text="893232233" />
@@ -74,7 +75,7 @@
                 android:id="@+id/activityFriendTextViewEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/place_name"
+                android:hint="@string/email"
                 android:imeOptions="actionDone"
                 android:inputType="textEmailAddress"
                 tools:text="r@r.com" />

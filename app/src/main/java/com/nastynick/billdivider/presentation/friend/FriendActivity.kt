@@ -7,6 +7,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.data.objects.Friend
+import com.nastynick.billdivider.di.presentaion.FriendModule
 import com.nastynick.billdivider.presentation.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_friend.*
 import javax.inject.Inject
@@ -25,14 +26,15 @@ class FriendActivity : BaseActivity(), FriendView {
     @InjectPresenter
     lateinit var presenter: FriendPresenter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        getComponent().inject(this)
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_friend)
-    }
 
     @ProvidePresenter
     fun providePresenter() = presenter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        getComponent().friendComponent(FriendModule(this)).inject(this)
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_friend)
+    }
 
     override fun setFriend(friend: Friend) {
         with(friend) {
