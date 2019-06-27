@@ -1,14 +1,13 @@
 package com.nastynick.billdivider.presentation.billwizard.details
 
-import android.Manifest
 import com.arellomobile.mvp.InjectViewState
 import com.nastynick.billdivider.data.objects.BillDetails
 import com.nastynick.billdivider.domain.usecase.bill.BillInteractor
 import com.nastynick.billdivider.presentation.base.BasePresenter
 import com.nastynick.billdivider.presentation.navigation.BillWizardPositionScreen
-import com.nastynick.billdivider.presentation.service.LocationService
 import com.nastynick.billdivider.presentation.util.DateFormat
-import com.tbruyelle.rxpermissions2.RxPermissions
+import io.reactivex.Observable
+import io.reactivex.Single
 import ru.terrakok.cicerone.Router
 import java.util.*
 import javax.inject.Inject
@@ -17,20 +16,16 @@ import javax.inject.Inject
 class BillWizardDetailsPresenter @Inject constructor(
         private val billInteractor: BillInteractor,
         private val router: Router,
-        private val rxPermissions: RxPermissions,
-        private val locationService: LocationService,
         private val dateFormat: DateFormat
 ) : BasePresenter<BillWizardDetailsView>() {
 
     private var bill = BillDetails()
 
     override fun onFirstViewAttach() {
-        rxPermissions
-                .request(Manifest.permission.ACCESS_FINE_LOCATION)
-                .subscribe { granted -> if (granted) requestAddress() }
-                .connect()
 
         viewState.setDefaultBillName(1)
+        viewState.requestAddressSource()
+
         setTime()
     }
 
@@ -40,12 +35,6 @@ class BillWizardDetailsPresenter @Inject constructor(
         viewState.setTime(dateFormat.formatWithTime(billDate))
     }
 
-    private fun requestAddress() {
-        locationService
-                .getAddress()
-                .subscribe(viewState::setAddress)
-                .connect()
-    }
 
     fun onAddPositionsClick() {
         billInteractor
@@ -60,5 +49,13 @@ class BillWizardDetailsPresenter @Inject constructor(
 
     fun onAddressTextChanged(address: String) {
         bill = bill.copy(address = address)
+    }
+
+    fun onAddressSource(addressSource: Single<String>, addressAccessSource: Observable<Boolean>) {
+        addressAccessSource
+                .filter { it }
+                .switchMapSingle { addressSource }
+                .subscribe(viewState::setAddress)
+                .connect()
     }
 }

@@ -1,5 +1,6 @@
 package com.nastynick.billdivider.presentation.billwizard.details
 
+import android.Manifest
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +11,9 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nastynick.billdivider.R
 import com.nastynick.billdivider.di.ComponentsHolder
 import com.nastynick.billdivider.presentation.base.BaseFragment
+import com.nastynick.billdivider.presentation.service.LocationService
 import com.nastynick.billdivider.presentation.util.afterTextChanged
+import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.fragment_bill_wizard_details.*
 import javax.inject.Inject
 
@@ -19,6 +22,12 @@ class BillWizardDetailsFragment : BaseFragment(), BillWizardDetailsView {
     companion object {
         fun getInstance(): BillWizardDetailsFragment = BillWizardDetailsFragment()
     }
+
+    @Inject
+    protected lateinit var rxPermissions: RxPermissions
+
+    @Inject
+    protected lateinit var locationService: LocationService
 
     @Inject
     @InjectPresenter
@@ -60,5 +69,12 @@ class BillWizardDetailsFragment : BaseFragment(), BillWizardDetailsView {
 
     override fun setAddress(address: String) {
         fragmentBillWizardDetailsTextViewPlace.setText(address)
+    }
+
+    override fun requestAddressSource() {
+        presenter.onAddressSource(
+                locationService.getAddress(),
+                rxPermissions.request(Manifest.permission.ACCESS_FINE_LOCATION)
+        )
     }
 }

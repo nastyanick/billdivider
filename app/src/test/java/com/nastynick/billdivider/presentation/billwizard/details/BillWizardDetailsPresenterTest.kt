@@ -1,14 +1,8 @@
 package com.nastynick.billdivider.presentation.billwizard.details
 
-import android.Manifest
 import com.nastynick.billdivider.domain.usecase.bill.BillInteractor
-import com.nastynick.billdivider.presentation.service.LocationService
 import com.nastynick.billdivider.presentation.util.DateFormat
-import com.nhaarman.mockito_kotlin.any
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.whenever
-import com.tbruyelle.rxpermissions2.RxPermissions
+import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Observable
 import io.reactivex.Single
 import org.junit.Before
@@ -19,8 +13,6 @@ class BillWizardDetailsPresenterTest {
 
     private val view: BillWizardDetailsView = mock()
 
-    private lateinit var rxPermissions: RxPermissions
-    private lateinit var locationService: LocationService
     private lateinit var dateFormat: DateFormat
 
     private lateinit var presenter: BillWizardDetailsPresenter
@@ -32,28 +24,13 @@ class BillWizardDetailsPresenterTest {
         val billInteractor: BillInteractor = mock()
         val router: Router = mock()
 
-        rxPermissions = mock()
-        locationService = mock()
         dateFormat = mock()
-
-        whenever(locationService.getAddress()).thenReturn(Single.just(address))
-
-        whenever(rxPermissions.request(Manifest.permission.ACCESS_FINE_LOCATION))
-                .thenReturn(Observable.just(true))
 
         presenter = BillWizardDetailsPresenter(
                 billInteractor,
                 router,
-                rxPermissions,
-                locationService,
                 dateFormat
         )
-    }
-
-    @Test
-    fun `attach view show address`() {
-        presenter.attachView(view)
-        verify(view).setAddress(address)
     }
 
     @Test
@@ -70,5 +47,28 @@ class BillWizardDetailsPresenterTest {
         presenter.attachView(view)
 
         verify(view).setTime(formattedDate)
+    }
+
+    @Test
+    fun `address access granted show address`() {
+        val accessSource = Observable.just(true)
+        val address = "Samara, ul. Lesnaya, 100"
+        val addressSource = Single.just(address)
+
+        presenter.attachView(view)
+        presenter.onAddressSource(addressSource, accessSource)
+
+        verify(view).setAddress(address)
+    }
+
+    @Test
+    fun `address access not granted do not show address`() {
+        val accessSource = Observable.just(false)
+        val addressSource = Single.just(address)
+
+        presenter.attachView(view)
+        presenter.onAddressSource(addressSource, accessSource)
+
+        verify(view, never()).setAddress(any())
     }
 }

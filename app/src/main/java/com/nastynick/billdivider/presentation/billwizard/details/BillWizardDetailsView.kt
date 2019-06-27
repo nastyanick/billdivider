@@ -6,4 +6,6 @@ interface BillWizardDetailsView : MvpView {
     fun setDefaultBillName(billNumber: Int)
     fun setTime(date: String)
     fun setAddress(address: String)
+
+    fun requestAddressSource()
 }
