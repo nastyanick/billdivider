@@ -35,7 +35,9 @@ class BillWizardFlowActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bill_wizard)
 
-        presenter.onFlowStarted()
+        if (savedInstanceState == null) {
+            presenter.onFlowStarted()
+        }
     }
 
     override fun onResume() {
